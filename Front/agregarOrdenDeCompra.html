@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/proveedores.css" />
+    <title>Ordenes de compra</title>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Sistema de Gestión</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  proveedores
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="proveedores.html">Listado de proveedores</a></li>
+                    <li><a class="dropdown-item" href="agregarProveedor.html">Registrar proveedores</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Productos / Servicios
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="productos.html">Listado de productos</a></li>
+                    <li><a class="dropdown-item" href="agregarProductos.html">Agregar productos</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                Ordenes de compra
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="ordenDeCompra.html">Listado de órdenes</a></li>
+                  <li><a class="dropdown-item" href="agregarOrdenDeCompra.html">Agregar orden</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+
+
+    <main>
+
+        <!-- Ordenes de compra:  genera y administra las ordenes de compra enviadas a proveedores
+Número orden compra
+Fecha emisión
+Fecha entrega esperada
+Información de recepción (dirección)
+Proveedor
+Productos
+cantidad
+Total -->
+
+        <h1 class="m-5"> Agregar órden de compra</h1>
+  
+        <form class="row g-3 m-5">
+          <div class="col-md-4">
+            <label for="validationDefault01" class="form-label">Número de orden</label>
+            <input type="text" class="form-control" id="validationDefault01" value="Código / SKU" required>
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault02" class="form-label">Fecha de emisión</label>
+            <input type="date" class="form-control" id="validationDefault02" required>
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault03" class="form-label">Fecha entrega esperada</label>
+            <input type="date" class="form-control" id="validationDefault03" required>
+          </div>
+          <div class="col-md-4">
+            <label for="validationDefault04" class="form-label">Información de recepción</label>
+            <input type="text" class="form-control" id="validationDefault04" value="Direccion" required>
+          </div>
+          <div class="col-md-3">
+            <label for="validationDefault05" class="form-label">Proveedor</label>
+            <select class="form-select" id="validationDefault05" required>
+              <option selected disabled value="">Elige proveedor...</option>
+              <option>Proveedor 1</option>
+              <option>Proveedor 2</option>
+              <option>Proveedor 3</option>
+              <option>Proveedor 4</option>
+              <option>Proveedor 5</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <label for="validationDefault06" class="form-label">Productos</label>
+            <select class="form-select" id="validationDefault06" required>
+              <option selected disabled value="">Elige producto...</option>
+              <option>Producto 1</option>
+              <option>Producto 2</option>
+              <option>Producto 3</option>
+              <option>Producto 4</option>
+              <option>Producto 5</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="validationDefault07" class="form-label">Cantidad</label>
+            <input type="number" class="form-control" id="validationDefault07" value="0" required>
+          </div>
+  
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit" onclick="guardar()">Guardar</button> 
+            <a href="ordenDeCompra.html" class="btn btn-danger ">Cancelar</a>
+          </div>
+        </form>
+  
+  
+  
+      </main>
+  
+  
+    
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/agregarOrden.js"></script>
+  </body>
+</html>

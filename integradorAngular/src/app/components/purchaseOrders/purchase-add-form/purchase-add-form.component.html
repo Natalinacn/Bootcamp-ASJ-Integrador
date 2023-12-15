@@ -1,0 +1,57 @@
+<main class="mt-5" >
+    <h1> Agregar órden de compra</h1>
+
+    <form class="row g-3 m-5">
+      <div class="col-md-4">
+        <label for="validationDefault01" class="form-label">Número de orden</label>
+        <input type="text" class="form-control" id="validationDefault01" value="Código / SKU" required>
+      </div>
+      <div class="col-md-4">
+        <label for="validationDefault02" class="form-label">Fecha de emisión</label>
+        <input type="date" class="form-control" id="validationDefault02" required>
+      </div>
+      <div class="col-md-4">
+        <label for="validationDefault03" class="form-label">Fecha entrega esperada</label>
+        <input type="date" class="form-control" id="validationDefault03" required>
+      </div>
+      <div class="col-md-4">
+        <label for="validationDefault04" class="form-label">Información de recepción</label>
+        <input type="text" class="form-control" id="validationDefault04" value="Direccion" required>
+      </div>
+      <div class="col-md-3">
+        <label for="validationDefault05" class="form-label">Proveedor</label>
+        <select class="form-select" id="validationDefault05" required>
+          <option selected disabled value="">Elige proveedor...</option>
+          <option>Proveedor 1</option>
+          <option>Proveedor 2</option>
+          <option>Proveedor 3</option>
+          <option>Proveedor 4</option>
+          <option>Proveedor 5</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <label for="validationDefault06" class="form-label">Productos</label>
+        <select class="form-select" id="validationDefault06" required>
+          <option selected disabled value="">Elige producto...</option>
+          <option>Producto 1</option>
+          <option>Producto 2</option>
+          <option>Producto 3</option>
+          <option>Producto 4</option>
+          <option>Producto 5</option>
+        </select>
+      </div>
+      <div class="col-md-6">
+        <label for="validationDefault07" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" id="validationDefault07" value="0" required>
+      </div>
+
+      <div class="col-12">
+        <button routerLink="/ordenes/listado" class="btn btn-primary" type="submit">Guardar</button> 
+        <a routerLink="/ordenes/listado" class="btn btn-danger">Cancelar</a>
+      </div>
+    </form>
+
+
+
+  </main>
+

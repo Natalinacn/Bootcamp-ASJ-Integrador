@@ -20,13 +20,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
+        <tr *ngFor="let product of productsData">
+          <th scope="row">{{ product.id }}</th>
+          <td>{{ product.nombreProducto }}</td>
+          <td>{{ product.categoria }}</td>
+          <td>{{ product.proveedor }}</td>
+          <td>{{ product.descripcion }}</td>
+          <td>{{ product.precio }}</td>
           <td><button type="button" class="btn btn-primary">Editar</button>
             <button type="button" class="btn btn-danger">Eliminar</button></td>
         </tr>

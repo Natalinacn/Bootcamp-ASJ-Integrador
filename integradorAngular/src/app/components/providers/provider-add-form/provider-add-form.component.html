@@ -1,6 +1,6 @@
-<main >
+<main class="m-5">
 
-    <h1 class="m-5"> Registro de proveedores</h1>
+    <h1 class="text-center"> Registro de proveedores</h1>
 
 
     <form id="proveedor-form" class="m-5">
@@ -82,13 +82,15 @@
         <input type="text" class="form-control" id="inputRol" placeholder="Rol">
       </div>
 
+      <div class="col-12 mt-2 ">
+        <button routerLink="/proveedores/listado" class="btn btn-primary"type="submit">Guardar</button> 
+        <button routerLink="/proveedores/listado" class="btn btn-danger m-lg-1" type="submit">Cancelar</button> 
+      </div>
     </form>
+
   
       
-    <div class="col-12">
-      <button routerLink="/proveedores/listado" class="btn btn-primary" type="submit" onclick="guardar()">Guardar</button> 
-      <a routerLink="/proveedores/listado" class="btn btn-danger ">Cancelar</a>
-    </div>
+
 
 
 

@@ -13,6 +13,7 @@ import { ProductListComponent } from './components/products/product-list/product
 import { ProductAddFormComponent } from './components/products/product-add-form/product-add-form.component';
 import { ProviderAddFormComponent } from './components/providers/provider-add-form/provider-add-form.component';
 import { ProviderListComponent } from './components/providers/provider-list/provider-list.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ProviderListComponent } from './components/providers/provider-list/prov
     ProductListComponent,
     ProductAddFormComponent,
     ProviderAddFormComponent,
-    ProviderListComponent
+    ProviderListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

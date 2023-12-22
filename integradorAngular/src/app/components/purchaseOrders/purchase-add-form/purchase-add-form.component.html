@@ -1,26 +1,26 @@
 <main class="mt-5 mb-5" >
     <h1 class="text-center"> Agregar órden de compra</h1>
 
-    <form class="row g-3 m-5">
+    <form #purchaseForm="ngForm" id="purchase-form" class="row g-3 m-5" (ngSubmit)="savePurchase(purchaseForm)">
       <div class="col-md-4">
-        <label for="validationDefault01" class="form-label">Número de orden</label>
-        <input type="text" class="form-control" id="validationDefault01" value="Código / SKU" required>
+        <label for="orderNumber" class="form-label">Número de orden</label>
+        <input type="text" class="form-control" id="orderNumber" value="orderNumber" name="orderNumber" [(ngModel)]="purchaseOrder.OrderNumber" required>
       </div>
       <div class="col-md-4">
-        <label for="validationDefault02" class="form-label">Fecha de emisión</label>
-        <input type="date" class="form-control" id="validationDefault02" required>
+        <label for="issueDate" class="form-label">Fecha de emisión</label>
+        <input type="date" class="form-control" id="issueDate" name="issueDate" [(ngModel)]="purchaseOrder.issueDate" required>
       </div>
       <div class="col-md-4">
-        <label for="validationDefault03" class="form-label">Fecha entrega esperada</label>
-        <input type="date" class="form-control" id="validationDefault03" required>
+        <label for="deliveryDate" class="form-label">Fecha entrega esperada</label>
+        <input type="date" class="form-control" id="deliveryDate" name="deliveryDate" [(ngModel)]="purchaseOrder.deliveryDate" required>
       </div>
       <div class="col-md-4">
-        <label for="validationDefault04" class="form-label">Información de recepción</label>
-        <input type="text" class="form-control" id="validationDefault04" value="Direccion" required>
+        <label for="receptionInfo" class="form-label">Información de recepción</label>
+        <input type="text" class="form-control" id="receptionInfo" name="receptionInfo" [(ngModel)]="purchaseOrder.receptionInfo" required>
       </div>
       <div class="col-md-3">
-        <label for="validationDefault05" class="form-label">Proveedor</label>
-        <select class="form-select" id="validationDefault05" required>
+        <label for="provider" class="form-label">Proveedor</label>
+        <select class="form-select" id="provider" name="provider" [(ngModel)]="purchaseOrder.provider" required>
           <option selected disabled value="">Elige proveedor...</option>
           <option>Proveedor 1</option>
           <option>Proveedor 2</option>
@@ -30,8 +30,8 @@
         </select>
       </div>
       <div class="col-md-3">
-        <label for="validationDefault06" class="form-label">Productos</label>
-        <select class="form-select" id="validationDefault06" required>
+        <label for="products" class="form-label">Productos</label>
+        <select class="form-select" id="products" name="products" [(ngModel)]="purchaseOrder.products" required>
           <option selected disabled value="">Elige producto...</option>
           <option>Producto 1</option>
           <option>Producto 2</option>
@@ -41,13 +41,13 @@
         </select>
       </div>
       <div class="col-md-6">
-        <label for="validationDefault07" class="form-label">Cantidad</label>
-        <input type="number" class="form-control" id="validationDefault07" value="0" required>
+        <label for="quantity" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="purchaseOrder.quantity" required>
       </div>
 
       <div class="col-12">
-        <button routerLink="/ordenes/listado" class="btn btn-primary" type="submit">Guardar</button> 
-        <button routerLink="/ordenes/listado" class="btn btn-danger m-lg-1" type="submit">Cancelar</button> 
+        <button class="btn btn-primary" type="submit">Guardar</button> 
+        <button routerLink="/ordenes/listado" class="btn btn-danger m-lg-1" type="button">Cancelar</button> 
       </div>
     </form>
 

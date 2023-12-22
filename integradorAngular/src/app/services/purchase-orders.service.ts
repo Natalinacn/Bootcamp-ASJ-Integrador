@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { purchaseOrders } from '../data/purchaseOrders';
+import { PurchaseOrdersModel } from '../model/purchaseOrderModel';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class PurchaseOrdersService {
 
   public getHardcodedOrders(){
 
-    return purchaseOrders;
+    // return purchaseOrders;
 
 
   }

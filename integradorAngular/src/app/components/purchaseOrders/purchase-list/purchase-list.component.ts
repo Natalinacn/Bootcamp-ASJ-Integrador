@@ -14,7 +14,7 @@ export class PurchaseListComponent implements OnInit{
   constructor(public purchaseService : PurchaseOrdersService){};
 
   ngOnInit(): void {
-    this.purchaseData = this.purchaseService.getHardcodedOrders();
+    // this.purchaseData = this.purchaseService.getHardcodedOrders();
     
   }
   

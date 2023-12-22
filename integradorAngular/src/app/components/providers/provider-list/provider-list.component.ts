@@ -12,7 +12,7 @@ export class ProviderListComponent implements OnInit {
   constructor(public providersService: ProvidersService) {}
 
   ngOnInit(): void {
-    this.providersData = this.providersService.getHardcodedProviders();
+    // this.providersData = this.providersService.getHardcodedProviders();
 
   }
 }

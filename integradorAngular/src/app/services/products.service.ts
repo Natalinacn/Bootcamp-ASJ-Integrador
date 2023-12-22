@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { products } from '../data/products';
+import { ProductsModel } from '../model/productModel';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class ProductsService {
 
 
   public getHardcodedProducts(){
-    return products;
+    // return products;
   }
 
 }

@@ -1,23 +1,30 @@
 export interface ProvidersModel {
   id: number;
-  razonSocial: string;
-  rubro: string;
-  calleYAltura: string;
-  cp: string;
-  localidad: string;
-  ciudad: string;
-  provincia: string;
-  pais: string;
-  web: string;
-  telefono: string;
-  email: string;
-  cuit: string;
-  condicionIva: string;
-  personaResponsable: {
-    nombreResp: string;
-    apellidoResp: string;
-    telefonoResp: string;
-    emailResp: string;
-    rolResp: string;
+  providerCode: string;
+  businessName: string;
+  industry: string;
+  address: {
+    streetAndNumber: string;
+    postalCode: string;
+    locality: string;
+    city: string;
+    province: string;
+    country: string;
+  };
+  contact: {
+    website: string;
+    phone: string;
+    email: string;
+  };
+  fiscalData: {
+    cuit: string;
+    taxCondition: string;
+  };
+  responsiblePerson: {
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
+    role: string;
   };
 }

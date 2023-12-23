@@ -14,5 +14,20 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     // this.productsData = this.productService.getHardcodedProducts();
+    this.listProducts();
   }
+
+
+  listProducts() {
+    const res = this.productService.getProduct();
+
+    console.log('respuesta del get', res);
+
+    if (res !== null) {
+      this.productsData = res;
+  
+  }else{
+    console.error('La respuesta es nula');
+  }
+}
 }

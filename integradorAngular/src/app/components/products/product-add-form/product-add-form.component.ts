@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ProductsModel } from 'src/app/model/productModel';
+import { ProductsService } from 'src/app/services/products.service';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -19,11 +20,13 @@ export class ProductAddFormComponent {
   price: 0
   }
 
+  constructor(private productService: ProductsService){}
+
   saveProduct(form:NgForm){
-    console.log(this.product);
-      //Crear el metodo de guardar en el servicio
-  //Llamar al servicio de proveerdr para guardar
-  //Redigir a la ruta
+    if(form.valid){
+
+      this.productService.createProduct(this.product);
+    }
   }
 
 }

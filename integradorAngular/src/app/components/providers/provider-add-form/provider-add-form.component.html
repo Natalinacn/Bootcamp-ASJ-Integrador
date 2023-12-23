@@ -1,99 +1,234 @@
 <main class="m-5">
+  <h1 class="text-center">Registro de proveedores</h1>
 
-    <h1 class="text-center"> Registro de proveedores</h1>
-
-
-    <form #providerForm="ngForm" id="proveedor-form" class="m-5" (ngSubmit)="saveProvider(providerForm)">
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputRazon">Id Proveedor</label>
-          <input type="text" class="form-control" id="inputIdProv" value="0" readonly>
-          <label for="inputRazon">Razón Social</label>
-          <input type="text" class="form-control" id="inputRazon" placeholder="Razón social" name="razon" [(ngModel)]="provider.razonSocial" required>
-        </div>
-        <div class="form-group col-md-4">
-          <label for="inputRubro">Rubro</label>
-          <select id="inputRubro" class="form-control" name="inputRubro"[(ngModel)]="provider.rubro" >
-            <option selected>Elige el rubro...</option>
-            <option>Informatica</option>
-            <option>Alimentos</option>
-            <option>Moda</option>
-            <option>Finanzas</option>
-            <option>Salud</option>
-          </select>
-        </div>
+  <form
+    #providerForm="ngForm"
+    id="proveedor-form"
+    class="m-5"
+    (ngSubmit)="createProvider(providerForm)"
+  >
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCodigo">Código</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCodigo"
+          placeholder="ej. sku546"
+          required
+        />
+        <label for="inputRazon">Razón Social</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputRazon"
+          placeholder="ej. Pepsico Iberia Servicios Centrales, S.L"
+          name="razon"
+          [(ngModel)]="provider.businessName"
+          required
+        />
       </div>
-      <div class="form-group">
-        <h4 class="mt-3">Dirección</h4>
-        <label for="inputDir">Calle y Altura</label>
-        <input type="text" class="form-control" id="inputDir" placeholder="Calle y altura" name="dir" [(ngModel)]="provider.calleYAltura" required>
-        <div class="form-group col-md-2">
-          <label for="inputZip">Código postal</label>
-          <input type="text" class="form-control" id="inputZip" placeholder="CP" name="cp" [(ngModel)]="provider.cp" required>
-        </div>
-        <label for="inputLoc">Localidad</label>
-        <input type="text" class="form-control" id="inputLoc" placeholder="Ciudad" name="ciudad" [(ngModel)]="provider.ciudad" required>
-        <label for="inputProv">Provincia</label>
-        <input type="text" class="form-control" id="inputProv" placeholder="Provincia" name="prov" [(ngModel)]="provider.provincia" required>
-        <label for="inputPais">País</label>
-        <input type="text" class="form-control" id="inputPais" placeholder="País" name="pais" [(ngModel)]="provider.pais" required>
+      <div class="form-group col-md-4">
+        <label for="inputRubro">Rubro</label>
+        <select
+          id="inputRubro"
+          class="form-control"
+          name="inputRubro"
+          [(ngModel)]="provider.industry"
+        >
+          <option value="" selected>Elige el rubro...</option>
+          <option value="Informatica">Informatica</option>
+          <option value="Alimentos">Alimentos</option>
+          <option value="Moda">Moda</option>
+          <option value="Finanzas">Finanzas</option>
+          <option value="Salud">Salud</option>
+        </select>
       </div>
-      <div class="form-group">
-        <h4 class="mt-3">Contacto</h4>
-        <label for="inputSitio">Sitio Web</label>
-        <input type="text" class="form-control" id="inputSitio" placeholder="Sitio web" name="web" [(ngModel)]="provider.web">
+    </div>
+    <div class="form-group">
+      <h4 class="mt-3">Dirección</h4>
+      <label for="inputDir">Calle y Altura</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputDir"
+        placeholder="ej. San Martin 455"
+        name="dir"
+        [(ngModel)]="provider.address.streetAndNumber"
+        required
+      />
+      <div class="form-group col-md-2">
+        <label for="inputZip">Código postal</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputZip"
+          placeholder="CP"
+          name="cp"
+          [(ngModel)]="provider.address.postalCode"
+          
+        />
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputTel">Teléfono</label>
-          <input type="text" class="form-control" id="inputTel" placeholder="Teléfono" name="tel" [(ngModel)]="provider.telefono" required>
-          <label for="inputEmail1">Email</label>
-          <input type="email" class="form-control" id="inputEmail1" placeholder="Email" name="mail" [(ngModel)]="provider.email" required>
-        </div>
-
+      <label for="inputLoc">Localidad</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputLoc"
+        placeholder="Localidad"
+        name="ciudad"
+        [(ngModel)]="provider.address.city"
+        required
+      />
+      <label for="inputProv">Provincia</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputProv"
+        placeholder="Provincia"
+        name="prov"
+        [(ngModel)]="provider.address.province"
+        required
+      />
+      <label for="inputPais">País</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputPais"
+        placeholder="País"
+        name="pais"
+        [(ngModel)]="provider.address.country"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <h4 class="mt-3">Contacto</h4>
+      <label for="inputSitio">Sitio Web</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputSitio"
+        placeholder="Sitio web"
+        name="web"
+        [(ngModel)]="provider.contact.website"
+      />
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputTel">Teléfono</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputTel"
+          placeholder="Teléfono"
+          name="tel"
+          [(ngModel)]="provider.contact.phone"
+          required
+        />
+        <label for="inputEmail1">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail1"
+          placeholder="Email"
+          name="mail"
+          [(ngModel)]="provider.contact.email"
+          required
+        />
       </div>
+    </div>
 
+    <div class="form-group">
+      <h4 class="mt-3">Datos fiscales</h4>
+      <label for="inputCuit">CUIT</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputCuit"
+        placeholder="CUIT"
+        name="cuit"
+        [(ngModel)]="provider.fiscalData.cuit"
+        required
+      />
+    </div>
 
-      <div class="form-group">
-        <h4 class="mt-3">Datos fiscales</h4>
-        <label for="inputCuit">CUIT</label>
-        <input type="text" class="form-control" id="inputCuit" placeholder="CUIT" name="cuit" [(ngModel)]="provider.cuit" required>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputIva">Condición iva</label>
-          <input type="text" class="form-control" id="inputIva" placeholder="Condición iva" name="iva" [(ngModel)]="provider.condicionIva" required>
-        </div>
+    <div class="form-group col-md-4">
+      <label for="inputRubro">Condición IVA</label>
+      <select
+        id="inputRubro"
+        class="form-control"
+        name="inputRubro"
+        [(ngModel)]="provider.industry"
+      >
+        <option value="" selected>Elige la condición...</option>
+        <option value="Informatica">Responsable inscripto</option>
+        <option value="Alimentos">Responsable NO inscripto</option>
+        <option value="Moda">Sujeto Exento</option>
+        <option value="Finanzas">Consumidor final</option>
+        <option value="Salud">Responsable monotributo</option>
+      </select>
+    </div>
 
-      </div>
+    <div class="form-group">
+      <h4 class="mt-3">Persona responsable</h4>
+      <label for="inputNombre">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputNombre"
+        placeholder="Nombre"
+        name="nombre-res"
+        [(ngModel)]="provider.responsiblePerson.firstName"
+        required
+      />
+      <label for="inputApellido">Apellido</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputApellido"
+        placeholder="Apellido"
+        name="apellido-res"
+        [(ngModel)]="provider.responsiblePerson.lastName"
+        required
+      />
+      <label for="inputTel2">Teléfono</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputTel2"
+        placeholder="Teléfono"
+        name="tel-res"
+        [(ngModel)]="provider.responsiblePerson.phone"
+        
+      />
+      <label for="inputEmail2">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="inputEmail2"
+        placeholder="Email"
+        name="mail-res"
+        [(ngModel)]="provider.responsiblePerson.email"
+      />
+      <label for="inputRol">Rol</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputRol"
+        placeholder="Rol"
+        name="rol-res"
+        [(ngModel)]="provider.responsiblePerson.role"
+      />
+    </div>
 
-
-      <div class="form-group">
-        <h4 class="mt-3">Persona responsable</h4>
-        <label for="inputNombre">Nombre</label>
-        <input type="text" class="form-control" id="inputNombre" placeholder="Nombre" name="nombre-res" [(ngModel)]="provider.personaResponsable.nombreResp" required>
-        <label for="inputApellido">Apellido</label>
-        <input type="text" class="form-control" id="inputApellido" placeholder="Apellido" name="apellido-res" [(ngModel)]="provider.personaResponsable.apellidoResp" required>
-        <label for="inputTel2">Teléfono</label>
-        <input type="text" class="form-control" id="inputTel2" placeholder="Teléfono" name="tel-res" [(ngModel)]="provider.personaResponsable.rolResp" required>
-        <label for="inputEmail2">Email</label>
-        <input type="email" class="form-control" id="inputEmail2" placeholder="Email" name="mail-res" [(ngModel)]="provider.personaResponsable.emailResp" required>
-        <label for="inputRol">Rol</label>
-        <input type="text" class="form-control" id="inputRol" placeholder="Rol" name="rol-res" [(ngModel)]="provider.personaResponsable.rolResp" required>
-      </div>
-
-      <div class="col-12 mt-2 ">
-        <button class="btn btn-primary" type="submit" >Guardar</button> 
-        <button routerLink="/proveedores/listado" class="btn btn-danger m-lg-1" type="button">Cancelar</button> 
-      </div>
-    </form>
-
-  
-      
-
-
-
-
-
-  </main>
-
+    <div class="col-12 mt-2">
+      <button class="btn btn-primary" type="submit">Guardar</button>
+      <button
+        routerLink="/proveedores/listado"
+        class="btn btn-danger m-lg-1"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</main>

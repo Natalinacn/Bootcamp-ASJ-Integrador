@@ -34,17 +34,17 @@ export class PurchaseAddFormComponent {
 createPurchase(form:NgForm){
 
   if(form.valid){
-    this.purchaseOrdersService.createPuchaseOrder(this.purchaseOrder);
+    this.purchaseOrdersService.createPurchaseOrder(this.purchaseOrder);
 
           // Primero abro el modal
           const modalRef = this.modalService.open(ConfirmationModalComponent);
-          modalRef.componentInstance.message = 'Proveedor agregado correctamente';
+          modalRef.componentInstance.message = 'Órden de compra agregado correctamente';
     
-          // Uso setTimeout para cerrar el modal después de 3 segundos y navegar a otra página
+          // Uso setTimeout para cerrar el modal después de 2 segundos y navegar a otra página
           setTimeout(() => {
             modalRef.close('timeout');
             this.router.navigate(['/ordenes/listado']); 
-          }, 3000);
+          }, 2000);
     
           // Manejo el resultado de la promesa
           modalRef.result.then(

@@ -8,6 +8,7 @@ import { ProvidersService } from 'src/app/services/providers.service';
   styleUrls: ['./provider-list.component.css'],
 })
 export class ProviderListComponent implements OnInit {
+
   providersData: ProvidersModel[] | null = [];
 
   constructor(public providersService: ProvidersService) {}
@@ -41,4 +42,20 @@ export class ProviderListComponent implements OnInit {
     console.error('La respuesta es nula');
   }
 }
+
+  deleteProvider(id: string){
+
+    const res = this.providersService.deleteProvider(id); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
+
+    console.log('respuesta del get', res);
+
+   if (res !== null && res !== undefined) {
+      this.providersData = res;
+      }else{
+      console.error('La respuesta es nula');
+    }
+
+
+  }
+
 }

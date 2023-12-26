@@ -31,4 +31,20 @@ export class ProductListComponent implements OnInit {
     console.error('La respuesta es nula');
   }
 }
+
+
+deleteProduct(id: string){
+
+  const res = this.productService.deleteProduct(id); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
+
+  console.log('respuesta del get', res);
+
+ if (res !== null && res !== undefined) {
+    this.productsData = res;
+    }else{
+    console.error('La respuesta es nula');
+  }
+
+
+}
 }

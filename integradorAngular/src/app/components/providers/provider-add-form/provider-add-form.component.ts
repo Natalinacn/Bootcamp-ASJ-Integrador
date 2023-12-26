@@ -70,7 +70,7 @@ export class ProviderAddFormComponent {
       setTimeout(() => {
         modalRef.close('timeout');
         this.router.navigate(['/proveedores/listado']); 
-      }, 3000);
+      }, 2000);
 
       // Manejo el resultado de la promesa
       modalRef.result.then(
@@ -84,11 +84,5 @@ export class ProviderAddFormComponent {
     }
   }
 
-  // deleteProvider(id: string){
 
-  //   if(id === this.provider.id){
-
-  //   }
-
-  // }
 }

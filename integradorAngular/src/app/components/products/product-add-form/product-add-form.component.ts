@@ -43,7 +43,7 @@ export class ProductAddFormComponent {
       setTimeout(() =>{
         modalRef.close('timeout');
         this.router.navigate(['/productos/listado']);
-      }, 3000);
+      }, 2000);
 
 
       modalRef.result.then(

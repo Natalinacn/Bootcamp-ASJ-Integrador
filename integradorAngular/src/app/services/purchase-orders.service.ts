@@ -13,23 +13,26 @@ export class PurchaseOrdersService {
 
   // }
 
-  createPuchaseOrder(purchaseOrder: PurchaseOrdersModel): void {
+  createPurchaseOrder(purchaseOrder: PurchaseOrdersModel): void {
     try {
       const purchaseFromLocal: string | null =
-        localStorage.getItem('puchaseOrders');
+        localStorage.getItem('purchaseOrders');
 
       if (purchaseFromLocal !== null) {
         let purchaseString: PurchaseOrdersModel[] =
           JSON.parse(purchaseFromLocal);
 
+          const uniqueId = crypto.randomUUID();
+          purchaseOrder.id = uniqueId;
+
         purchaseString.push(purchaseOrder);
 
         localStorage.setItem(
-          'puchaseOrders',
+          'purchaseOrders',
           JSON.stringify(purchaseString));
       }else{
         const purchaseFromLocal: PurchaseOrdersModel[] = [purchaseOrder];
-        localStorage.setItem('puchaseOrders', JSON.stringify(purchaseFromLocal));
+        localStorage.setItem('purchaseOrders', JSON.stringify(purchaseFromLocal));
       }
     } catch (error) {
       console.log(
@@ -42,7 +45,7 @@ export class PurchaseOrdersService {
 
   getPurchase(): PurchaseOrdersModel[] | null{
     try{
-      const purchaseFromLocal: string | null = localStorage.getItem('puchaseOrders');
+      const purchaseFromLocal: string | null = localStorage.getItem('purchaseOrders');
 
       if(purchaseFromLocal !== null){
 
@@ -56,5 +59,35 @@ export class PurchaseOrdersService {
       return null;
     }
   }
+
+  deletePurchase(id: string) {
+    try {
+      //Traigo la info del LocalStorage y la guardo en providerFromLocal
+      const purchaseFromLocal: string | null =
+        localStorage.getItem('purchaseOrders');
+
+      if (purchaseFromLocal !== null) {
+        //Si el local tiene info creo una nueva variable para guardarla como Json
+        let purchaseListToJson: PurchaseOrdersModel[] = JSON.parse(purchaseFromLocal);
+
+        //Filtro el id que deseo eliminar y lo guardo en la variable updateProviderList
+        const updatePurchaseList = purchaseListToJson.filter(function (purchase) {
+          return purchase.id !== id;
+        });
+
+        //Actualizo el localStorage con la lista filtrada
+        localStorage.setItem('purchaseOrders', JSON.stringify(updatePurchaseList));
+
+        //Retorna la lista nueva sin el eliminado
+        return updatePurchaseList;
+      }
+      return null;
+    } catch (error) {
+      console.log('La lista de órdenes del LocalStorage es nula ', error);
+
+      return null;
+    }
+  }
+
 
 }

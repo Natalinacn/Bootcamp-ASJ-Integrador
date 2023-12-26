@@ -21,6 +21,9 @@ export class ProductsService {
 
         let productsString: ProductsModel[] = JSON.parse(productsFromLocal);
 
+        const uniqueId = crypto.randomUUID();
+        product.id = uniqueId;
+
         productsString.push(product);
 
         localStorage.setItem('product', JSON.stringify(productsString));
@@ -56,6 +59,36 @@ export class ProductsService {
 
     }
       
+    }
+
+    deleteProduct(id:string){
+      try {
+        //Traigo la info del LocalStorage y la guardo en providerFromLocal
+        const productFromLocal: string | null =
+          localStorage.getItem('product');
+  
+        if (productFromLocal !== null) {
+          //Si el local tiene info creo una nueva variable para guardarla como Json
+          let productListToJson: ProductsModel[] = JSON.parse(productFromLocal);
+  
+          //Filtro el id que deseo eliminar y lo guardo en la variable updateProviderList
+          const updateProductList = productListToJson.filter(function (product) {
+            return product.id !== id;
+          });
+  
+          //Actualizo el localStorage con la lista filtrada
+          localStorage.setItem('product', JSON.stringify(updateProductList));
+  
+          //Retorna la lista nueva sin el eliminado
+          return updateProductList;
+        }
+        return null;
+      } catch (error) {
+        console.log('La lista de productos del LocalStorage es nula ', error);
+  
+        return null;
+      }
+
     }
 
 

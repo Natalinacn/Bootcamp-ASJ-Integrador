@@ -30,6 +30,22 @@ export class PurchaseListComponent implements OnInit{
     console.error('La respuesta es nula');
   }
 }
+
+
+deletePurchase(id: string){
+
+  const res = this.purchaseService.deletePurchase(id); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
+
+  console.log('respuesta del get', res);
+
+ if (res !== null && res !== undefined) {
+    this.purchaseData = res;
+    }else{
+    console.error('La respuesta es nula');
+  }
+
+
+}
   
 
 }

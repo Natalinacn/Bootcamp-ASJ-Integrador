@@ -24,8 +24,6 @@ export class ProductsService {
         const uniqueId = crypto.randomUUID();
         product.id = uniqueId;
 
-        // product.code = ;
-
         productsString.push(product);
 
         localStorage.setItem('product', JSON.stringify(productsString));
@@ -90,6 +88,10 @@ export class ProductsService {
   
         return null;
       }
+
+    }
+
+    updateProduct(){
 
     }
 

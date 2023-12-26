@@ -60,7 +60,7 @@ export class PurchaseOrdersService {
     }
   }
 
-  deletePurchase(id: string) {
+  cancelPurchase(id: string) {
     try {
       //Traigo la info del LocalStorage y la guardo en providerFromLocal
       const purchaseFromLocal: string | null =

@@ -12,14 +12,23 @@
         <label for="validationDefault02" class="form-label">Nombre Producto</label>
         <input type="text" class="form-control" id="validationDefault02" value="Nombre Producto" name="prodName" [(ngModel)]="product.productName" required>
       </div>
-      <div class="col-md-4">
+      <!-- <div class="col-md-4">
         <label for="validationDefault02" class="form-label">Categoría</label>
         <input type="text" class="form-control" id="validationDefault02" value="Categoría" name="category" [(ngModel)]="product.category" required>
-      </div>
+      </div> -->
+
       <div class="col-md-4">
-        <label for="validationDefault02" class="form-label">Descripción</label>
-        <input type="text" class="form-control" id="validationDefault02" value="Descripción" name="description" [(ngModel)]="product.description" required>
+        <label for="category" class="form-label">Categoría</label>
+        <select class="form-select" id="category" name="category" [(ngModel)]="product.category" required>
+          <option selected disabled value="">Elige una categoría...</option>
+          <option>Categoría 1</option>
+          <option>Categoría 2</option>
+          <option>Categoría 3</option>
+          <option>Categoría 4</option>
+          <option>Categoría 5</option>
+        </select>
       </div>
+
       <div class="col-md-6">
         <label for="validationDefault03" class="form-label">Precio</label>
         <input type="number" class="form-control" id="validationDefault03" value="0" name="price" [(ngModel)]="product.price" required>
@@ -35,6 +44,14 @@
           <option>Proveedor 5</option>
         </select>
       </div>
+
+      
+
+      <div class="col-md-12">
+        <label for="description" class="form-label">Descripción</label>
+        <textarea class="form-control" id="description" name="description" rows="5" [(ngModel)]="product.description"></textarea>
+      </div>
+
 
       <div class="col-12">
         <button class="btn btn-primary" type="submit">Guardar</button> 

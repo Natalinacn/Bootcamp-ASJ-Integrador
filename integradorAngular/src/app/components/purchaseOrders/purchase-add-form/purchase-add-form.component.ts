@@ -28,6 +28,7 @@ export class PurchaseAddFormComponent {
   provider: '',
   products: '',
   quantity: 0,
+  status: true,
   totalAmount: 0
 }
 

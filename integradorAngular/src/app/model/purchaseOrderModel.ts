@@ -10,6 +10,7 @@ export interface PurchaseOrdersModel {
     provider: string,
     products: string,
     quantity: number,
+    status: boolean,
     totalAmount: number
 }
 

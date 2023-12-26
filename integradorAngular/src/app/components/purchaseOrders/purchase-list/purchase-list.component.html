@@ -19,6 +19,7 @@
           <th scope="col">Productos</th>
           <th scope="col">Cantidad</th>
           <th scope="col">Total</th>
+          <th scope="col">Estado</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
@@ -33,10 +34,11 @@
           <td>{{ purchase.products }}</td>
           <td>{{ purchase.quantity }}</td>
           <td>{{ purchase.totalAmount }}</td>
+          <td>{{ purchase.status }}</td>
           <td>
             <div class="d-grid">
-              <button type="button" class="btn btn-primary btn-sm mb-1">Editar</button>
-              <button type="button" class="btn btn-danger btn-sm" (click)="deletePurchase(purchase.id)" >Eliminar</button>
+              <!-- <button type="button" class="btn btn-primary btn-sm mb-1">Editar</button> -->
+              <button type="button" class="btn btn-danger btn-sm" (click)="cancelPurchase(purchase.id)">Cancelar</button>
             </div>
           </td>
         </tr>

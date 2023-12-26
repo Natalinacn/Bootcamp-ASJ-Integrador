@@ -33,7 +33,7 @@ export class PurchaseListComponent implements OnInit {
     }
   }
 
-  deletePurchase(id: string) {
+  cancelPurchase(id: string) {
     //Usar el modal de confirmación antes de eliminar
     const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
 
@@ -44,7 +44,7 @@ export class PurchaseListComponent implements OnInit {
     //Tengo que manejar la promesa del modal con el result-then
     modalRef.result.then((result) => {
         if (result === 'confirm') {
-          const res = this.purchaseService.deletePurchase(id); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
+          const res = this.purchaseService.cancelPurchase(id); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
 
           if (res !== null && res !== undefined) {
             this.purchaseData = res;

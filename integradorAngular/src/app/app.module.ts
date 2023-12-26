@@ -15,6 +15,8 @@ import { ProviderAddFormComponent } from './components/providers/provider-add-fo
 import { ProviderListComponent } from './components/providers/provider-list/provider-list.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -29,13 +31,16 @@ import { FormsModule } from '@angular/forms';
     ProductAddFormComponent,
     ProviderAddFormComponent,
     ProviderListComponent,
-    HomeComponent, 
+    HomeComponent,
+    ConfirmationModalComponent,
+    
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    NgbModalModule,
     FormsModule
   ],
   providers: [],

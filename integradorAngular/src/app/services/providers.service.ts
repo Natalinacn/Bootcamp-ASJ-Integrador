@@ -55,13 +55,6 @@ export class ProvidersService {
   }
 }
 
-  deleteProvider(){
-
-  }
-
-  updateProvider(){
-
-  }
 
 
   getProvider(): ProvidersModel[] | null{
@@ -83,6 +76,22 @@ export class ProvidersService {
     }
       
     }
+
+    
+  // deleteProvider(id: string){
+
+  //   const providerFromLocal: string | null = localStorage.getItem('providers');
+    
+  //   if()
+
+  // }
+
+
+  
+
+  updateProvider(){
+
+  }
 
   
   }

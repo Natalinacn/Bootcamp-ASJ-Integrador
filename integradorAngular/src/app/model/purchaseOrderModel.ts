@@ -1,7 +1,7 @@
 
 export interface PurchaseOrdersModel {
     
-    id: number,
+    id: string,
     OrderNumber: string,
     issueDate: Date,
     deliveryDate: Date,

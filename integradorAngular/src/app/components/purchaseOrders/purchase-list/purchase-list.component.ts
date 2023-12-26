@@ -15,8 +15,21 @@ export class PurchaseListComponent implements OnInit{
 
   ngOnInit(): void {
     // this.purchaseData = this.purchaseService.getHardcodedOrders();
-    
+    this.list();
   }
+
+  list() {
+    const res = this.purchaseService.getPurchase();
+
+    console.log('respuesta del get', res);
+
+    if (res !== null) {
+      this.purchaseData = res;
+  
+  }else{
+    console.error('La respuesta es nula');
+  }
+}
   
 
 }

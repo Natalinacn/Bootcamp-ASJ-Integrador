@@ -1,7 +1,7 @@
 <main class="mt-5 mb-5" >
     <h1 class="text-center"> Agregar órden de compra</h1>
 
-    <form #purchaseForm="ngForm" id="purchase-form" class="row g-3 m-5" (ngSubmit)="savePurchase(purchaseForm)">
+    <form #purchaseForm="ngForm" id="purchase-form" class="row g-3 m-5" (ngSubmit)="createPurchase(purchaseForm)">
       <div class="col-md-4">
         <label for="orderNumber" class="form-label">Número de orden</label>
         <input type="text" class="form-control" id="orderNumber" value="orderNumber" name="orderNumber" [(ngModel)]="purchaseOrder.OrderNumber" required>

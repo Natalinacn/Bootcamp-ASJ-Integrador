@@ -1,5 +1,5 @@
 export interface ProvidersModel {
-  id: number;
+  id: string;
   providerCode: string;
   businessName: string;
   industry: string;

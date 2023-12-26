@@ -17,6 +17,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
+import { DeleteConfirmationModalComponent } from './modals/delete-confirmation-modal/delete-confirmation-modal.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { ConfirmationModalComponent } from './modals/confirmation-modal/confirma
     ProviderListComponent,
     HomeComponent,
     ConfirmationModalComponent,
+    DeleteConfirmationModalComponent,
     
     
   ],

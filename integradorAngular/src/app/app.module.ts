@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 import { DeleteConfirmationModalComponent } from './modals/delete-confirmation-modal/delete-confirmation-modal.component';
+import { CancelConfirmationModalComponent } from './modals/cancel-confirmation-modal/cancel-confirmation-modal.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { DeleteConfirmationModalComponent } from './modals/delete-confirmation-m
     HomeComponent,
     ConfirmationModalComponent,
     DeleteConfirmationModalComponent,
+    CancelConfirmationModalComponent,
     
     
   ],

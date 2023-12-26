@@ -19,6 +19,7 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     // this.productsData = this.productService.getHardcodedProducts();
     this.listProducts();
+    this.sortProductsByProductName();
   }
 
   listProducts() {
@@ -56,4 +57,15 @@ export class ProductListComponent implements OnInit {
       }
     );
   }
+
+
+  sortProductsByProductName() {
+    this.productsData.sort((a, b) => a.productName.localeCompare(b.productName));
+  }
+
+
+
+
+  
+
 }

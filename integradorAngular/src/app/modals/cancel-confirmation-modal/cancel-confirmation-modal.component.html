@@ -1,0 +1,15 @@
+<!-- cancel-confirmation-modal.component.html -->
+
+<div class="modal-header bg-danger text-white">
+    <h4 class="modal-title text-center">Confirmar Cancelación</h4>
+  </div>
+  <div class="modal-body text-center">
+    <i class="fa fa-exclamation-triangle fa-3x text-danger"></i>
+    <h3 class="modal-title">{{ message }}</h3>
+    <!-- <p>¿Está seguro de que desea cancelar esta orden?</p> -->
+  </div>
+  <div class="modal-footer text-center">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss('cancel')">Cancelar</button>
+    <button type="button" class="btn btn-danger" (click)="confirmCancel()">Confirmar</button>
+  </div>
+  

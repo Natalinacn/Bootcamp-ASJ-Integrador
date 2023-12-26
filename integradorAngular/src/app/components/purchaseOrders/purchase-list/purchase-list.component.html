@@ -34,11 +34,11 @@
           <td>{{ purchase.products }}</td>
           <td>{{ purchase.quantity }}</td>
           <td>{{ purchase.totalAmount }}</td>
-          <td>{{ purchase.status }}</td>
+          <td>{{ purchase.status ? 'Activa' : 'Cancelada'}}</td>
           <td>
             <div class="d-grid">
               <!-- <button type="button" class="btn btn-primary btn-sm mb-1">Editar</button> -->
-              <button type="button" class="btn btn-danger btn-sm" (click)="cancelPurchase(purchase.id)">Cancelar</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="cancelPurchase(purchase.id)" [disabled]="purchase.status === false">Cancelar</button>
             </div>
           </td>
         </tr>

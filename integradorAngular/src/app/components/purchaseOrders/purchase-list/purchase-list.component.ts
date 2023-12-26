@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteConfirmationModalComponent } from 'src/app/modals/delete-confirmation-modal/delete-confirmation-modal.component';
+import { CancelConfirmationModalComponent } from 'src/app/modals/cancel-confirmation-modal/cancel-confirmation-modal.component';
 import { PurchaseOrdersService } from 'src/app/services/purchase-orders.service';
 
 @Component({
@@ -33,29 +33,30 @@ export class PurchaseListComponent implements OnInit {
     }
   }
 
-  cancelPurchase(id: string) {
+  cancelPurchase(orderId: string) {
     //Usar el modal de confirmación antes de eliminar
-    const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
+    const modalRef = this.modalService.open(CancelConfirmationModalComponent);
 
     //Configuro el mensaje del modal
     modalRef.componentInstance.message =
-      '¿Está seguro de que desea eliminar esta órden?';
+      '¿Está seguro de que desea cancelar esta órden?';
 
     //Tengo que manejar la promesa del modal con el result-then
     modalRef.result.then((result) => {
         if (result === 'confirm') {
-          const res = this.purchaseService.cancelPurchase(id); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
+          const success= this.purchaseService.cancelPurchase(orderId);
 
-          if (res !== null && res !== undefined) {
-            this.purchaseData = res;
-          } else {
-            console.error('La respuesta es nula');
+          if(success){
+            this.list();
           }
-        }
+                 }
       },
       (reason) => {
         console.log('Modal de confirmación cerrado sin confirmar: ', reason);
       }
     );
   }
+
+
+
 }

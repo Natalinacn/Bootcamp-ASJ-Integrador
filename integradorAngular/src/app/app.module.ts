@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 import { DeleteConfirmationModalComponent } from './modals/delete-confirmation-modal/delete-confirmation-modal.component';
 import { CancelConfirmationModalComponent } from './modals/cancel-confirmation-modal/cancel-confirmation-modal.component';
+import { PurchaseDetailComponent } from './components/purchaseOrders/purchase-detail/purchase-detail.component';
 
 
 @NgModule({
@@ -37,6 +39,7 @@ import { CancelConfirmationModalComponent } from './modals/cancel-confirmation-m
     ConfirmationModalComponent,
     DeleteConfirmationModalComponent,
     CancelConfirmationModalComponent,
+    PurchaseDetailComponent,
     
     
   ],
@@ -45,7 +48,8 @@ import { CancelConfirmationModalComponent } from './modals/cancel-confirmation-m
     AppRoutingModule,
     NgbModule,
     NgbModalModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

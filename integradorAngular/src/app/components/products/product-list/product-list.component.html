@@ -26,7 +26,7 @@
           <td>{{ product.productName }}</td>
           <td>{{ product.category }}</td>
           <td>{{ product.provider }}</td>
-          <td>{{ product.price }}</td>
+          <td>{{ product.price | currency: 'ARS' }}</td>
           <td>
             <div class="d-grid">
               <button type="button" class="btn btn-primary btn-sm mb-1" (click)="updateProduct(product.id)">Editar</button>

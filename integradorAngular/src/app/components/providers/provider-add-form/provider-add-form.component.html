@@ -14,7 +14,7 @@
           type="text"
           class="form-control"
           id="inputCodigo"
-          placeholder="ej. sku546"
+          placeholder="ej. 444555"
           name="providerCode"
           [(ngModel)]="provider.providerCode"
           required
@@ -42,8 +42,6 @@
           <option value="Informatica">Informatica</option>
           <option value="Alimentos">Alimentos</option>
           <option value="Moda">Moda</option>
-          <option value="Finanzas">Finanzas</option>
-          <option value="Salud">Salud</option>
         </select>
       </div>
     </div>
@@ -81,7 +79,7 @@
         [(ngModel)]="provider.address.city"
         required
       />
-      <label for="inputProv">Provincia</label>
+      <!-- <label for="inputProv">Provincia</label>
       <input
         type="text"
         class="form-control"
@@ -90,8 +88,59 @@
         name="prov"
         [(ngModel)]="provider.address.province"
         required
-      />
-      <label for="inputPais">País</label>
+      /> -->
+
+      <div class="form-group col-md-4">
+        <label for="inputProv">Provincia</label>
+        <select
+          id="inputProv"
+          class="form-control"
+          name="prov"
+          [(ngModel)]="provider.address.province"
+        >
+        <option value="" selected>Elige la provincia...</option>
+        <option value="Buenos Aires">Buenos Aires</option>
+        <option value="Catamarca">Catamarca</option>
+        <option value="Chaco">Chaco</option>
+        <option value="Chubut">Chubut</option>
+        <option value="Córdoba">Córdoba</option>
+        <option value="Corrientes">Corrientes</option>
+        <option value="Entre Ríos">Entre Ríos</option>
+        <option value="Formosa">Formosa</option>
+        <option value="Jujuy">Jujuy</option>
+        <option value="La Pampa">La Pampa</option>
+        <option value="La Rioja">La Rioja</option>
+        <option value="Mendoza">Mendoza</option>
+        <option value="Misiones">Misiones</option>
+        <option value="Neuquén">Neuquén</option>
+        <option value="Río Negro">Río Negro</option>
+        <option value="Salta">Salta</option>
+        <option value="San Juan">San Juan</option>
+        <option value="San Luis">San Luis</option>
+        <option value="Santa Cruz">Santa Cruz</option>
+        <option value="Santa Fe">Santa Fe</option>
+        <option value="Santiago del Estero">Santiago del Estero</option>
+        <option value="Tierra del Fuego">Tierra del Fuego</option>
+        <option value="Tucumán">Tucumán</option>
+        </select>
+      </div>
+
+
+      <div class="form-group col-md-4">
+        <label for="inputProv">País</label>
+        <select
+          id="inputPais"
+          class="form-control"
+          name="pais"
+          [(ngModel)]="provider.address.country"
+        >
+        <option value="" selected>Elige el país...</option>
+        <option value="Argentina">Argentina</option>
+        </select>
+      </div>
+
+
+      <!-- <label for="inputPais">País</label>
       <input
         type="text"
         class="form-control"
@@ -100,7 +149,7 @@
         name="pais"
         [(ngModel)]="provider.address.country"
         required
-      />
+      /> -->
     </div>
     <div class="form-group">
       <h4 class="mt-3">Contacto</h4>

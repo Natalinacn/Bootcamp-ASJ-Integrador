@@ -5,6 +5,8 @@ import { ProductsService } from 'src/app/services/products.service';
 import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
+import { ProvidersService } from 'src/app/services/providers.service';
+import { ProvidersModel } from 'src/app/model/providerModel';
 
 @Component({
   selector: 'app-product-add-form',
@@ -12,8 +14,13 @@ import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/co
   styleUrls: ['./product-add-form.component.css'],
 })
 export class ProductAddFormComponent implements OnInit {
+
+  providers: ProvidersModel[] = []; 
+
+
   constructor(
     private productService: ProductsService,
+    private providersService: ProvidersService, 
     private modalService: NgbModal,
     private router: Router,
     private route: ActivatedRoute
@@ -32,14 +39,26 @@ export class ProductAddFormComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
+    
+// Llam0 al servicio de proveedores para obtener la lista
+this.providers = this.providersService.getProvider() || [];
+console.log('Lista de proveedores en ngOnInit:', this.providers);
+
+
+
     this.route.paramMap.subscribe((response) => {
       let id = response.get('id');
       if (id != undefined) {
         this.id = id;
         this.product = this.productService.getProductById(id)!;
         console.log(this.product);
+
       }
     });
+    
+  // Agrega este console.log para verificar si la lista de proveedores se carga correctamente
+  console.log('Lista de proveedores en ngOnInit:', this.providers);
   }
 
   onSubmit(form: NgForm) {

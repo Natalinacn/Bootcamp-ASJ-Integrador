@@ -1,10 +1,14 @@
-import { Injectable, Provider } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ProvidersModel } from '../model/providerModel';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProvidersService {
+
+
+  
   constructor() {}
 
   // public getHardcodedProviders(){
@@ -45,7 +49,10 @@ export class ProvidersService {
         localStorage.getItem('providers');
 
       if (providerFromLocal !== null) {
-        return JSON.parse(providerFromLocal);
+        // return JSON.parse(providerFromLocal);
+        const providers = JSON.parse(providerFromLocal);
+        console.log('Lista de proveedores en el servicio:', providers);
+        return providers;
       }
       return null;
     } catch (error) {
@@ -54,6 +61,8 @@ export class ProvidersService {
       return null;
     }
   }
+
+
 
   deleteProvider(id: string) {
     try {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 import { DeleteConfirmationModalComponent } from 'src/app/modals/delete-confirmation-modal/delete-confirmation-modal.component';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -13,7 +14,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductsService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -64,8 +66,21 @@ export class ProductListComponent implements OnInit {
   }
 
 
+  updateProduct(productId:string){
+
+    const foundProduct = this.productService.getProductById(productId);
+
+    if(foundProduct !== null){
+      this.router.navigate([`/productos/formulario/${productId}`]);;
 
 
+
+    }else{
+      console.error('No se encontró el producto')
+    }
+
+
+  }
   
 
 }

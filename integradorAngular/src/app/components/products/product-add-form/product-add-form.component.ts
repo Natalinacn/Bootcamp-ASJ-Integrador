@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsModel } from 'src/app/model/productModel';
 import { ProductsService } from 'src/app/services/products.service';
 import { NgForm } from '@angular/forms';
@@ -11,12 +11,24 @@ import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/co
   templateUrl: './product-add-form.component.html',
   styleUrls: ['./product-add-form.component.css']
 })
-export class ProductAddFormComponent {
+export class ProductAddFormComponent implements OnInit{
 
   constructor(
     private productService: ProductsService,
     private modalService: NgbModal,
-    private router: Router){}
+    private router: Router,
+    private route: ActivatedRoute,){}
+
+
+  ngOnInit(): void {
+    
+    this.route.paramMap.subscribe((response) => {
+      let id = response.get('id');
+      if (id != undefined) {
+        this.product = this.productService.getProductById(id)!;
+              }
+    });
+  }
 
 
 
@@ -58,4 +70,16 @@ export class ProductAddFormComponent {
     }
   }
 
-}
+//   updateProduct(form:NgForm){
+
+//     this.productService.getProductById(this.product.id);
+
+
+//     if(form.valid){
+//       this.productService.updateProduct(this.product.id);
+//     }
+
+
+//   }
+
+ }

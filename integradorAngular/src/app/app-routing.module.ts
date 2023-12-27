@@ -13,6 +13,7 @@ const routes: Routes = [
   {path: 'proveedores/formulario', component: ProviderAddFormComponent},
   {path: 'productos/listado', component: ProductListComponent},
   {path: 'productos/formulario', component: ProductAddFormComponent},
+  {path: 'productos/formulario/:id', component: ProductAddFormComponent},
   {path: 'ordenes/listado', component: PurchaseListComponent},
   {path: 'ordenes/formulario', component: PurchaseAddFormComponent},
   {path: '', component: HomeComponent}

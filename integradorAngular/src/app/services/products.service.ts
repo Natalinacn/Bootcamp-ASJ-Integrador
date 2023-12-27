@@ -61,6 +61,8 @@ export class ProductsService {
       
     }
 
+
+
     deleteProduct(id:string){
       try {
         //Traigo la info del LocalStorage y la guardo en providerFromLocal
@@ -91,9 +93,53 @@ export class ProductsService {
 
     }
 
-    updateProduct(){
+    
+    getProductById(id: string): ProductsModel | null {
+      try {
+        const productFromLocal: string | null = localStorage.getItem('product');
+    
+        if (productFromLocal !== null) {
+          const productListToJson: ProductsModel[] = JSON.parse(productFromLocal);
+    
+          // Acá busco el producto por su id
+          const productToUpdate: ProductsModel | undefined = productListToJson.find(product => product.id === id);
+    
+          return productToUpdate || null;
+        }
+        return null;
+      } catch (error) {
+        console.log('Error al obtener el producto del LocalStorage: ', error);
+        return null;
+      }
+    }
+    
 
+    //VER
+
+    saveProduct(product : ProductsModel): void{
+      try{
+        const productsFromLocal: string | null = localStorage.getItem('product');
+  
+        if(productsFromLocal !== null){
+  
+          let productsString: ProductsModel[] = JSON.parse(productsFromLocal);
+  
+          productsString.push(product);
+  
+          localStorage.setItem('product', JSON.stringify(productsString));
+  
+        }else{
+          const productsFromLocal: ProductsModel[] = [product];
+          localStorage.setItem('product', JSON.stringify(productsFromLocal));
+        }
+  
+  
+      }catch(error){
+        console.log("Error al agregar producto al localStorage: ", error);
+  
+      }
+  
     }
 
-
 }
+

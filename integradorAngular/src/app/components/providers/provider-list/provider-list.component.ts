@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteConfirmationModalComponent } from 'src/app/modals/delete-confirmation-modal/delete-confirmation-modal.component';
 import { ProvidersModel } from 'src/app/model/providerModel';
@@ -14,7 +15,8 @@ export class ProviderListComponent implements OnInit {
 
   constructor(
     private providersService: ProvidersService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -22,15 +24,6 @@ export class ProviderListComponent implements OnInit {
 
     // this.providersData = this.providersService.getHardcodedProviders();
   }
-
-  // list(){
-  //   this.providersService.getProvider().suscribe((res) =>{
-  //     console.log("respuesta del get" + res);
-  //     this.providersData = res.data;
-  //   })
-
-  //   }
-  // }
 
   list() {
     const res = this.providersService.getProvider();
@@ -70,5 +63,11 @@ export class ProviderListComponent implements OnInit {
         console.log('Modal de confirmación cerrado sin confirmar: ', reason);
       }
     );
+  }
+
+  updateProvider(providerId: string){
+
+    this.router.navigate([`/proveedores/formulario/${providerId}`]);
+
   }
 }

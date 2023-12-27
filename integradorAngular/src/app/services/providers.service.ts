@@ -13,18 +13,6 @@ export class ProvidersService {
 
   // }
 
-  // saveProviderOnLocalStorage(provider: ProvidersModel):void{
-
-  //   let providerFromLocal: ProvidersModel[] = localStorage.getItem("provider"); //Obtengo los proveedores guardados en el LocalStogage
-
-  //   if(providerFromLocal){
-
-  //     JSON.parse(providerFromLocal);
-
-  //   }
-
-  // }
-
   createProvider(provider: ProvidersModel): void {
     try {
       const providerFromLocal: string | null =
@@ -96,5 +84,49 @@ export class ProvidersService {
     }
   }
 
-  updateProvider() {}
+  getPoviderById(id: string): ProvidersModel | null {
+    try {
+      const providerFromLocal: string | null = localStorage.getItem('providers');
+  
+      if (providerFromLocal !== null) {
+        const providerListToJson: ProvidersModel[] = JSON.parse(providerFromLocal);
+  
+        const providerToUpdate: ProvidersModel | undefined = providerListToJson.find(provider => provider.id === id);
+  
+        return providerToUpdate || null;
+      }
+      return null;
+    } catch (error) {
+      console.log('Error al obtener el proveedor del LocalStorage: ', error);
+      return null;
+    }
+  }
+  
+
+
+  updateProvider(provider : ProvidersModel): void{
+    try{
+      const providerFromLocal: string | null = localStorage.getItem('providers');
+
+      if(providerFromLocal !== null){
+
+        let providerString: ProvidersModel[] = JSON.parse(providerFromLocal);
+
+        let indice = providerString.findIndex(function(p){
+          return p.id == provider.id
+        })
+
+        providerString[indice] = provider;
+
+        localStorage.setItem('providers', JSON.stringify(providerString));
+       
+      }  
+
+    }catch(error){
+      console.log("Error al agregar proveedor al localStorage: ", error);
+
+    }
+
+  }
+
 }

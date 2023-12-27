@@ -12,42 +12,58 @@
   </div>
 
   <div class="contenedor-tabla">
-    <table class="table table-dark table-striped mt-2">
-      <thead>
-        <tr class="text-center">
-          <th scope="col">Código</th>
-          <th scope="col">Razón social</th>
-          <th scope="col">Contacto</th>
-          <th scope="col">Nombre del responsable</th>
-          <th scope="col">Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="dataProveedores">
-        <tr class="text-center" *ngFor="let provider of providersData">
-          <td>{{ provider.providerCode }}</td>
-          <td>{{ provider.businessName }}</td>
-          <td>
-            <div class="div-contacto">
-              <span>Web: {{ provider.contact.website }}</span>
-              <span>Email: {{ provider.contact.email }}</span>
-              <span>Teléfono: {{ provider.contact.phone }}</span>
-            </div>
-          </td>
-          <td>
-            {{
-              provider.responsiblePerson.firstName +
-                " " +
-                provider.responsiblePerson.lastName
-            }}
-          </td>
-          <td>
-            <div class="d-grid">
-              <button type="button" class="btn btn-primary btn-sm mb-1">Editar</button>
-              <button type="button" class="btn btn-danger btn-sm " (click)="deleteProvider(provider.id)">Eliminar</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <ng-container *ngIf="providersData && providersData.length > 0; else noProviders">
+      <table class="table table-dark table-striped mt-2">
+        <thead>
+          <tr class="text-center">
+            <th scope="col">Código</th>
+            <th scope="col">Razón social</th>
+            <th scope="col">Contacto</th>
+            <th scope="col">Nombre del responsable</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="dataProveedores">
+          <tr class="text-center" *ngFor="let provider of providersData">
+            <td>{{ provider.providerCode }}</td>
+            <td>{{ provider.businessName }}</td>
+            <td>
+              <div class="div-contacto">
+                <span>Web: {{ provider.contact.website }}</span>
+                <span>Email: {{ provider.contact.email }}</span>
+                <span>Teléfono: {{ provider.contact.phone }}</span>
+              </div>
+            </td>
+            <td>
+              {{
+                provider.responsiblePerson.firstName +
+                  " " +
+                  provider.responsiblePerson.lastName
+              }}
+            </td>
+            <td>
+              <div class="d-grid">
+                <button type="button" class="btn btn-primary btn-sm mb-1" (click)="updateProvider(provider.id)">
+                  Editar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  (click)="deleteProvider(provider.id)"
+                >
+                  Eliminar
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
   </div>
+
+  <ng-template #noProviders>
+    <div class="container-fluid text-bg-secondary text-center mt-5 p-3">
+      <h2>No hay proveedores cargados. ¿Desea agregar uno?</h2>
+    </div>
+  </ng-template>
 </main>

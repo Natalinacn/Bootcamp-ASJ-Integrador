@@ -114,7 +114,6 @@ export class ProductsService {
     }
     
 
-    //VER: ESTE ESTA MAL, NO ME ACTUALIZA EL PRUDUCTO
 
     updateProduct(product : ProductsModel): void{
       try{

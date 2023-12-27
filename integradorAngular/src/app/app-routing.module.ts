@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 const routes: Routes = [
   {path: 'proveedores/listado', component: ProviderListComponent},
   {path: 'proveedores/formulario', component: ProviderAddFormComponent},
+  {path: 'proveedores/formulario/:id', component: ProviderAddFormComponent},
   {path: 'productos/listado', component: ProductListComponent},
   {path: 'productos/formulario', component: ProductAddFormComponent},
   {path: 'productos/formulario/:id', component: ProductAddFormComponent},

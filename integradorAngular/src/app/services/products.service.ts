@@ -114,25 +114,25 @@ export class ProductsService {
     }
     
 
-    //VER
+    //VER: ESTE ESTA MAL, NO ME ACTUALIZA EL PRUDUCTO
 
-    saveProduct(product : ProductsModel): void{
+    updateProduct(product : ProductsModel): void{
       try{
         const productsFromLocal: string | null = localStorage.getItem('product');
   
         if(productsFromLocal !== null){
   
           let productsString: ProductsModel[] = JSON.parse(productsFromLocal);
+
+          let indice = productsString.findIndex(function(p){
+            return p.id == product.id
+          })
   
-          productsString.push(product);
-  
+          productsString[indice] = product;
+
           localStorage.setItem('product', JSON.stringify(productsString));
-  
-        }else{
-          const productsFromLocal: ProductsModel[] = [product];
-          localStorage.setItem('product', JSON.stringify(productsFromLocal));
-        }
-  
+         
+        }  
   
       }catch(error){
         console.log("Error al agregar producto al localStorage: ", error);

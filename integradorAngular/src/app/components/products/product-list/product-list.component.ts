@@ -60,27 +60,13 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-
   sortProductsByProductName() {
-    this.productsData.sort((a, b) => a.productName.localeCompare(b.productName));
+    this.productsData.sort((a, b) =>
+      a.productName.localeCompare(b.productName)
+    );
   }
 
-
-  updateProduct(productId:string){
-
-    const foundProduct = this.productService.getProductById(productId);
-
-    if(foundProduct !== null){
-      this.router.navigate([`/productos/formulario/${productId}`]);;
-
-
-
-    }else{
-      console.error('No se encontró el producto')
-    }
-
-
+  updateProduct(productId: string) {
+    this.router.navigate([`/productos/formulario/${productId}`]);
   }
-  
-
 }

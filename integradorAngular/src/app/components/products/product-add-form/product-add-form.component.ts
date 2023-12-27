@@ -20,27 +20,44 @@ export class ProductAddFormComponent implements OnInit{
     private route: ActivatedRoute,){}
 
 
+    id!: string;
+    
+  product: ProductsModel = {
+  
+    id: "",
+    code: '',
+    productName: '',
+    category: '',
+    provider: '',
+    description: '',
+    price: 0
+    }
+
   ngOnInit(): void {
     
     this.route.paramMap.subscribe((response) => {
       let id = response.get('id');
       if (id != undefined) {
+        this.id = id;
         this.product = this.productService.getProductById(id)!;
+        console.log(this.product);
               }
+              
     });
   }
 
 
+onSubmit(form:NgForm){
 
-  product: ProductsModel = {
-  id: "0",
-  code: '',
-  productName: '',
-  category: '',
-  provider: '',
-  description: '',
-  price: 0
-  }
+if(this.id){
+
+  this.updateProduct(form);
+
+}else{
+  this.saveProduct(form);
+}
+
+}
 
 
 
@@ -70,16 +87,31 @@ export class ProductAddFormComponent implements OnInit{
     }
   }
 
-//   updateProduct(form:NgForm){
 
-//     this.productService.getProductById(this.product.id);
+updateProduct(form:NgForm){
+  if(form.valid){
+
+    this.productService.updateProduct(this.product);
+
+    const modalRef = this.modalService.open(ConfirmationModalComponent);
+    modalRef.componentInstance.message = 'Producto editado correctamente';
+
+          setTimeout(() =>{
+        modalRef.close('timeout');
+        this.router.navigate(['/productos/listado']);
+      }, 2000);
+    modalRef.result.then(
+        (result) => {
+          console.log('Modal cerrado', result);
+        },
+        (reason) => {
+          console.log('Modal descartado', reason);
+        }
+      );
+
+  }
+}
 
 
-//     if(form.valid){
-//       this.productService.updateProduct(this.product.id);
-//     }
-
-
-//   }
 
  }

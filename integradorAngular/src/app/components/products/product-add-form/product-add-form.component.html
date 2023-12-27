@@ -3,7 +3,7 @@
 
     <h1 class="text-center"> Agregar productos</h1>
 
-    <form #productForm="ngForm" id="form-paciente" class="row g-3 m-5" (ngSubmit)="saveProduct(productForm)">
+    <form #productForm="ngForm" id="form-paciente" class="row g-3 m-5" (ngSubmit)="onSubmit(productForm)">
       <div class="col-md-4">
         <label for="validationDefault01" class="form-label">Código / SKU</label>
         <input type="text" class="form-control" id="validationDefault01" value="Código / SKU" name="code" [(ngModel)]="product.code" required>

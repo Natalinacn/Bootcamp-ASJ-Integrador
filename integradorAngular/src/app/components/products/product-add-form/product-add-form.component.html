@@ -1,65 +1,194 @@
-
 <main class="m-5">
+  <h1 class="text-center">Agregar productos</h1>
 
-    <h1 class="text-center"> Agregar productos</h1>
-
-    <form #productForm="ngForm" id="form-paciente" class="row g-3 m-5" (ngSubmit)="onSubmit(productForm)">
-      <div class="col-md-4">
-        <label for="validationDefault01" class="form-label">Código / SKU</label>
-        <input type="text" class="form-control" id="validationDefault01" value="Código / SKU" placeholder="ej. sku546" name="code" [(ngModel)]="product.code" required>
+  <form
+    #productForm="ngForm"
+    id="form-paciente"
+    class="row g-3 m-5"
+    (ngSubmit)="onSubmit(productForm)"
+  >
+    <div class="col-md-4">
+      <label for="sku" class="form-label">Código / SKU</label>
+      <input
+        type="text"
+        class="form-control"
+        id="sku"
+        value="Código / SKU"
+        placeholder="ej. sku546"
+        name="code"
+        [(ngModel)]="product.code"
+        required
+        minlength="3"
+        maxlength="10"
+      />
+      <div
+        *ngIf="
+          productForm.controls['code']?.invalid &&
+          (productForm.controls['code']?.dirty ||
+            productForm.controls['code']?.touched)
+        "
+        class="text-danger"
+      >
+        <small *ngIf="productForm.controls['code']?.errors?.['required']"
+          >Este campo es obligatorio.</small
+        >
+        <small *ngIf="productForm.controls['code']?.errors?.['minlength']"
+          >El código debe tener al menos 3 caracteres.</small
+        >
+        <small *ngIf="productForm.controls['code']?.errors?.['maxlength']"
+          >El código no debe exceder los 10 caracteres.</small
+        >
       </div>
-      <div class="col-md-4">
-        <label for="validationDefault02" class="form-label">Nombre Producto</label>
-        <input type="text" class="form-control" id="validationDefault02" value="Nombre Producto" placeholder="ej. Celular" name="prodName" [(ngModel)]="product.productName" required>
+    </div>
+    <div class="col-md-4">
+      <label for="validationDefault02" class="form-label"
+        >Nombre Producto</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="validationDefault02"
+        value="Nombre Producto"
+        placeholder="ej. Celular"
+        name="prodName"
+        [(ngModel)]="product.productName"
+        required
+        minlength="3"
+      />
+      <div
+        *ngIf="
+          productForm.controls['code']?.invalid &&
+          (productForm.controls['code']?.dirty ||
+            productForm.controls['code']?.touched)
+        "
+        class="text-danger"
+      >
+        <small *ngIf="productForm.controls['code']?.errors?.['required']"
+          >Este campo es obligatorio.</small
+        >
+        <small *ngIf="productForm.controls['code']?.errors?.['minlength']"
+          >El código debe tener al menos 3 caracteres.</small
+        >
+
       </div>
-      <!-- <div class="col-md-4">
-        <label for="validationDefault02" class="form-label">Categoría</label>
-        <input type="text" class="form-control" id="validationDefault02" value="Categoría" name="category" [(ngModel)]="product.category" required>
-      </div> -->
+    </div>
 
-      <div class="col-md-4">
-        <label for="category" class="form-label">Categoría</label>
-        <select class="form-select" id="category" name="category" [(ngModel)]="product.category" required>
-          <option selected disabled value="">Elige una categoría...</option>
-          <option>Celulares</option>
-          <option>Tablets</option>
-          <option>Laptops</option>
-          <option>Panadería</option>
-          <option>Carnes</option>
-          <option>Calzado</option>
-          <option>Remeras</option>
-          <option>Pantalones</option>
-          <option>Ropa deportiva</option>
-        </select>
+    <div class="col-md-4">
+      <label for="category" class="form-label">Categoría</label>
+      <select
+        class="form-select"
+        id="category"
+        name="category"
+        [(ngModel)]="product.category"
+        required
+      >
+        <option selected disabled value="">Elige una categoría...</option>
+        <option>Celulares</option>
+        <option>Tablets</option>
+        <option>Laptops</option>
+        <option>Panadería</option>
+        <option>Carnes</option>
+        <option>Calzado</option>
+        <option>Remeras</option>
+        <option>Pantalones</option>
+        <option>Ropa deportiva</option>
+      </select>
+      <div
+        *ngIf="
+          productForm.controls['category']?.invalid &&
+          (productForm.controls['category']?.dirty ||
+            productForm.controls['category']?.touched)
+        "
+        class="text-danger"
+      >
+        <small *ngIf="productForm.controls['category']?.errors?.['required']"
+          >Debes seleccionar una categoría.</small
+        >
       </div>
-
-      <div class="col-md-6">
-        <label for="price" class="form-label">Precio</label>
-        <input type="number" class="form-control" id="price" value="" placeholder="ej. 499"  name="price" [(ngModel)]="product.price" required>
-      </div>
-     
-      <div class="col-md-3">
-        <label for="validationDefault04" class="form-label">Proveedor</label>
-        <select class="form-select" id="validationDefault04" name="providerSelect" [(ngModel)]="product.provider" required>
-          <option selected disabled value="">Elige proveedor...</option>
-          <option *ngFor="let provider of providers || []" [value]="provider.businessName">{{ provider.businessName }}</option>
-
-        </select>
-      </div>
-
-      
-
-      <div class="col-md-12">
-        <label for="description" class="form-label">Descripción</label>
-        <textarea class="form-control" id="description" name="description" rows="5" [(ngModel)]="product.description"></textarea>
-      </div>
+    </div>
 
 
-      <div class="col-12">
-        <button class="btn btn-primary" type="submit">Guardar</button> 
-        <button routerLink="/productos/listado" class="btn btn-danger m-lg-1" type="button">Cancelar</button> 
-      </div>
-    </form>
-    
-  </main>
+    <div class="col-md-6">
+      <label for="price" class="form-label">Precio</label>
+      <input
+        type="number"
+        class="form-control"
+        id="price"
+        value=""
+        placeholder="ej. 499"
+        name="price"
+        [(ngModel)]="product.price"
+        required
+        min="0.01"
+      />
 
+      <div
+      *ngIf="
+        productForm.controls['code']?.invalid &&
+        (productForm.controls['code']?.dirty ||
+          productForm.controls['code']?.touched)
+      "
+      class="text-danger"
+    >
+      <small *ngIf="productForm.controls['code']?.errors?.['required']"
+        >Este campo es obligatorio.</small>
+      <small *ngIf="productForm.controls['price']?.errors?.['min']"
+      >El precio debe ser mayor a 0.</small>
+    </div>
+    </div>
+
+    <div class="col-md-3">
+      <label for="validationDefault04" class="form-label">Proveedor</label>
+      <select
+        class="form-select"
+        id="validationDefault04"
+        name="providerSelect"
+        [(ngModel)]="product.provider"
+        required
+      >
+        <option selected disabled value="">Elige proveedor...</option>
+        <option
+          *ngFor="let provider of providers || []"
+          [value]="provider.businessName"
+        >
+          {{ provider.businessName }}
+        </option>
+      </select>
+      <div
+      *ngIf="
+        productForm.controls['category']?.invalid &&
+        (productForm.controls['category']?.dirty ||
+          productForm.controls['category']?.touched)
+      "
+      class="text-danger"
+    >
+      <small *ngIf="productForm.controls['category']?.errors?.['required']"
+        >Debes seleccionar un proveedor.</small
+      >
+    </div>
+
+    </div>
+
+    <div class="col-md-12">
+      <label for="description" class="form-label">Descripción</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        rows="5"
+        [(ngModel)]="product.description"
+      ></textarea>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Guardar</button>
+      <button
+        routerLink="/productos/listado"
+        class="btn btn-danger m-lg-1"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</main>

@@ -121,4 +121,17 @@ modalRef.componentInstance.message = 'Producto agregado correctamente';
 
 }
 
+calcularTotal(): number {
+  let total = 0;
+
+  // Recorro los productos agregados y sumar los precios
+  for (const producto of this.productosAgregados) {
+    if (producto.price) {
+      total += producto.price * producto.quantity;
+    }
+  }
+
+  return total;
+}
+
 }

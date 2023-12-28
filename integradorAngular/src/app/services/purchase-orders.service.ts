@@ -5,6 +5,9 @@ import { PurchaseOrdersModel } from '../model/purchaseOrderModel';
   providedIn: 'root',
 })
 export class PurchaseOrdersService {
+
+  private purchaseOrders: PurchaseOrdersModel[] = [];
+
   constructor() {}
 
   // public getHardcodedOrders(){
@@ -119,6 +122,14 @@ export class PurchaseOrdersService {
       console.log('Error al cancelar la orden de compra en el LocalStorage:', error);
       return null;
     }
+  }
+
+  getPurchaseOrderById(orderId: string): PurchaseOrdersModel | undefined {
+    const aux = this.getPurchase();
+    if(aux){
+      this.purchaseOrders = aux;
+    }
+    return this.purchaseOrders.find(order => order.id === orderId);
   }
   
 

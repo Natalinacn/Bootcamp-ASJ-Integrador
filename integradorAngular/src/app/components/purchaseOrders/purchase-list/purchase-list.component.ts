@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 import { CancelConfirmationModalComponent } from 'src/app/modals/cancel-confirmation-modal/cancel-confirmation-modal.component';
 import { PurchaseOrdersService } from 'src/app/services/purchase-orders.service';
 
@@ -13,11 +14,13 @@ export class PurchaseListComponent implements OnInit {
 
   constructor(
     private purchaseService: PurchaseOrdersService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     // this.purchaseData = this.purchaseService.getHardcodedOrders();
+    
     this.list();
   }
 
@@ -55,6 +58,12 @@ export class PurchaseListComponent implements OnInit {
         console.log('Modal de confirmación cerrado sin confirmar: ', reason);
       }
     );
+  }
+
+
+  showDetailsPurchase(purchaseId: string) {
+   
+    this.router.navigate([`/ordenes/detalle/${purchaseId}`]);
   }
 
 

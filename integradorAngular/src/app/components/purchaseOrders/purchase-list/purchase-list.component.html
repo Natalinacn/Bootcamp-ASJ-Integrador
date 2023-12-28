@@ -6,19 +6,16 @@
       <button routerLink="/ordenes/formulario" type="button" class="btn btn-success">Agregar +</button>
     </div>
 
-    <div class="contenedor-tabla">
+    <div class="contenedor-tabla text-center">
       <!-- <ng-container *ngIf="purchaseData.length > 0; else noPurchase"> -->
     <table class="table table-dark table-striped mt-2 ">
       <thead>
         <tr>
           <th scope="col">N° de órden</th>
+          <th scope="col">Proveedor</th>
           <th scope="col">Fecha de Emisión</th>
           <th scope="col">Fecha entrega esperada</th>
-          <th scope="col">Información de recepción</th>
-          <th scope="col">Descripción</th>
-          <th scope="col">Proveedor</th>
-          <th scope="col">Productos</th>
-          <th scope="col">Cantidad</th>
+          <!-- <th scope="col">Información de recepción</th> -->
           <th scope="col">Total</th>
           <th scope="col">Estado</th>
           <th scope="col">Acciones</th>
@@ -27,18 +24,15 @@
       <tbody>
         <tr *ngFor="let purchase of purchaseData">
           <td>{{ purchase.OrderNumber }}</td>
+          <td>{{ purchase.provider }}</td>
           <td>{{ purchase.issueDate }}</td>
           <td>{{ purchase.deliveryDate }}</td>
-          <td>{{ purchase.receptionInfo }}</td>
-          <td>{{ purchase.description }}</td>
-          <td>{{ purchase.provider }}</td>
-          <td>{{ purchase.products }}</td>
-          <td>{{ purchase.quantity }}</td>
+          <!-- <td>{{ purchase.receptionInfo }}</td> -->
           <td>{{ purchase.totalAmount }}</td>
           <td>{{ purchase.status ? 'Activa' : 'Cancelada'}}</td>
           <td>
             <div class="d-grid">
-              <button type="button" class="btn btn-primary btn-sm mb-1">Detalle</button>
+              <button type="button" class="btn btn-primary btn-sm mb-1" (click)="showDetailsPurchase(purchase.id)">Detalle</button>
               <button type="button" class="btn btn-danger btn-sm" (click)="cancelPurchase(purchase.id)" [disabled]="purchase.status === false">Cancelar</button>
             </div>
           </td>

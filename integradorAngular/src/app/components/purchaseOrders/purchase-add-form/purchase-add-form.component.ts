@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { PurchaseOrdersModel } from 'src/app/model/purchaseOrderModel';
+import { ProductOrderModel, PurchaseOrdersModel } from 'src/app/model/purchaseOrderModel';
 import { PurchaseOrdersService } from 'src/app/services/purchase-orders.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
@@ -17,8 +17,12 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class PurchaseAddFormComponent implements OnInit{
 
+  productoAgregado: boolean = false;
+
+  productosAgregados: { product: string, quantity: number, price: number }[] = [];
+
   providers: ProvidersModel[] = []; 
-  products: ProductsModel[] = [];
+  products1: ProductsModel[] = [];
   
   constructor(
     private purchaseOrdersService: PurchaseOrdersService,
@@ -29,7 +33,7 @@ export class PurchaseAddFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.providers = this.providersService.getProvider() || [];
-    this.products = this.productsService.getProduct() || [];
+    this.products1 = this.productsService.getProduct() || [];
   }
 
   purchaseOrder: PurchaseOrdersModel = {
@@ -40,10 +44,15 @@ export class PurchaseAddFormComponent implements OnInit{
   receptionInfo: '',
   description: '',
   provider: '',
-  products: '',
-  quantity: 0,
+  products: [],
   status: true,
   totalAmount: 0
+}
+
+productOrder: ProductOrderModel = {
+  product: '',
+  quantity: 1,
+  price: 0
 }
 
 createPurchase(form:NgForm){
@@ -72,6 +81,44 @@ createPurchase(form:NgForm){
           );
   }
 }
+
+
+cargarPrecio(nombre:string){
+
+  console.log(nombre)
+  const productName = this.products1.find(prod=> prod.productName === nombre)!;
+  console.log(this.products1)
+  this.productOrder.price = productName.price;
+  console.log(productName)
+  // this.productOrder.price = productName?.price;
+
+
 }
 
+agregarProducto() {
+  this.productoAgregado = true;
 
+  this.cargarPrecio(this.productOrder.product);
+console.log(this.productOrder)
+
+  this.productosAgregados.push({
+    product: this.productOrder.product,
+    quantity: this.productOrder.quantity,
+    price: this.productOrder.price
+    
+});
+
+this.purchaseOrder.products.push({
+  product: this.productOrder.product,
+  quantity: this.productOrder.quantity,
+  price: this.productOrder.price
+  
+});
+console.log(this.productosAgregados);
+
+const modalRef = this.modalService.open(ConfirmationModalComponent);
+modalRef.componentInstance.message = 'Producto agregado correctamente';
+
+}
+
+}

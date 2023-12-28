@@ -7,6 +7,7 @@ import { ProductAddFormComponent } from './components/products/product-add-form/
 import { PurchaseListComponent } from './components/purchaseOrders/purchase-list/purchase-list.component';
 import { PurchaseAddFormComponent } from './components/purchaseOrders/purchase-add-form/purchase-add-form.component';
 import { HomeComponent } from './components/home/home.component';
+import { PurchaseDetailComponent } from './components/purchaseOrders/purchase-detail/purchase-detail.component';
 
 const routes: Routes = [
   {path: 'proveedores/listado', component: ProviderListComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'productos/formulario/:id', component: ProductAddFormComponent},
   {path: 'ordenes/listado', component: PurchaseListComponent},
   {path: 'ordenes/formulario', component: PurchaseAddFormComponent},
+  {path: 'ordenes/detalle/:id', component: PurchaseDetailComponent},
   {path: '', component: HomeComponent}
 ];
 

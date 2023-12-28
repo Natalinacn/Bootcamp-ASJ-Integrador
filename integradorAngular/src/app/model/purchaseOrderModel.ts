@@ -1,3 +1,10 @@
+import { ProductsModel } from "./productModel";
+
+export interface ProductOrderModel {
+    product: string;
+    quantity: number;
+    price: number;
+  }
 
 export interface PurchaseOrdersModel {
     
@@ -8,8 +15,7 @@ export interface PurchaseOrdersModel {
     receptionInfo: string,
     description: string,
     provider: string,
-    products: string,
-    quantity: number,
+    products: ProductOrderModel[]; //Este lo recorro
     status: boolean,
     totalAmount: number
 }

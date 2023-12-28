@@ -1,22 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { PurchaseOrdersModel } from 'src/app/model/purchaseOrderModel';
 import { PurchaseOrdersService } from 'src/app/services/purchase-orders.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
+import { ProvidersModel } from 'src/app/model/providerModel';
+import { ProvidersService } from 'src/app/services/providers.service';
+import { ProductsModel } from 'src/app/model/productModel';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-purchase-add-form',
   templateUrl: './purchase-add-form.component.html',
   styleUrls: ['./purchase-add-form.component.css']
 })
-export class PurchaseAddFormComponent {
+export class PurchaseAddFormComponent implements OnInit{
 
+  providers: ProvidersModel[] = []; 
+  products: ProductsModel[] = [];
+  
   constructor(
     private purchaseOrdersService: PurchaseOrdersService,
+    private providersService: ProvidersService, 
+    private productsService : ProductsService,
     private modalService: NgbModal,
     private router: Router){}
+
+  ngOnInit(): void {
+    this.providers = this.providersService.getProvider() || [];
+    this.products = this.productsService.getProduct() || [];
+  }
 
   purchaseOrder: PurchaseOrdersModel = {
   id: "0",

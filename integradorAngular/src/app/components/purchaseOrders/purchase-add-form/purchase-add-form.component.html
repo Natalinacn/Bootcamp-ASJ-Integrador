@@ -55,11 +55,12 @@
         <label for="provider" class="form-label">Proveedor</label>
         <select class="form-select" id="provider" name="provider" [(ngModel)]="purchaseOrder.provider" required>
           <option selected disabled value="">Elige proveedor...</option>
-          <option>Proveedor 1</option>
-          <option>Proveedor 2</option>
-          <option>Proveedor 3</option>
-          <option>Proveedor 4</option>
-          <option>Proveedor 5</option>
+          <option
+          *ngFor="let provider of providers || []"
+          [value]="provider.businessName"
+        >
+          {{ provider.businessName }}
+        </option>
         </select>
         <div
         *ngIf="
@@ -79,11 +80,12 @@
         <label for="products" class="form-label">Productos</label>
         <select class="form-select" id="products" name="products" [(ngModel)]="purchaseOrder.products" required>
           <option selected disabled value="">Elige producto...</option>
-          <option>Producto 1</option>
-          <option>Producto 2</option>
-          <option>Producto 3</option>
-          <option>Producto 4</option>
-          <option>Producto 5</option>
+          <option
+          *ngFor="let product of products || []"
+          [value]="product.productName"
+        >
+          {{ product.productName }}
+        </option>
         </select>
         <div
         *ngIf="

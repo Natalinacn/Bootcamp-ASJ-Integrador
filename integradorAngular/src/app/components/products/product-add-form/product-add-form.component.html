@@ -57,16 +57,16 @@
       />
       <div
         *ngIf="
-          productForm.controls['code']?.invalid &&
-          (productForm.controls['code']?.dirty ||
-            productForm.controls['code']?.touched)
+          productForm.controls['prodName']?.invalid &&
+          (productForm.controls['prodName']?.dirty ||
+            productForm.controls['prodName']?.touched)
         "
         class="text-danger"
       >
-        <small *ngIf="productForm.controls['code']?.errors?.['required']"
+        <small *ngIf="productForm.controls['prodName']?.errors?.['required']"
           >Este campo es obligatorio.</small
         >
-        <small *ngIf="productForm.controls['code']?.errors?.['minlength']"
+        <small *ngIf="productForm.controls['prodName']?.errors?.['minlength']"
           >El código debe tener al menos 3 caracteres.</small
         >
 
@@ -124,13 +124,13 @@
 
       <div
       *ngIf="
-        productForm.controls['code']?.invalid &&
-        (productForm.controls['code']?.dirty ||
-          productForm.controls['code']?.touched)
+        productForm.controls['price']?.invalid &&
+        (productForm.controls['price']?.dirty ||
+          productForm.controls['price']?.touched)
       "
       class="text-danger"
     >
-      <small *ngIf="productForm.controls['code']?.errors?.['required']"
+      <small *ngIf="productForm.controls['price']?.errors?.['required']"
         >Este campo es obligatorio.</small>
       <small *ngIf="productForm.controls['price']?.errors?.['min']"
       >El precio debe ser mayor a 0.</small>
@@ -156,13 +156,13 @@
       </select>
       <div
       *ngIf="
-        productForm.controls['category']?.invalid &&
-        (productForm.controls['category']?.dirty ||
-          productForm.controls['category']?.touched)
+        productForm.controls['providerSelect']?.invalid &&
+        (productForm.controls['providerSelect']?.dirty ||
+          productForm.controls['providerSelect']?.touched)
       "
       class="text-danger"
     >
-      <small *ngIf="productForm.controls['category']?.errors?.['required']"
+      <small *ngIf="productForm.controls['providerSelect']?.errors?.['required']"
         >Debes seleccionar un proveedor.</small
       >
     </div>
@@ -177,11 +177,25 @@
         name="description"
         rows="5"
         [(ngModel)]="product.description"
+        maxlength="250"
       ></textarea>
+      <div
+      *ngIf="
+        productForm.controls['description']?.invalid &&
+        (productForm.controls['description']?.dirty ||
+          productForm.controls['description']?.touched)
+      "
+      class="text-danger"
+    >
+
+      <small *ngIf="productForm.controls['description']?.errors?.['maxlength']"
+        >El código no debe exceder los 250 caracteres.</small
+      >
+    </div>
     </div>
 
     <div class="col-12">
-      <button class="btn btn-primary" type="submit">Guardar</button>
+      <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid">Guardar</button>
       <button
         routerLink="/productos/listado"
         class="btn btn-danger m-lg-1"

@@ -131,6 +131,9 @@ calcularTotal(): number {
     }
   }
 
+    // Almaceno el total en la propiedad totalAmount
+    this.purchaseOrder.totalAmount = total;
+
   return total;
 }
 

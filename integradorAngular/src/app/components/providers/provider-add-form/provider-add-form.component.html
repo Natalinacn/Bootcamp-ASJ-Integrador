@@ -8,7 +8,7 @@
     (ngSubmit)="onSubmit(providerForm)"
   >
     <div class="form-row">
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-4">
         <label for="inputCodigo">Código (*)</label>
         <input
           type="text"
@@ -97,64 +97,67 @@
 
     <div class="form-group">
       <h4 class="mt-3">Dirección</h4>
-      <label for="inputDir">Calle y Altura (*)</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputDir"
-        placeholder="ej. San Martin 455"
-        name="dir"
-        [(ngModel)]="provider.address.streetAndNumber"
-        required
-        minlength="3"
-      />
 
-      <div
-        *ngIf="
-          providerForm.controls['dir']?.invalid &&
-          (providerForm.controls['dir']?.dirty ||
-            providerForm.controls['dir']?.touched)
-        "
-        class="text-danger"
-      >
-        <small *ngIf="providerForm.controls['dir']?.errors?.['required']"
-          >Este campo es obligatorio.</small
-        >
-        <small *ngIf="providerForm.controls['dir']?.errors?.['minlength']"
-          >La dirección debe tener al menos 3 caracteres.</small
-        >
-      </div>
-
-      <div class="form-group col-md-2">
-        <label for="inputZip">Código postal</label>
+      <div class="form-group col-md-4">
+        <label for="inputDir">Calle y Altura (*)</label>
         <input
           type="text"
           class="form-control"
-          id="inputZip"
-          placeholder="CP"
-          name="cp"
-          [(ngModel)]="provider.address.postalCode"
+          id="inputDir"
+          placeholder="ej. San Martin 455"
+          name="dir"
+          [(ngModel)]="provider.address.streetAndNumber"
+          required
           minlength="3"
-          maxlength="8"
         />
-      </div>
-      <div
-        *ngIf="
-          providerForm.controls['cp']?.invalid &&
-          (providerForm.controls['cp']?.dirty ||
-            providerForm.controls['cp']?.touched)
-        "
-        class="text-danger"
-      >
-        <small *ngIf="providerForm.controls['cp']?.errors?.['required']"
-          >Este campo es obligatorio.</small
+
+        <div
+          *ngIf="
+            providerForm.controls['dir']?.invalid &&
+            (providerForm.controls['dir']?.dirty ||
+              providerForm.controls['dir']?.touched)
+          "
+          class="text-danger"
         >
-        <small *ngIf="providerForm.controls['cp']?.errors?.['minlength']"
-          >El código debe tener al menos 3 caracteres.</small
+          <small *ngIf="providerForm.controls['dir']?.errors?.['required']"
+            >Este campo es obligatorio.</small
+          >
+          <small *ngIf="providerForm.controls['dir']?.errors?.['minlength']"
+            >La dirección debe tener al menos 3 caracteres.</small
+          >
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="inputZip">Código postal</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputZip"
+            placeholder="CP"
+            name="cp"
+            [(ngModel)]="provider.address.postalCode"
+            minlength="3"
+            maxlength="8"
+          />
+        </div>
+        <div
+          *ngIf="
+            providerForm.controls['cp']?.invalid &&
+            (providerForm.controls['cp']?.dirty ||
+              providerForm.controls['cp']?.touched)
+          "
+          class="text-danger"
         >
-        <small *ngIf="providerForm.controls['cp']?.errors?.['maxlength']"
-          >El código debe tener como máximo 8 caracteres.</small
-        >
+          <small *ngIf="providerForm.controls['cp']?.errors?.['required']"
+            >Este campo es obligatorio.</small
+          >
+          <small *ngIf="providerForm.controls['cp']?.errors?.['minlength']"
+            >El código debe tener al menos 3 caracteres.</small
+          >
+          <small *ngIf="providerForm.controls['cp']?.errors?.['maxlength']"
+            >El código debe tener como máximo 8 caracteres.</small
+          >
+        </div>
       </div>
 
       <div class="form-group col-md-4">
@@ -231,87 +234,93 @@
         </div>
       </div>
 
-      <label for="inputLoc">Localidad (*)</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputLoc"
-        placeholder="Localidad"
-        name="ciudad"
-        [(ngModel)]="provider.address.city"
-        required
-        minlength="3"
-      />
-      <div
-        *ngIf="
-          providerForm.controls['ciudad']?.invalid &&
-          (providerForm.controls['ciudad']?.dirty ||
-            providerForm.controls['ciudad']?.touched)
-        "
-        class="text-danger"
-      >
-        <small *ngIf="providerForm.controls['ciudad']?.errors?.['required']"
-          >Este campo es obligatorio.</small
+      <div class="form-group col-md-4">
+        <label for="inputLoc">Localidad (*)</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputLoc"
+          placeholder="Localidad"
+          name="ciudad"
+          [(ngModel)]="provider.address.city"
+          required
+          minlength="3"
+        />
+        <div
+          *ngIf="
+            providerForm.controls['ciudad']?.invalid &&
+            (providerForm.controls['ciudad']?.dirty ||
+              providerForm.controls['ciudad']?.touched)
+          "
+          class="text-danger"
         >
-        <small *ngIf="providerForm.controls['ciudad']?.errors?.['minlength']"
-          >La localidad debe tener al menos 3 caracteres.</small
-        >
+          <small *ngIf="providerForm.controls['ciudad']?.errors?.['required']"
+            >Este campo es obligatorio.</small
+          >
+          <small *ngIf="providerForm.controls['ciudad']?.errors?.['minlength']"
+            >La localidad debe tener al menos 3 caracteres.</small
+          >
+        </div>
       </div>
     </div>
     <div class="form-group">
       <h4 class="mt-3">Contacto</h4>
-      <label for="inputSitio">Sitio Web</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputSitio"
-        placeholder="Sitio web"
-        name="web"
-        [(ngModel)]="provider.contact.website"
-        pattern="https?://.+"
-        title="Ingrese una URL válida con http:// o https://"
-      />
-      <div
-        *ngIf="providerForm.controls['web'].hasError('pattern')"
-        class="text-danger"
-      >
-        El sitio web no es una URL válida.
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputTel">Teléfono (*)</label>
+      <div class="form-group col-md-4">
+        <label for="inputSitio">Sitio Web</label>
         <input
           type="text"
           class="form-control"
-          id="inputTel"
-          placeholder="Teléfono"
-          name="tel"
-          [(ngModel)]="provider.contact.phone"
-          required
-          minlength="8"
-          maxlength="20"
+          id="inputSitio"
+          placeholder="Sitio web"
+          name="web"
+          [(ngModel)]="provider.contact.website"
+          pattern="https?://.+"
+          title="Ingrese una URL válida con http:// o https://"
         />
-
         <div
-          *ngIf="
-            providerForm.controls['tel']?.invalid &&
-            (providerForm.controls['tel']?.dirty ||
-              providerForm.controls['tel']?.touched)
-          "
+          *ngIf="providerForm.controls['web'].hasError('pattern')"
           class="text-danger"
         >
-          <small *ngIf="providerForm.controls['tel']?.errors?.['required']"
-            >Este campo es obligatorio.</small
-          >
-          <small *ngIf="providerForm.controls['tel']?.errors?.['minlength']"
-            >El número de teléfono debe tener al menos 8 caracteres.</small
-          >
-          <small *ngIf="providerForm.controls['tel']?.errors?.['maxlength']"
-            >El número de teléfono debe tener como máximo 20 caracteres.</small
-          >
+          El sitio web no es una URL válida.
         </div>
       </div>
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="inputTel">Teléfono (*)</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputTel"
+            placeholder="Teléfono"
+            name="tel"
+            [(ngModel)]="provider.contact.phone"
+            required
+            minlength="8"
+            maxlength="20"
+          />
+
+          <div
+            *ngIf="
+              providerForm.controls['tel']?.invalid &&
+              (providerForm.controls['tel']?.dirty ||
+                providerForm.controls['tel']?.touched)
+            "
+            class="text-danger"
+          >
+            <small *ngIf="providerForm.controls['tel']?.errors?.['required']"
+              >Este campo es obligatorio.</small
+            >
+            <small *ngIf="providerForm.controls['tel']?.errors?.['minlength']"
+              >El número de teléfono debe tener al menos 8 caracteres.</small
+            >
+            <small *ngIf="providerForm.controls['tel']?.errors?.['maxlength']"
+              >El número de teléfono debe tener como máximo 20
+              caracteres.</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
         <label for="inputEmail1">Email (*)</label>
         <input
           type="email"
@@ -326,12 +335,14 @@
           maxlength="50"
         />
 
-        <div *ngIf="
-        providerForm.controls['mail']?.invalid &&
-        (providerForm.controls['mail']?.dirty ||
-          providerForm.controls['mail']?.touched)
-      "
-      class="text-danger">
+        <div
+          *ngIf="
+            providerForm.controls['mail']?.invalid &&
+            (providerForm.controls['mail']?.dirty ||
+              providerForm.controls['mail']?.touched)
+          "
+          class="text-danger"
+        >
           <small *ngIf="providerForm.controls['mail']?.errors?.['required']"
             >Este campo es obligatorio.</small
           >
@@ -349,42 +360,43 @@
           >
         </div>
       </div>
-    
+    </div>
 
     <div class="form-group">
       <h4 class="mt-3">Datos fiscales</h4>
-      <label for="inputCuit">CUIT (*)</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputCuit"
-        placeholder="CUIT"
-        name="cuit"
-        [(ngModel)]="provider.fiscalData.cuit"
-        required
-        minlength="10"
-        maxlength="13"
-      />
+      <div class="form-group col-md-4">
+        <label for="inputCuit">CUIT (*)</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputCuit"
+          placeholder="CUIT"
+          name="cuit"
+          [(ngModel)]="provider.fiscalData.cuit"
+          required
+          minlength="10"
+          maxlength="13"
+        />
+      </div>
+      <div
+        *ngIf="
+          providerForm.controls['cuit']?.invalid &&
+          (providerForm.controls['cuit']?.dirty ||
+            providerForm.controls['cuit']?.touched)
+        "
+        class="text-danger"
+      >
+        <small *ngIf="providerForm.controls['cuit']?.errors?.['required']"
+          >Este campo es obligatorio.</small
+        >
+        <small *ngIf="providerForm.controls['cuit']?.errors?.['minlength']"
+          >El CUIT debe tener al menos 10 caracteres.</small
+        >
+        <small *ngIf="providerForm.controls['cuit']?.errors?.['maxlength']"
+          >El CUIT debe tener como máximo 13 caracteres.</small
+        >
+      </div>
     </div>
-    <div
-      *ngIf="
-        providerForm.controls['cuit']?.invalid &&
-        (providerForm.controls['cuit']?.dirty ||
-          providerForm.controls['cuit']?.touched)
-      "
-      class="text-danger"
-    >
-      <small *ngIf="providerForm.controls['cuit']?.errors?.['required']"
-        >Este campo es obligatorio.</small
-      >
-      <small *ngIf="providerForm.controls['cuit']?.errors?.['minlength']"
-        >El CUIT debe tener al menos 10 caracteres.</small
-      >
-      <small *ngIf="providerForm.controls['cuit']?.errors?.['maxlength']"
-        >El CUIT debe tener como máximo 13 caracteres.</small
-      >
-    </div>
-
     <div class="form-group col-md-4">
       <label for="iva">Condición IVA (*)</label>
       <select
@@ -417,166 +429,178 @@
 
     <div class="form-group">
       <h4 class="mt-3">Persona responsable</h4>
-      <label for="inputNombre">Nombre (*)</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputNombre"
-        placeholder="Nombre"
-        name="nombre-res"
-        [(ngModel)]="provider.responsiblePerson.firstName"
-        required
-        minlength="3"
-        maxlength="30"
-      />
-      <div
-        *ngIf="
-          providerForm.controls['nombre-res']?.invalid &&
-          (providerForm.controls['nombre-res']?.dirty ||
-            providerForm.controls['nombre-res']?.touched)
-        "
-        class="text-danger"
-      >
-        <small *ngIf="providerForm.controls['nombre-res']?.errors?.['required']"
-          >Este campo es obligatorio.</small
-        >
-        <small
-          *ngIf="providerForm.controls['nombre-res']?.errors?.['minlength']"
-          >El nombre debe tener al menos 3 caracteres.</small
-        >
-        <small
-          *ngIf="providerForm.controls['nombre-res']?.errors?.['maxlength']"
-          >El nombre debe tener como máximo 30 caracteres.</small
-        >
-      </div>
-
-      <label for="inputApellido">Apellido (*)</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputApellido"
-        placeholder="Apellido"
-        name="apellido-res"
-        [(ngModel)]="provider.responsiblePerson.lastName"
-        required
-        minlength="3"
-        maxlength="30"
-      />
-      <div
-        *ngIf="
-          providerForm.controls['apellido-res']?.invalid &&
-          (providerForm.controls['apellido-res']?.dirty ||
-            providerForm.controls['apellido-res']?.touched)
-        "
-        class="text-danger"
-      >
-        <small
-          *ngIf="providerForm.controls['apellido-res']?.errors?.['required']"
-          >Este campo es obligatorio.</small
-        >
-        <small
-          *ngIf="providerForm.controls['apellido-res']?.errors?.['minlength']"
-          >El apellido debe tener al menos 3 caracteres.</small
-        >
-        <small
-          *ngIf="providerForm.controls['apellido-res']?.errors?.['maxlength']"
-          >El apellido debe tener como máximo 30 caracteres.</small
-        >
-      </div>
-
-      <label for="inputTel2">Teléfono</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputTel2"
-        placeholder="Teléfono"
-        name="tel-res"
-        [(ngModel)]="provider.responsiblePerson.phone"
-        minlength="8"
-        maxlength="20"
-      />
-
-      <div
-        *ngIf="
-          providerForm.controls['tel-res']?.invalid &&
-          (providerForm.controls['tel-res']?.dirty ||
-            providerForm.controls['tel-res']?.touched)
-        "
-        class="text-danger"
-      >
-        <small *ngIf="providerForm.controls['tel-res']?.errors?.['required']"
-          >Este campo es obligatorio.</small
-        >
-        <small *ngIf="providerForm.controls['tel']?.errors?.['minlength']"
-          >El número de teléfono debe tener al menos 8 caracteres.</small
-        >
-        <small *ngIf="providerForm.controls['tel']?.errors?.['maxlength']"
-          >El número de teléfono debe tener como máximo 20 caracteres.</small
-        >
-      </div>
-
-      <label for="inputEmail2">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        id="inputEmail2"
-        placeholder="Email"
-        name="mail-res"
-        [(ngModel)]="provider.responsiblePerson.email"
-        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
-        minlength="8"
-        maxlength="50"
-      />
-      <div>
-        <small *ngIf="providerForm.controls['mail-res']?.errors?.['required']"
-          >Este campo es obligatorio.</small
-        >
-        <small
-          *ngIf="providerForm.controls['mail-res']?.errors?.['pattern']"
+      <div class="form-group col-md-4">
+        <label for="inputNombre">Nombre (*)</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputNombre"
+          placeholder="Nombre"
+          name="nombre-res"
+          [(ngModel)]="provider.responsiblePerson.firstName"
+          required
+          minlength="3"
+          maxlength="30"
+        />
+        <div
+          *ngIf="
+            providerForm.controls['nombre-res']?.invalid &&
+            (providerForm.controls['nombre-res']?.dirty ||
+              providerForm.controls['nombre-res']?.touched)
+          "
           class="text-danger"
         >
-          Ingresa una dirección de correo electrónico válida.
-        </small>
-        <small *ngIf="providerForm.controls['mail-res']?.errors?.['minlength']"
-          >El mail debe tener al menos 8 caracteres.</small
+          <small
+            *ngIf="providerForm.controls['nombre-res']?.errors?.['required']"
+            >Este campo es obligatorio.</small
+          >
+          <small
+            *ngIf="providerForm.controls['nombre-res']?.errors?.['minlength']"
+            >El nombre debe tener al menos 3 caracteres.</small
+          >
+          <small
+            *ngIf="providerForm.controls['nombre-res']?.errors?.['maxlength']"
+            >El nombre debe tener como máximo 30 caracteres.</small
+          >
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputApellido">Apellido (*)</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputApellido"
+          placeholder="Apellido"
+          name="apellido-res"
+          [(ngModel)]="provider.responsiblePerson.lastName"
+          required
+          minlength="3"
+          maxlength="30"
+        />
+        <div
+          *ngIf="
+            providerForm.controls['apellido-res']?.invalid &&
+            (providerForm.controls['apellido-res']?.dirty ||
+              providerForm.controls['apellido-res']?.touched)
+          "
+          class="text-danger"
         >
-        <small *ngIf="providerForm.controls['mail-res']?.errors?.['maxlength']"
-          >El mail debe tener como máximo 50 caracteres.</small
+          <small
+            *ngIf="providerForm.controls['apellido-res']?.errors?.['required']"
+            >Este campo es obligatorio.</small
+          >
+          <small
+            *ngIf="providerForm.controls['apellido-res']?.errors?.['minlength']"
+            >El apellido debe tener al menos 3 caracteres.</small
+          >
+          <small
+            *ngIf="providerForm.controls['apellido-res']?.errors?.['maxlength']"
+            >El apellido debe tener como máximo 30 caracteres.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputTel2">Teléfono</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputTel2"
+          placeholder="Teléfono"
+          name="tel-res"
+          [(ngModel)]="provider.responsiblePerson.phone"
+          minlength="8"
+          maxlength="20"
+        />
+
+        <div
+          *ngIf="
+            providerForm.controls['tel-res']?.invalid &&
+            (providerForm.controls['tel-res']?.dirty ||
+              providerForm.controls['tel-res']?.touched)
+          "
+          class="text-danger"
+        >
+          <small *ngIf="providerForm.controls['tel-res']?.errors?.['required']"
+            >Este campo es obligatorio.</small
+          >
+          <small *ngIf="providerForm.controls['tel']?.errors?.['minlength']"
+            >El número de teléfono debe tener al menos 8 caracteres.</small
+          >
+          <small *ngIf="providerForm.controls['tel']?.errors?.['maxlength']"
+            >El número de teléfono debe tener como máximo 20 caracteres.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputEmail2">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="inputEmail2"
+          placeholder="Email"
+          name="mail-res"
+          [(ngModel)]="provider.responsiblePerson.email"
+          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+          minlength="8"
+          maxlength="50"
+        />
+        <div>
+          <small *ngIf="providerForm.controls['mail-res']?.errors?.['required']"
+            >Este campo es obligatorio.</small
+          >
+          <small
+            *ngIf="providerForm.controls['mail-res']?.errors?.['pattern']"
+            class="text-danger"
+          >
+            Ingresa una dirección de correo electrónico válida.
+          </small>
+          <small
+            *ngIf="providerForm.controls['mail-res']?.errors?.['minlength']"
+            >El mail debe tener al menos 8 caracteres.</small
+          >
+          <small
+            *ngIf="providerForm.controls['mail-res']?.errors?.['maxlength']"
+            >El mail debe tener como máximo 50 caracteres.</small
+          >
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="inputRol">Rol</label>
+        <input
+          type="text"
+          class="form-control"
+          id="inputRol"
+          placeholder="Rol"
+          name="rol-res"
+          [(ngModel)]="provider.responsiblePerson.role"
+          minlength="2"
+        />
+      </div>
+      <div>
+        <small *ngIf="providerForm.controls['mail-res']?.errors?.['minlength']"
+          >El rol debe tener al menos 2 caracteres.</small
         >
       </div>
 
-      <label for="inputRol">Rol</label>
-      <input
-        type="text"
-        class="form-control"
-        id="inputRol"
-        placeholder="Rol"
-        name="rol-res"
-        [(ngModel)]="provider.responsiblePerson.role"
-        minlength="2"
-      />
-    </div>
-    <div>
-      <small *ngIf="providerForm.controls['mail-res']?.errors?.['minlength']"
-        >El rol debe tener al menos 2 caracteres.</small
-      >
-    </div>
-
-    <div class="col-12 mt-2">
-      <button
-        class="btn btn-primary"
-        type="submit"
-        [disabled]="providerForm.invalid"
-      >
-        Guardar
-      </button>
-      <button
-        routerLink="/proveedores/listado"
-        class="btn btn-danger m-lg-1"
-        type="button"
-      >
-        Cancelar
-      </button>
+      <div class="col-12 mt-2">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="providerForm.invalid"
+        >
+          Guardar
+        </button>
+        <button
+          routerLink="/proveedores/listado"
+          class="btn btn-danger m-lg-1"
+          type="button"
+        >
+          Cancelar
+        </button>
+      </div>
     </div>
   </form>
 </main>

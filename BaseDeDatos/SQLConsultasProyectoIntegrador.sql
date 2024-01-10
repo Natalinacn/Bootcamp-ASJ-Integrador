@@ -89,15 +89,21 @@ ORDER BY pu.order_number;
 /*9-Mostrar el detalle de una orden de compra del proveedor 3, trayendo: SKU del producto, nombre producto, 
 cantidad y subtotal.*/
 
-
+SELECT 
 
 
 /*10-Cambiar el estado a Cancelada y la fecha de modificación a la orden de compra con ID = 4.*/
 
+UPDATE purchase_orders
+SET status = 0,
+updated_at = GETDATE()
+WHERE id_purchase_order = 4;
+
+
 /*11-Escribir la sentencia para eliminar el producto con id = 1 (NO EJECUTAR, SÓLO MOSTRAR SENTENCIA)*/
 
-
-
+DELETE FROM products
+WHERE id_product = 1;
 
 
 

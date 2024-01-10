@@ -69,17 +69,28 @@ WHERE pr.id_provider = (
 /*7-Mostrar la fecha emisión, nº de orden, razon social y codigo de proveedor, y la cantidad de productos de 
 cada orden.*/
 
-SELECT pu.order_issue_date AS 'Orden de emisión', pu.order_number AS 'Número de órden', pr.provider_code AS 'Córdigo proveedor', pr.company_name AS 'Razón social', COUNT(od.id_order_detail) AS 'Cantidad de productos'
+SELECT pu.order_issue_date AS 'Orden de emisión', pu.order_number AS 'Número de órden', pr.provider_code AS 'Córdigo proveedor', pr.company_name AS 'Razón social', sum(od.id_product * od.quantity) AS 'Cantidad de productos'
 FROM purchase_orders pu
 JOIN providers pr ON pu.id_provider = pr.id_provider
 JOIN order_details od ON pu.id_purchase_order = od.id_purchase_order
-GROUP BY pu.order_issue_date, pu.order_number, pr.provider_code, pr.company_name
+GROUP BY pu.order_number, pu.order_issue_date, pr.provider_code, pr.company_name
 ORDER BY pu.order_number;
 
 /*8-En el listado anterior, diferenciar cuando una orden está Cancelada o no, y el total de la misma.*/
 
+SELECT pu.order_issue_date AS 'Orden de emisión', pu.order_number AS 'Número de órden', pr.provider_code AS 'Córdigo proveedor', pr.company_name AS 'Razón social', sum(od.id_product * od.quantity) AS 'Cantidad de productos', pu.status AS 'Estado', pu.total_order AS 'Total'
+FROM purchase_orders pu
+JOIN providers pr ON pu.id_provider = pr.id_provider
+JOIN order_details od ON pu.id_purchase_order = od.id_purchase_order
+GROUP BY pu.order_number, pu.order_issue_date, pr.provider_code, pr.company_name, pu.status, pu.total_order
+ORDER BY pu.order_number;
+
+
 /*9-Mostrar el detalle de una orden de compra del proveedor 3, trayendo: SKU del producto, nombre producto, 
 cantidad y subtotal.*/
+
+
+
 
 /*10-Cambiar el estado a Cancelada y la fecha de modificación a la orden de compra con ID = 4.*/
 

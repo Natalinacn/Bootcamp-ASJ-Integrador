@@ -89,7 +89,12 @@ ORDER BY pu.order_number;
 /*9-Mostrar el detalle de una orden de compra del proveedor 3, trayendo: SKU del producto, nombre producto, 
 cantidad y subtotal.*/
 
-SELECT 
+SELECT p.product_code AS 'SKU producto', p.product_name AS 'Nombre del producto', od.quantity AS 'Cantidad', (od.quantity * od.price) AS 'Subtotal'
+FROM order_details od
+JOIN products p ON od.id_product = p.id_product
+JOIN purchase_orders po ON od.id_purchase_order = po.id_purchase_order
+WHERE po.id_provider = 3;
+
 
 
 /*10-Cambiar el estado a Cancelada y la fecha de modificación a la orden de compra con ID = 4.*/

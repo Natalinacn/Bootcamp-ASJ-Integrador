@@ -49,22 +49,32 @@ ADD email VARCHAR(100);
 
 SELECT pr.provider_code AS 'Código proveedor', pr.company_name AS 'Razon Social', pr.created_at AS 'Fecha de alta del proveedor', pr.phone AS 'Teléfono', ISNULL(pr.email, '-') AS 'Email', pr.website AS 'Sitio Web', CONCAT(rp.responsible_name, ' ', rp.responsible_lastname) AS 'Persona Responsable' 
 FROM providers pr
-JOIN responsible_persons rp ON pr.id_responsible_person = rp.id_responsible_person;
+JOIN responsible_persons rp ON pr.id_responsible_person = rp.id_responsible_person
+ORDER BY pr.company_name ASC, pr.provider_code, pr.created_at ASC;
 
 
 /*6-Obtener razon social, codigo proveedor, imagen, web, email, teléfono y los datos del contacto del 
 proveedor con más ordenes de compra cargadas.*/
 
-SELECT pr.provider_code AS 'Código proveedor', pr.company_name AS 'Razon Social', pr.created_at AS 'Fecha de alta del proveedor', pr.phone AS 'Teléfono', ISNULL(pr.email, '-') AS 'Email', pr.website AS 'Sitio Web', CONCAT(rp.responsible_name, ' ', rp.responsible_lastname) AS 'Persona Responsable' 
+SELECT pr.provider_code AS 'Código proveedor', pr.company_name AS 'Razon Social', pr.created_at AS 'Fecha de alta del proveedor', pr.phone AS 'Teléfono', ISNULL(pr.email, '-') AS 'Email', pr.website AS 'Sitio Web', CONCAT(rp.responsible_name, ' ', rp.responsible_lastname) AS 'Persona Responsable', rp.responsible_phone AS 'Teléfono responsable', rp.responsible_email AS 'Mail responsable', rp.responsible_rol AS 'Rol responsable'
 FROM providers pr
-JOIN responsible_persons rp ON pr.id_responsible_person = rp.id_responsible_person;
-
-
-
-
+JOIN responsible_persons rp ON pr.id_responsible_person = rp.id_responsible_person
+WHERE pr.id_provider = (
+    SELECT TOP 1 po.id_provider
+    FROM purchase_orders po
+    GROUP BY po.id_provider
+    ORDER BY COUNT(po.id_purchase_order) DESC
+);
 
 /*7-Mostrar la fecha emisión, nº de orden, razon social y codigo de proveedor, y la cantidad de productos de 
 cada orden.*/
+
+SELECT pu.order_issue_date AS 'Orden de emisión', pu.order_number AS 'Número de órden', pr.provider_code AS 'Córdigo proveedor', pr.company_name AS 'Razón social', COUNT(od.id_order_detail) AS 'Cantidad de productos'
+FROM purchase_orders pu
+JOIN providers pr ON pu.id_provider = pr.id_provider
+JOIN order_details od ON pu.id_purchase_order = od.id_purchase_order
+GROUP BY pu.order_issue_date, pu.order_number, pr.provider_code, pr.company_name
+ORDER BY pu.order_number;
 
 /*8-En el listado anterior, diferenciar cuando una orden está Cancelada o no, y el total de la misma.*/
 

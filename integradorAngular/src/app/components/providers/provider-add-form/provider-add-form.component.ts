@@ -23,7 +23,7 @@ export class ProviderAddFormComponent implements OnInit {
   id!: string;
 
   provider: ProvidersModel = {
-    id: '',
+    id: 0,
     providerCode: '',
     businessName: '',
     industry: '',
@@ -51,6 +51,9 @@ export class ProviderAddFormComponent implements OnInit {
       email: '',
       role: '',
     },
+    created_at: undefined,
+    updated_at: undefined,
+    deleted_at: undefined,
   };
 
   ngOnInit(): void {
@@ -58,7 +61,7 @@ export class ProviderAddFormComponent implements OnInit {
       let id = response.get('id');
       if (id != undefined) {
         this.id = id;
-        this.provider = this.providerService.getPoviderById(id)!;
+        this.provider = this.providerService.getPoviderById(Number(id))!;
         console.log(this.provider);
       }
     });

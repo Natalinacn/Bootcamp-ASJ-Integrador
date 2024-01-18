@@ -21,6 +21,11 @@ import { ConfirmationModalComponent } from './modals/confirmation-modal/confirma
 import { DeleteConfirmationModalComponent } from './modals/delete-confirmation-modal/delete-confirmation-modal.component';
 import { CancelConfirmationModalComponent } from './modals/cancel-confirmation-modal/cancel-confirmation-modal.component';
 import { PurchaseDetailComponent } from './components/purchaseOrders/purchase-detail/purchase-detail.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { ErrorModalComponent } from './modals/error-modal/error-modal.component';
+
+
 
 
 @NgModule({
@@ -40,6 +45,10 @@ import { PurchaseDetailComponent } from './components/purchaseOrders/purchase-de
     DeleteConfirmationModalComponent,
     CancelConfirmationModalComponent,
     PurchaseDetailComponent,
+    LoginComponent,
+    RegisterComponent,
+    ErrorModalComponent,
+
     
     
   ],

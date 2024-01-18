@@ -37,7 +37,7 @@ export class PurchaseAddFormComponent implements OnInit{
   }
 
   purchaseOrder: PurchaseOrdersModel = {
-  id: "0",
+  id: 0,
   OrderNumber: '',
   issueDate: new Date(), 
   deliveryDate: new Date(), 
@@ -46,7 +46,10 @@ export class PurchaseAddFormComponent implements OnInit{
   provider: '',
   products: [],
   status: true,
-  totalAmount: 0
+  totalAmount: 0,
+  created_at: undefined,
+  updated_at: undefined,
+  deleted_at: undefined,
 }
 
 productOrder: ProductOrderModel = {

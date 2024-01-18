@@ -25,7 +25,7 @@ export class PurchaseOrdersService {
         let purchaseString: PurchaseOrdersModel[] =
           JSON.parse(purchaseFromLocal);
 
-          const uniqueId = crypto.randomUUID();
+          const uniqueId = Math.floor(Math.random() * 1000000); 
           purchaseOrder.id = uniqueId;
 
         purchaseString.push(purchaseOrder);
@@ -92,7 +92,7 @@ export class PurchaseOrdersService {
   //   }
   // }
 
-  cancelPurchase(id: string): PurchaseOrdersModel[] | null {
+  cancelPurchase(id: number): PurchaseOrdersModel[] | null {
     try {
       // Traigo la información del LocalStorage y la guardo en purchaseFromLocal
       const purchaseFromLocal: string | null = localStorage.getItem('purchaseOrders');
@@ -124,7 +124,7 @@ export class PurchaseOrdersService {
     }
   }
 
-  getPurchaseOrderById(orderId: string): PurchaseOrdersModel | undefined {
+  getPurchaseOrderById(orderId: number): PurchaseOrdersModel | undefined {
     const aux = this.getPurchase();
     if(aux){
       this.purchaseOrders = aux;

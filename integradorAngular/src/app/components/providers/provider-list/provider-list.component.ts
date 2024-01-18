@@ -37,7 +37,7 @@ export class ProviderListComponent implements OnInit {
     }
   }
 
-  deleteProvider(id: string) {
+  deleteProvider(id: number) {
     //Abro el modal
     const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
 
@@ -65,7 +65,7 @@ export class ProviderListComponent implements OnInit {
     );
   }
 
-  updateProvider(providerId: string){
+  updateProvider(providerId: number){
 
     this.router.navigate([`/proveedores/formulario/${providerId}`]);
 

@@ -29,13 +29,17 @@ export class ProductAddFormComponent implements OnInit {
   id!: string;
 
   product: ProductsModel = {
-    id: '',
+    id: 0,
     code: '',
     productName: '',
     category: '',
     provider: '',
     description: '',
     price: 0,
+    img: '',
+    created_at: undefined,
+    updated_at: undefined,
+    deleted_at: undefined,
   };
 
   ngOnInit(): void {
@@ -51,7 +55,7 @@ console.log('Lista de proveedores en ngOnInit:', this.providers);
       let id = response.get('id');
       if (id != undefined) {
         this.id = id;
-        this.product = this.productService.getProductById(id)!;
+        this.product = this.productService.getProductById(Number(id))!;
         console.log(this.product);
 
       }

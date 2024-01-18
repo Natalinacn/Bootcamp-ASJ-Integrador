@@ -8,7 +8,7 @@ export interface ProductOrderModel {
 
 export interface PurchaseOrdersModel {
     
-    id: string,
+    id: number,
     OrderNumber: string,
     issueDate: Date,
     deliveryDate: Date,
@@ -18,5 +18,8 @@ export interface PurchaseOrdersModel {
     products: ProductOrderModel[]; //Este lo recorro
     status: boolean,
     totalAmount: number
+    created_at?: Date;
+    updated_at?: Date;
+    deleted_at?: Date;
 }
 

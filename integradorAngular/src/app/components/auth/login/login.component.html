@@ -1,0 +1,77 @@
+<div class="login">
+  <form class="custom-form" method="post" #loginForm="ngForm">
+    <h1>Login</h1>
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      placeholder="Email"
+      required="required"
+      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+      minlength="8"
+      maxlength="50"
+    />
+    <div
+      *ngIf="
+        loginForm.controls['email']?.invalid &&
+        (loginForm.controls['email']?.dirty ||
+          loginForm.controls['email']?.touched)
+      "
+      class="text-danger"
+    >
+      <small *ngIf="loginForm.controls['email']?.errors?.['required']"
+        >Este campo es obligatorio.</small
+      >
+      <small
+        *ngIf="loginForm.controls['email']?.errors?.['pattern']"
+        class="text-danger"
+      >
+        Ingresa una dirección de correo electrónico válida.
+      </small>
+      <small *ngIf="loginForm.controls['email']?.errors?.['minlength']"
+        >El mail debe tener al menos 8 caracteres.</small
+      >
+      <small *ngIf="loginForm.controls['email']?.errors?.['maxlength']"
+        >El mail debe tener como máximo 50 caracteres.</small
+      >
+    </div>
+
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      placeholder="Password"
+      required="required"
+      pattern="^(?=.*[A-Z])(?=.*[@$!%*?&]).{6,}$"
+      minlength="6"
+    />
+    <div
+      *ngIf="
+        loginForm.controls['password']?.invalid &&
+        (loginForm.controls['password']?.dirty ||
+          loginForm.controls['password']?.touched)
+      "
+      class="text-danger"
+    >
+      <small *ngIf="loginForm.controls['password']?.errors?.['required']"
+        >Este campo es obligatorio.</small
+      >
+      <small *ngIf="loginForm.controls['password']?.errors?.['minlength']"
+        >La contraseña debe tener al menos 6 caracteres.</small
+      >
+      <small *ngIf="loginForm.controls['password']?.errors?.['pattern']"
+        >La contraseña debe tener al menos una mayúscula y un carácter
+        especial.</small
+      >
+    </div>
+
+    <button
+      class="btn btn-success"
+      type="submit"
+      [disabled]="loginForm.invalid"
+      (click)="login()"
+    >
+      Log in
+    </button>
+  </form>
+</div>

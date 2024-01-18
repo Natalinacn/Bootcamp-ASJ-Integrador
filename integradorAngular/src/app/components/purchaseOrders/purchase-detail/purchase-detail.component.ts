@@ -22,7 +22,7 @@ export class PurchaseDetailComponent implements OnInit{
     this.route.paramMap.subscribe(params => {
       const orderId = params.get('id');
       if (orderId) {
-        this.purchase = this.purchaseOrdersService.getPurchaseOrderById(orderId);
+        this.purchase = this.purchaseOrdersService.getPurchaseOrderById(Number(orderId));
         console.log(this.purchase);
       }
     });

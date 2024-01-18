@@ -26,8 +26,8 @@ export class ProvidersService {
         let providersFromLocal: ProvidersModel[] =
           JSON.parse(providerFromLocal);
 
-        const uniqueId = crypto.randomUUID();
-        provider.id = uniqueId;
+          const uniqueId = Math.floor(Math.random() * 1000000); 
+          provider.id = uniqueId;
 
         console.log(provider);
 
@@ -64,7 +64,7 @@ export class ProvidersService {
 
 
 
-  deleteProvider(id: string) {
+  deleteProvider(id: number) {
     try {
       //Traigo la info del LocalStorage y la guardo en providerFromLocal
       const providerFromLocal: string | null =
@@ -93,7 +93,7 @@ export class ProvidersService {
     }
   }
 
-  getPoviderById(id: string): ProvidersModel | null {
+  getPoviderById(id: number): ProvidersModel | null {
     try {
       const providerFromLocal: string | null = localStorage.getItem('providers');
   

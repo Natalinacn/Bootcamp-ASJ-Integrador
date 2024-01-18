@@ -45,7 +45,7 @@ export class ProductListComponent implements OnInit {
     modalRef.result.then(
       (result) => {
         if (result === 'confirm') {
-          const res = this.productService.deleteProduct(id); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
+          const res = this.productService.deleteProduct(Number(id)); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
 
           if (res !== null && res !== undefined) {
             this.productsData = res;

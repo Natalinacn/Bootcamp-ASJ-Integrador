@@ -21,7 +21,7 @@ export class ProductsService {
 
         let productsString: ProductsModel[] = JSON.parse(productsFromLocal);
 
-        const uniqueId = crypto.randomUUID();
+        const uniqueId = Math.floor(Math.random() * 1000000);
         product.id = uniqueId;
 
         productsString.push(product);
@@ -63,7 +63,7 @@ export class ProductsService {
 
 
 
-    deleteProduct(id:string){
+    deleteProduct(id:number){
       try {
         //Traigo la info del LocalStorage y la guardo en providerFromLocal
         const productFromLocal: string | null =
@@ -94,7 +94,7 @@ export class ProductsService {
     }
 
     
-    getProductById(id: string): ProductsModel | null {
+    getProductById(id: number): ProductsModel | null {
       try {
         const productFromLocal: string | null = localStorage.getItem('product');
     

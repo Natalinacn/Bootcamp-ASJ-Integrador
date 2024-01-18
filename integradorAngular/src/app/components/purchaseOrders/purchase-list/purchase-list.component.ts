@@ -47,7 +47,7 @@ export class PurchaseListComponent implements OnInit {
     //Tengo que manejar la promesa del modal con el result-then
     modalRef.result.then((result) => {
         if (result === 'confirm') {
-          const success= this.purchaseService.cancelPurchase(orderId);
+          const success= this.purchaseService.cancelPurchase(Number(orderId));
 
           if(success){
             this.list();

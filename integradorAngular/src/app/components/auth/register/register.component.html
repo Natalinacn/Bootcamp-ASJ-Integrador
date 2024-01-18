@@ -1,0 +1,102 @@
+<div class="register">
+    <form class="custom-form" method="post" #registerForm="ngForm">
+      <h1>Registro</h1>
+      <input
+        type="email"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Email"
+        required
+        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+        minlength="8"
+        maxlength="50"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['email']?.invalid &&
+          (registerForm.controls['email']?.dirty ||
+            registerForm.controls['email']?.touched)
+        "
+        class="text-danger"
+      >
+        <small *ngIf="registerForm.controls['email']?.errors?.['required']"
+          >Este campo es obligatorio.</small
+        >
+        <small
+          *ngIf="registerForm.controls['email']?.errors?.['pattern']"
+          class="text-danger"
+        >
+          Ingresa una dirección de correo electrónico válida.
+        </small>
+        <small *ngIf="registerForm.controls['email']?.errors?.['minlength']"
+          >El mail debe tener al menos 8 caracteres.</small
+        >
+        <small *ngIf="registerForm.controls['email']?.errors?.['maxlength']"
+          >El mail debe tener como máximo 50 caracteres.</small
+        >
+      </div>
+  
+      <input
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Password"
+        required
+        pattern="^(?=.*[A-Z])(?=.*[@$!%*?&]).{6,}$"
+        minlength="6"
+      />
+      <div
+        *ngIf="
+          registerForm.controls['password']?.invalid &&
+          (registerForm.controls['password']?.dirty ||
+            registerForm.controls['password']?.touched)
+        "
+        class="text-danger"
+      >
+        <small *ngIf="registerForm.controls['password']?.errors?.['required']"
+          >Este campo es obligatorio.</small
+        >
+        <small *ngIf="registerForm.controls['password']?.errors?.['minlength']"
+          >La contraseña debe tener al menos 6 caracteres.</small
+        >
+        <small *ngIf="registerForm.controls['password']?.errors?.['pattern']"
+          >La contraseña debe tener al menos una mayúscula y un carácter
+          especial.</small
+        >
+      </div>
+  
+      <input
+        type="password"
+        [(ngModel)]="confirmPassword"
+        name="confirmPassword"
+        placeholder="Confirm Password"
+        required
+
+      />
+      <div
+        *ngIf="
+          registerForm.controls['confirmPassword']?.invalid &&
+          (registerForm.controls['confirmPassword']?.dirty ||
+            registerForm.controls['confirmPassword']?.touched)
+        "
+        class="text-danger"
+      >
+        <small *ngIf="registerForm.controls['confirmPassword']?.errors?.['required']"
+          >Este campo es obligatorio.</small
+        >
+        <small *ngIf="registerForm.controls['confirmPassword']?.errors?.['compareWith']"
+          >Las contraseñas no coinciden.</small
+        >
+      </div>
+  
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="registerForm.invalid"
+        (click)="register()"
+      >
+        Registrarse
+      </button>
+    </form>
+  </div>
+  

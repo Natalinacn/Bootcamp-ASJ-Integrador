@@ -69,7 +69,7 @@ WHERE pr.id_provider = (
 /*7-Mostrar la fecha emisión, nº de orden, razon social y codigo de proveedor, y la cantidad de productos de 
 cada orden.*/
 
-SELECT pu.order_issue_date AS 'Orden de emisión', pu.order_number AS 'Número de órden', pr.provider_code AS 'Córdigo proveedor', pr.company_name AS 'Razón social', sum(od.id_product * od.quantity) AS 'Cantidad de productos'
+SELECT pu.order_issue_date AS 'Orden de emisión', pu.order_number AS 'Número de órden', pr.provider_code AS 'Córdigo proveedor', pr.company_name AS 'Razón social', COUNT(id_product) AS 'Cantidad de productos'
 FROM purchase_orders pu
 JOIN providers pr ON pu.id_provider = pr.id_provider
 JOIN order_details od ON pu.id_purchase_order = od.id_purchase_order

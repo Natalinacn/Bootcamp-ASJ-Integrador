@@ -1,5 +1,5 @@
 export interface ProvidersModel {
-  id: string;
+  id: number;
   providerCode: string;
   businessName: string;
   industry: string;
@@ -27,4 +27,7 @@ export interface ProvidersModel {
     email: string;
     role: string;
   };
+  created_at?: Date;
+  updated_at?: Date;
+  deleted_at?: Date;
 }

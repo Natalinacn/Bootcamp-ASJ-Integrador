@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  h1 {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .register {
+    min-width: 300px;
+    max-width: 60%;
+    margin: 0px auto;
+    padding: 2rem 3rem;
+    margin: auto;
+    border-radius: 2.5rem;
+    background-color: #212529;
+    box-shadow: 6px 6px 10px #cbced1, -13px -13px 20px #ffffff;
+    color: black;
+    margin-top: 10rem;
+  }
+  
+  .register input {
+    display: block;
+    margin: 2rem 0;
+    width: 100%;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border-color: #b3b6b9;
+  }
+  
+  .register button {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    font-size: 0.875rem;
+    color: #ffffff;
+    font-weight: bold;
+    width: 100%;
+    display: block;
+    padding: 0.875rem 1rem;
+    border-radius: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .btn-primary:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+  }
+  
+  .text-danger {
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+  

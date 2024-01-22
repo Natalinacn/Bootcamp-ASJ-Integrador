@@ -24,6 +24,7 @@ import { PurchaseDetailComponent } from './components/purchaseOrders/purchase-de
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { ErrorModalComponent } from './modals/error-modal/error-modal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -58,7 +59,8 @@ import { ErrorModalComponent } from './modals/error-modal/error-modal.component'
     NgbModule,
     NgbModalModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -32,8 +32,15 @@ export class PurchaseAddFormComponent implements OnInit{
     private router: Router){}
 
   ngOnInit(): void {
-    this.providers = this.providersService.getProvider() || [];
-    this.products1 = this.productsService.getProduct() || [];
+    this.providers = this.providersService.getProvider() || []; //Tengo que borrar este y poner lo comentado abajo
+    // this.providersService.getProvider().subscribe(
+    //   providers => this.providers = providers || [],
+    //   error => console.error('Error obteniendo proveedores', error)
+    // );
+    this.productsService.getProducts().subscribe(
+      products => this.products1 = products || [],
+      error => console.error('Error obteniendo productos', error)
+    );
   }
 
   purchaseOrder: PurchaseOrdersModel = {

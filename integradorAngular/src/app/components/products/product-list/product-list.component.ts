@@ -20,21 +20,31 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     // this.productsData = this.productService.getHardcodedProducts();
-    this.listProducts();
+    //this.listProducts();
+
     this.sortProductsByProductName();
+    this.listProducts();
   }
 
+  //Reemplazar luego con listProducts
   listProducts() {
-    const res = this.productService.getProduct();
-
-    console.log('respuesta del get', res);
-
-    if (res !== null) {
-      this.productsData = res;
-    } else {
-      console.error('La respuesta es nula');
-    }
+    this.productService.getProducts().subscribe((data) => {
+      this.productsData = data;
+    });
   }
+
+  //MËTODOS VIEJOS!!!
+  // listProducts() {
+  //   const res = this.productService.getProducts();
+
+  //   console.log('respuesta del get', res);
+
+  //   if (res !== null) {
+  //     this.productsData = res;
+  //   } else {
+  //     console.error('La respuesta es nula');
+  //   }
+  // }
 
   deleteProduct(id: string) {
     const modalRef = this.modalService.open(DeleteConfirmationModalComponent);

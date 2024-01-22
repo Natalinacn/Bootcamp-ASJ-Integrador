@@ -1,65 +1,114 @@
+import { HttpClient } from '@angular/common/http'; //Importo el modulo http
 import { Injectable } from '@angular/core';
 import { ProductsModel } from '../model/productModel';
+import { Observable, catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-  constructor() { }
+  //Agrego la url de mi endpoint
 
 
-  // public getHardcodedProducts(){
-    // return products;
-  // }
+  private urlList = "http://localhost:8080/productos/listado";
+  private urlCreate = "http://localhost:8080/productos/formulario";
+  
 
-  createProduct(product : ProductsModel): void{
-    try{
-      const productsFromLocal: string | null = localStorage.getItem('product');
-
-      if(productsFromLocal !== null){
-
-        let productsString: ProductsModel[] = JSON.parse(productsFromLocal);
-
-        const uniqueId = Math.floor(Math.random() * 1000000);
-        product.id = uniqueId;
-
-        productsString.push(product);
-
-        localStorage.setItem('product', JSON.stringify(productsString));
-
-      }else{
-        const productsFromLocal: ProductsModel[] = [product];
-        localStorage.setItem('product', JSON.stringify(productsFromLocal));
-      }
+  constructor(
+    //Traigo el parámetro http para realizar las peticiones
+    private clienteHttp: HttpClient
+  ) { }
 
 
-    }catch(error){
-      console.log("Error al agregar producto al localStorage: ", error);
-
-    }
-
+//  NUEVOS METODOS
+  //Creo el método getProducts ----> Reemplazar luego el nombre por getProducts
+  getProducts(): Observable<ProductsModel[]>{
+    return this.clienteHttp.get<ProductsModel[]>(this.urlList);
   }
 
-  getProduct(): ProductsModel[] | null{
 
-    try{
-    const productFromLocal: string | null = localStorage.getItem('product');
+  //Creo el método createProduct ----> Reemplazar luego el nombre por createProduct
 
-    if(productFromLocal !== null){
+
+  createProduct(product: ProductsModel): Observable<ProductsModel> {
+    return this.clienteHttp.post<ProductsModel>(this.urlCreate, product)
+      .pipe(
+        catchError((error) => {
+          const errorMessage = 'Error al agregar producto:';
+          
+          return throwError(()=> new Error(errorMessage));
+        })
+      );
+  
+  }
+
+
+
+  // deleteProduct(id:number){
+  //   try {
+  //     //Traigo la info del LocalStorage y la guardo en providerFromLocal
+  //     const productFromLocal: string | null =
+  //       localStorage.getItem('product');
+
+  //     if (productFromLocal !== null) {
+  //       //Si el local tiene info creo una nueva variable para guardarla como Json
+  //       let productListToJson: ProductsModel[] = JSON.parse(productFromLocal);
+
+  //       //Filtro el id que deseo eliminar y lo guardo en la variable updateProviderList
+  //       const updateProductList = productListToJson.filter(function (product) {
+  //         return product.id !== id;
+  //       });
+
+  //MÉTODOS VIEJOS!!!!
+
+  // createProduct(product : ProductsModel): void{
+  //   try{
+  //     const productsFromLocal: string | null = localStorage.getItem('product');
+
+  //     if(productsFromLocal !== null){
+
+  //       let productsString: ProductsModel[] = JSON.parse(productsFromLocal);
+
+  //       const uniqueId = Math.floor(Math.random() * 1000000);
+  //       product.id = uniqueId;
+
+  //       productsString.push(product);
+
+  //       localStorage.setItem('product', JSON.stringify(productsString));
+
+  //     }else{
+  //       const productsFromLocal: ProductsModel[] = [product];
+  //       localStorage.setItem('product', JSON.stringify(productsFromLocal));
+  //     }
+
+
+  //   }catch(error){
+  //     console.log("Error al agregar producto al localStorage: ", error);
+
+  //   }
+
+  // }
+
+  // getProducts(): ProductsModel[] | null{
+
+  //   try{
+  //   const productFromLocal: string | null = localStorage.getItem('product');
+
+  //   if(productFromLocal !== null){
     
-        return JSON.parse(productFromLocal);
-    }
-    return null;
+  //       return JSON.parse(productFromLocal);
+  //   }
+  //   return null;
     
-  }catch(error){
-      console.error('Error parseando el localStorage:', error);
+  // }catch(error){
+  //     console.error('Error parseando el localStorage:', error);
 
-      return null;
+  //     return null;
 
-    }
+  //   }
       
-    }
+  //   }
 
 
 

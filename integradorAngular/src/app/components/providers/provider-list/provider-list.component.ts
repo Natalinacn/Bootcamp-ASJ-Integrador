@@ -21,9 +21,25 @@ export class ProviderListComponent implements OnInit {
 
   ngOnInit(): void {
     this.list();
+   // this.listProviders(); //Este es el que va con observables FINAL
 
     // this.providersData = this.providersService.getHardcodedProviders();
   }
+
+    //Agregar luego al ngOnInit
+    listProviders(){
+      //COnsumir los datos del observable (suscribirnos)
+  
+      this.providersService.getProvidersFromJava().subscribe(
+        data =>{
+          this.providersData = data;
+        }
+      )
+    }
+
+
+
+
 
   list() {
     const res = this.providersService.getProvider();

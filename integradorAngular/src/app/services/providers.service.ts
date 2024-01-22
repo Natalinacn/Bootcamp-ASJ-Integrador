@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http'; //Importo el modulo http
 import { Injectable } from '@angular/core';
 import { ProvidersModel } from '../model/providerModel';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -9,13 +11,22 @@ export class ProvidersService {
 
 
   
-  constructor() {}
+  constructor(
+        //Traigo el parámetro http para realizar las peticiones
+        private clienteHttp: HttpClient
+  ) {}
 
-  // public getHardcodedProviders(){
+    //Agrego la url de mi endpoint
+  private urlBase = "http://localhost:8080/sistema-gestion/proveedores";
 
-  //   // return providers;
 
-  // }
+  //Creo el método getProviders ----> Reemplazar luego el nombre por getProviders
+  getProvidersFromJava(): Observable<ProvidersModel[]>{
+    return this.clienteHttp.get<ProvidersModel[]>(this.urlBase);
+  }
+
+
+
 
   createProvider(provider: ProvidersModel): void {
     try {

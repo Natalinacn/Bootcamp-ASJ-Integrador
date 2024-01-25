@@ -23,9 +23,10 @@ export class ProviderAddFormComponent implements OnInit {
   id!: string;
 
   provider: ProvidersModel = {
-    id: 0,
+    idProvider: 0,
     providerCode: '',
     businessName: '',
+    cuit: '',
     industry: '',
     address: {
       streetAndNumber: '',
@@ -40,9 +41,9 @@ export class ProviderAddFormComponent implements OnInit {
       phone: '',
       email: '',
     },
-    fiscalData: {
-      cuit: '',
-      taxCondition: '',
+    IvaCondition: {
+      
+      ivaCondition: '',
     },
     responsiblePerson: {
       firstName: '',

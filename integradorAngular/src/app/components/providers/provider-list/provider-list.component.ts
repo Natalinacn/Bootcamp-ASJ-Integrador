@@ -20,8 +20,8 @@ export class ProviderListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.list();
-   // this.listProviders(); //Este es el que va con observables FINAL
+    //this.list();
+    this.listProviders(); //Este es el que va con observables FINAL
 
     // this.providersData = this.providersService.getHardcodedProviders();
   }
@@ -30,7 +30,7 @@ export class ProviderListComponent implements OnInit {
     listProviders(){
       //COnsumir los datos del observable (suscribirnos)
   
-      this.providersService.getProvidersFromJava().subscribe(
+      this.providersService.getProviders().subscribe(
         data =>{
           this.providersData = data;
         }
@@ -41,17 +41,17 @@ export class ProviderListComponent implements OnInit {
 
 
 
-  list() {
-    const res = this.providersService.getProvider();
+  // list() {
+  //   const res = this.providersService.getProvider();
 
-    console.log('respuesta del get', res);
+  //   console.log('respuesta del get', res);
 
-    if (res !== null) {
-      this.providersData = res;
-    } else {
-      console.error('La respuesta es nula');
-    }
-  }
+  //   if (res !== null) {
+  //     this.providersData = res;
+  //   } else {
+  //     console.error('La respuesta es nula');
+  //   }
+  // }
 
   deleteProvider(id: number) {
     //Abro el modal

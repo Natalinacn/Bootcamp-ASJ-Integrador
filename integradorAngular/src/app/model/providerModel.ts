@@ -1,7 +1,8 @@
 export interface ProvidersModel {
-  id: number;
+  idProvider: number;
   providerCode: string;
   businessName: string;
+  cuit: string;
   industry: string;
   address: {
     streetAndNumber: string;
@@ -16,9 +17,8 @@ export interface ProvidersModel {
     phone: string;
     email: string;
   };
-  fiscalData: {
-    cuit: string;
-    taxCondition: string;
+  IvaCondition: {
+    ivaCondition: string;
   };
   responsiblePerson: {
     firstName: string;

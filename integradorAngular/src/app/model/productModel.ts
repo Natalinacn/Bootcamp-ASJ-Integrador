@@ -1,6 +1,6 @@
 export interface ProductsModel {
     
-    id: number,
+    idProduct: number,
     code: string,
     productName: string,
     category: string,

@@ -27,7 +27,7 @@ export class ProductAddFormComponent implements OnInit {
   id!: string;
 
   product: ProductsModel = {
-    id: 0,
+    idProduct: 0,
     code: '',
     productName: '',
     category: '',
@@ -42,7 +42,7 @@ export class ProductAddFormComponent implements OnInit {
 
   ngOnInit(): void {
     // Llam0 al servicio de proveedores para obtener la lista
-    this.providers = this.providersService.getProvider() || [];
+    //this.providers = this.providersService.getProviders() || []; //VER ESTO
     console.log('Lista de proveedores en ngOnInit:', this.providers);
 
     this.route.paramMap.subscribe((response) => {
@@ -97,6 +97,30 @@ export class ProductAddFormComponent implements OnInit {
     }
   }
 
+  updateProduct(form: NgForm) {
+    if (form.valid) {
+      this.productService.updateProduct(this.product.idProduct, this.product).subscribe((result)=>{
+        console.log('Producto actualizado exitosamente:', result);
+      });
+
+      const modalRef = this.modalService.open(ConfirmationModalComponent);
+      modalRef.componentInstance.message = 'Producto editado correctamente';
+
+      setTimeout(() => {
+        modalRef.close('timeout');
+        this.router.navigate(['/productos/listado']);
+      }, 2000);
+      modalRef.result.then(
+        (result) => {
+          console.log('Modal cerrado', result);
+        },
+        (reason) => {
+          console.log('Modal descartado', reason);
+        }
+      );
+    }
+  }
+
   //METODOS VIEJOS
 
   // saveProduct(form: NgForm) {
@@ -123,25 +147,25 @@ export class ProductAddFormComponent implements OnInit {
   // }
 
 
-  updateProduct(form: NgForm) {
-    if (form.valid) {
-      this.productService.updateProduct(this.product);
+  // updateProduct(form: NgForm) {
+  //   if (form.valid) {
+  //     this.productService.updateProduct(this.product);
 
-      const modalRef = this.modalService.open(ConfirmationModalComponent);
-      modalRef.componentInstance.message = 'Producto editado correctamente';
+  //     const modalRef = this.modalService.open(ConfirmationModalComponent);
+  //     modalRef.componentInstance.message = 'Producto editado correctamente';
 
-      setTimeout(() => {
-        modalRef.close('timeout');
-        this.router.navigate(['/productos/listado']);
-      }, 2000);
-      modalRef.result.then(
-        (result) => {
-          console.log('Modal cerrado', result);
-        },
-        (reason) => {
-          console.log('Modal descartado', reason);
-        }
-      );
-    }
-  }
+  //     setTimeout(() => {
+  //       modalRef.close('timeout');
+  //       this.router.navigate(['/productos/listado']);
+  //     }, 2000);
+  //     modalRef.result.then(
+  //       (result) => {
+  //         console.log('Modal cerrado', result);
+  //       },
+  //       (reason) => {
+  //         console.log('Modal descartado', reason);
+  //       }
+  //     );
+  //   }
+  // }
 }

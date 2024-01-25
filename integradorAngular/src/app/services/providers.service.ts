@@ -21,7 +21,7 @@ export class ProvidersService {
 
 
   //Creo el método getProviders ----> Reemplazar luego el nombre por getProviders
-  getProvidersFromJava(): Observable<ProvidersModel[]>{
+  getProviders(): Observable<ProvidersModel[]>{
     return this.clienteHttp.get<ProvidersModel[]>(this.urlBase);
   }
 
@@ -38,7 +38,7 @@ export class ProvidersService {
           JSON.parse(providerFromLocal);
 
           const uniqueId = Math.floor(Math.random() * 1000000); 
-          provider.id = uniqueId;
+          provider.idProvider = uniqueId;
 
         console.log(provider);
 
@@ -54,24 +54,24 @@ export class ProvidersService {
     }
   }
 
-  getProvider(): ProvidersModel[] | null {
-    try {
-      const providerFromLocal: string | null =
-        localStorage.getItem('providers');
+  // getProvider(): ProvidersModel[] | null {
+  //   try {
+  //     const providerFromLocal: string | null =
+  //       localStorage.getItem('providers');
 
-      if (providerFromLocal !== null) {
-        // return JSON.parse(providerFromLocal);
-        const providers = JSON.parse(providerFromLocal);
-        console.log('Lista de proveedores en el servicio:', providers);
-        return providers;
-      }
-      return null;
-    } catch (error) {
-      console.error('Error parseando el localStorage:', error);
+  //     if (providerFromLocal !== null) {
+  //       // return JSON.parse(providerFromLocal);
+  //       const providers = JSON.parse(providerFromLocal);
+  //       console.log('Lista de proveedores en el servicio:', providers);
+  //       return providers;
+  //     }
+  //     return null;
+  //   } catch (error) {
+  //     console.error('Error parseando el localStorage:', error);
 
-      return null;
-    }
-  }
+  //     return null;
+  //   }
+  // }
 
 
 
@@ -87,7 +87,7 @@ export class ProvidersService {
 
         //Filtro el id que deseo eliminar y lo guardo en la variable updateProviderList
         const updateProviderList = providersListToJson.filter(function (provider) {
-          return provider.id !== id;
+          return provider.idProvider !== id;
         });
 
         //Actualizo el localStorage con la lista filtrada
@@ -111,7 +111,7 @@ export class ProvidersService {
       if (providerFromLocal !== null) {
         const providerListToJson: ProvidersModel[] = JSON.parse(providerFromLocal);
   
-        const providerToUpdate: ProvidersModel | undefined = providerListToJson.find(provider => provider.id === id);
+        const providerToUpdate: ProvidersModel | undefined = providerListToJson.find(provider => provider.idProvider === id);
   
         return providerToUpdate || null;
       }
@@ -133,7 +133,7 @@ export class ProvidersService {
         let providerString: ProvidersModel[] = JSON.parse(providerFromLocal);
 
         let indice = providerString.findIndex(function(p){
-          return p.id == provider.id
+          return p.idProvider == provider.idProvider
         })
 
         providerString[indice] = provider;

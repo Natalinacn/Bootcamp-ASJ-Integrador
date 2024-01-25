@@ -33,6 +33,32 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+
+  deleteProduct(idProduct: string) {
+    const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
+
+    modalRef.componentInstance.message =
+      '¿Está seguro de que desea eliminar este producto?';
+
+    modalRef.result.then(
+      (result) => {
+        if (result === 'confirm') {
+          console.log(result);
+          console.log(idProduct);
+          console.log(this.productsData);
+          
+          this.productService.deleteProduct(Number(idProduct)).subscribe(()=>{
+            this.listProducts();
+          }); 
+        }
+      },
+      (reason) => {
+        console.log('Modal de confirmación cerrado sin confirmar: ', reason);
+      }
+    );
+  }
+
+
   //MËTODOS VIEJOS!!!
   // listProducts() {
   //   const res = this.productService.getProducts();
@@ -46,29 +72,31 @@ export class ProductListComponent implements OnInit {
   //   }
   // }
 
-  deleteProduct(id: string) {
-    const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
+  // deleteProduct(id: string) {
+  //   const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
 
-    modalRef.componentInstance.message =
-      '¿Está seguro de que desea eliminar este producto?';
+  //   modalRef.componentInstance.message =
+  //     '¿Está seguro de que desea eliminar este producto?';
 
-    modalRef.result.then(
-      (result) => {
-        if (result === 'confirm') {
-          const res = this.productService.deleteProduct(Number(id)); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
+  //   modalRef.result.then(
+  //     (result) => {
+  //       if (result === 'confirm') {
+  //         const res = this.productService.deleteProduct(Number(id)); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
 
-          if (res !== null && res !== undefined) {
-            this.productsData = res;
-          } else {
-            console.error('La respuesta es nula');
-          }
-        }
-      },
-      (reason) => {
-        console.log('Modal de confirmación cerrado sin confirmar: ', reason);
-      }
-    );
-  }
+  //         if (res !== null && res !== undefined) {
+  //           this.productsData = res;
+  //         } else {
+  //           console.error('La respuesta es nula');
+  //         }
+  //       }
+  //     },
+  //     (reason) => {
+  //       console.log('Modal de confirmación cerrado sin confirmar: ', reason);
+  //     }
+  //   );
+  // }
+
+
 
   sortProductsByProductName() {
     this.productsData.sort((a, b) =>

@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -22,6 +23,7 @@ public class PurchaseOrder {
 	private Boolean status;
 	private Double totalAmount;
 	@ManyToOne
+	@JoinColumn(name = "provider_id")
 	private Provider provider;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;

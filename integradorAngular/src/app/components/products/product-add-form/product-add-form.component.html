@@ -79,19 +79,11 @@
         class="form-select"
         id="category"
         name="category"
-        [(ngModel)]="product.category"
+        [(ngModel)]="product.category.categoryId"
         required
       >
         <option selected disabled value="">Elige una categoría... (*)</option>
-        <option>Celulares</option>
-        <option>Tablets</option>
-        <option>Laptops</option>
-        <option>Panadería</option>
-        <option>Carnes</option>
-        <option>Calzado</option>
-        <option>Remeras</option>
-        <option>Pantalones</option>
-        <option>Ropa deportiva</option>
+        <option *ngFor="let categoria of categoriesData" value="{{categoria.categoryId}}">{{categoria.category}}</option>
       </select>
       <div
         *ngIf="
@@ -144,7 +136,7 @@
         id="validationDefault04"
         name="providerSelect"
         [(ngModel)]="product.provider"
-        required
+       
       >
         <option selected disabled value="">Elige proveedor...</option>
         <option

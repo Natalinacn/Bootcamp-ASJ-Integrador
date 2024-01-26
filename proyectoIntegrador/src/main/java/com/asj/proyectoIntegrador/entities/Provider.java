@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
@@ -17,18 +18,22 @@ public class Provider {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProvider;
 	private String providerCode;
-	private String companyName;
+	private String businessName;
 	private String cuit;
 	private String phone;
 	private String email;
 	private String website;
 	@ManyToOne
+	@JoinColumn(name = "industry_id")
 	private Industry industry;
 	@OneToOne
+	@JoinColumn(name = "address_id")
 	private Address address;
 	@ManyToOne
+	@JoinColumn(name = "ivaCondition_id")
 	private IvaCondition ivaCondition;
 	@OneToOne
+	@JoinColumn(name = "responsiblePerson")
 	private ResponsiblePerson responsiblePerson;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
@@ -37,12 +42,12 @@ public class Provider {
 	public Provider() {
 	}
 
-	public Provider(Integer idProvider, String providerCode, String companyName, String cuit, String phone,
+	public Provider(Integer idProvider, String providerCode, String businessName, String cuit, String phone,
 			String email, String website, Industry industry, Address address, IvaCondition ivaCondition,
 			ResponsiblePerson responsiblePerson, LocalDate createdAt, LocalDate updatedAt, LocalDate deletedAt) {
 		this.idProvider = idProvider;
 		this.providerCode = providerCode;
-		this.companyName = companyName;
+		this.businessName = businessName;
 		this.cuit = cuit;
 		this.phone = phone;
 		this.email = email;
@@ -72,12 +77,12 @@ public class Provider {
 		this.providerCode = providerCode;
 	}
 
-	public String getCompanyName() {
-		return companyName;
+	public String getbusinessName() {
+		return businessName;
 	}
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setbusinessName(String businessName) {
+		this.businessName = businessName;
 	}
 
 	public String getCuit() {
@@ -170,7 +175,7 @@ public class Provider {
 
 	@Override
 	public String toString() {
-		return "Provider [idProvider=" + idProvider + ", providerCode=" + providerCode + ", companyName=" + companyName
+		return "Provider [idProvider=" + idProvider + ", providerCode=" + providerCode + ", businessName=" + businessName
 				+ ", cuit=" + cuit + ", phone=" + phone + ", email=" + email + ", website=" + website + ", industry="
 				+ industry + ", address=" + address + ", ivaCondition=" + ivaCondition + ", responsiblePerson="
 				+ responsiblePerson + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", deletedAt="

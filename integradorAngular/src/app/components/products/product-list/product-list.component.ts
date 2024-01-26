@@ -12,6 +12,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductListComponent implements OnInit {
   productsData: any[] = [];
 
+
   constructor(
     private productService: ProductsService,
     private modalService: NgbModal,
@@ -46,10 +47,10 @@ export class ProductListComponent implements OnInit {
           console.log(result);
           console.log(idProduct);
           console.log(this.productsData);
-          
-          this.productService.deleteProduct(Number(idProduct)).subscribe(()=>{
+
+          this.productService.deleteProduct(Number(idProduct)).subscribe(() => {
             this.listProducts();
-          }); 
+          });
         }
       },
       (reason) => {
@@ -57,7 +58,6 @@ export class ProductListComponent implements OnInit {
       }
     );
   }
-
 
   //MËTODOS VIEJOS!!!
   // listProducts() {
@@ -95,8 +95,6 @@ export class ProductListComponent implements OnInit {
   //     }
   //   );
   // }
-
-
 
   sortProductsByProductName() {
     this.productsData.sort((a, b) =>

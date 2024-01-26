@@ -18,6 +18,7 @@ export interface ProvidersModel {
     email: string;
   };
   IvaCondition: {
+    idIvaCondition?: number;
     ivaCondition: string;
   };
   responsiblePerson: {

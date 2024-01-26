@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsModel } from 'src/app/model/productModel';
+import { Category, ProductsModel } from 'src/app/model/productModel';
 import { ProductsService } from 'src/app/services/products.service';
 import { NgForm } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,6 +15,7 @@ import { ProvidersModel } from 'src/app/model/providerModel';
 })
 export class ProductAddFormComponent implements OnInit {
   providers: ProvidersModel[] = [];
+  categoriesData: Category[] = [];
 
   constructor(
     private productService: ProductsService,
@@ -30,7 +31,10 @@ export class ProductAddFormComponent implements OnInit {
     idProduct: 0,
     code: '',
     productName: '',
-    category: '',
+    category: {
+      categoryId: 0,
+      category: '',
+    },
     provider: '',
     description: '',
     price: 0,
@@ -56,6 +60,10 @@ export class ProductAddFormComponent implements OnInit {
 
     // Agrega este console.log para verificar si la lista de proveedores se carga correctamente
     console.log('Lista de proveedores en ngOnInit:', this.providers);
+
+  
+    this.listCategories();
+    
   }
 
   onSubmit(form: NgForm) {
@@ -70,11 +78,13 @@ export class ProductAddFormComponent implements OnInit {
   //cambiar nombre a saveProduct
   saveProduct(form: NgForm) {
     if (form.valid) {
+      console.log(this.product);
       this.productService.createProduct(this.product).subscribe(
         (result) => {
           const modalRef = this.modalService.open(ConfirmationModalComponent);
           modalRef.componentInstance.message =
             'Producto agregado correctamente';
+
 
           setTimeout(() => {
             modalRef.close('timeout');
@@ -99,9 +109,11 @@ export class ProductAddFormComponent implements OnInit {
 
   updateProduct(form: NgForm) {
     if (form.valid) {
-      this.productService.updateProduct(this.product.idProduct, this.product).subscribe((result)=>{
-        console.log('Producto actualizado exitosamente:', result);
-      });
+      this.productService
+        .updateProduct(this.product.idProduct, this.product)
+        .subscribe((result) => {
+          console.log('Producto actualizado exitosamente:', result);
+        });
 
       const modalRef = this.modalService.open(ConfirmationModalComponent);
       modalRef.componentInstance.message = 'Producto editado correctamente';
@@ -119,6 +131,13 @@ export class ProductAddFormComponent implements OnInit {
         }
       );
     }
+  }
+  listCategories() {
+    this.productService.getCategories().subscribe((data) => {
+      console.log("Lista de categorias ", this.categoriesData);
+      this.categoriesData = data;
+      console.log("Lista de categorias ", this.categoriesData);
+    });
   }
 
   //METODOS VIEJOS
@@ -145,7 +164,6 @@ export class ProductAddFormComponent implements OnInit {
   //     );
   //   }
   // }
-
 
   // updateProduct(form: NgForm) {
   //   if (form.valid) {

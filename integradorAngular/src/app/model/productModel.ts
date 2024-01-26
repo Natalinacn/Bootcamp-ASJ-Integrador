@@ -3,7 +3,7 @@ export interface ProductsModel {
     idProduct: number,
     code: string,
     productName: string,
-    category: string,
+    category: Category,
     provider: string,
     description: string,
     price: number
@@ -14,4 +14,7 @@ export interface ProductsModel {
 
 
 }
-
+export interface Category{
+    categoryId:number,
+	category: string;
+}

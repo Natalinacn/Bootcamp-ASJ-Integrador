@@ -32,14 +32,15 @@ public class ProductController {
 //	public ProductController(ProductServiceIMPL productServiceIMPL) {
 //		this.productServiceIMPL = productServiceIMPL;
 //	}
-	
+
 	private IProductService iProductService;
+
 	public ProductController(IProductService iProductService) {
-	this.iProductService = iProductService;
-}
+		this.iProductService = iProductService;
+	}
 
 	// http://localhost:8080/productos/listado
-	//Traigo los productos que no estan eliminados
+	// Traigo los productos que no estan eliminados
 	@GetMapping("/listado")
 	public ResponseEntity<List<Product>> getProducts() {
 		List<Product> products = this.iProductService.listProductsNotDeleted();
@@ -60,32 +61,34 @@ public class ProductController {
 	@PostMapping("/formulario")
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) {
 
-		iProductService.saveProduct(product);
-
-		return new ResponseEntity<>(product, HttpStatus.OK);
+		try {
+			iProductService.saveProduct(product);
+			return new ResponseEntity<>(product, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 
 	@DeleteMapping("/{idProduct}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer idProduct) {
 		try {
-		iProductService.deleteProductById(idProduct);
-		return new ResponseEntity<>(HttpStatus.OK);
-		}catch (Exception e) {
+			iProductService.deleteProductById(idProduct);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@PutMapping("/actualizar/{idProduct}")
-	public ResponseEntity<Product> updateProduct(@PathVariable Integer idProduct, @RequestBody Product product){
-		
+	public ResponseEntity<Product> updateProduct(@PathVariable Integer idProduct, @RequestBody Product product) {
+
 		try {
 			iProductService.updateProduct(idProduct, product);
 			return new ResponseEntity<>(product, HttpStatus.OK);
-			
-		}catch (Exception e) {
+
+		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		
+
 	}
 }
-

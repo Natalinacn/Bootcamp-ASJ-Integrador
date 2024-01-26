@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -14,6 +15,7 @@ public class Province {
 	private Integer idProvince;
 	private String province;
 	@ManyToOne(optional = false)
+	@JoinColumn(name = "country_id")
 	private Country country;
 	
 	
@@ -60,7 +62,7 @@ public class Province {
 
 	@Override
 	public String toString() {
-		return "Province [idProvince=" + idProvince + ", province=" + province + ", country=" + country + "]";
+		return "ProvinceRepository [idProvince=" + idProvince + ", province=" + province + ", country=" + country + "]";
 	}
 	
 	

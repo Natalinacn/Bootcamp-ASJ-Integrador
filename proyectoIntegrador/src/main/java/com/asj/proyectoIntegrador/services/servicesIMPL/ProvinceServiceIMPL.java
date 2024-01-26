@@ -9,11 +9,11 @@ import com.asj.proyectoIntegrador.repositories.ProvinceRepository;
 import com.asj.proyectoIntegrador.services.IProvinceService;
 
 @Service
-public class ProvinceService implements IProvinceService {
+public class ProvinceServiceIMPL implements IProvinceService {
 
 	private final ProvinceRepository provinceRepository;
 
-	public ProvinceService(ProvinceRepository provinceRepository) {
+	public ProvinceServiceIMPL(ProvinceRepository provinceRepository) {
 		this.provinceRepository = provinceRepository;
 	}
 

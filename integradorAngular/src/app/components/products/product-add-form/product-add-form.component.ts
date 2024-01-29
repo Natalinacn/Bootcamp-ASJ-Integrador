@@ -16,6 +16,8 @@ import { ProvidersModel } from 'src/app/model/providerModel';
 export class ProductAddFormComponent implements OnInit {
   providers: ProvidersModel[] = [];
   categoriesData: Category[] = [];
+  providersData: ProvidersModel[] = [];
+
 
   constructor(
     private productService: ProductsService,
@@ -35,7 +37,51 @@ export class ProductAddFormComponent implements OnInit {
       categoryId: 0,
       category: '',
     },
-    provider: '',
+    provider:{
+    idProvider: 0,
+    providerCode: '',
+    businessName: '',
+    cuit: '',
+    website: '',
+    phone: '',
+    email: '',
+    industry: {
+      idIndustry: 0,
+      industry: '',
+    },
+    address: {
+      idAddress: 0,
+      streetAndNumber: '',
+      postalCode: '',
+      city: {
+        idCity: 0,
+        city: '',
+        province: {
+          idProvince: 0,
+          province: '',
+          country: {
+            idCountry: 0,
+            country: '',
+          },
+        }
+      }
+    },
+    IvaCondition: {
+      idIvaCondition: 0,
+      ivaCondition: '',
+    },
+    responsiblePerson: {
+      idResponsiblePerson: 0,
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      role: '',
+    },
+    created_at: undefined,
+    updated_at: undefined,
+    deleted_at: undefined,
+      },
     description: '',
     price: 0,
     img: '',
@@ -63,10 +109,14 @@ export class ProductAddFormComponent implements OnInit {
 
   
     this.listCategories();
+    this.listProviders();
     
   }
 
   onSubmit(form: NgForm) {
+    // let provider = this.providersService.getPoviderById(1);
+    // this.product.provider = provider!;
+    console.log(this.product);
     if (this.id) {
       this.updateProduct(form);
     } else {
@@ -81,6 +131,7 @@ export class ProductAddFormComponent implements OnInit {
       console.log(this.product);
       this.productService.createProduct(this.product).subscribe(
         (result) => {
+          console.log('Producto en el CREATE', this.product);
           const modalRef = this.modalService.open(ConfirmationModalComponent);
           modalRef.componentInstance.message =
             'Producto agregado correctamente';
@@ -101,6 +152,7 @@ export class ProductAddFormComponent implements OnInit {
           );
         },
         (error) => {
+          console.log('Producto en el error de save', this.product);
           console.error('Error al agregar el producto', error);
         }
       );
@@ -138,6 +190,12 @@ export class ProductAddFormComponent implements OnInit {
       this.categoriesData = data;
       console.log("Lista de categorias ", this.categoriesData);
     });
+  }
+
+  listProviders(){
+    this.providersService.getProviders().subscribe((data)=>{
+        this.providersData = data;
+      });
   }
 
   //METODOS VIEJOS

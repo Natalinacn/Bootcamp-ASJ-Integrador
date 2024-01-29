@@ -2,6 +2,7 @@ package com.asj.proyectoIntegrador.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,19 +21,20 @@ public class Provider {
 	private String providerCode;
 	private String businessName;
 	private String cuit;
+	private String website;
 	private String phone;
 	private String email;
-	private String website;
+	
 	@ManyToOne
 	@JoinColumn(name = "industry_id")
 	private Industry industry;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;
 	@ManyToOne
 	@JoinColumn(name = "ivaCondition_id")
 	private IvaCondition ivaCondition;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "responsiblePerson")
 	private ResponsiblePerson responsiblePerson;
 	private LocalDate createdAt;

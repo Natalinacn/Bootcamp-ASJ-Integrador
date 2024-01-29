@@ -43,12 +43,12 @@ public class ProductServiceIMPL implements IProductService {
 		}
 	}
 
-	@Override
-	@Transactional
-	public void saveProduct(Product product) {
-		product.setCreatedAt(LocalDate.now());
-		this.productRepository.save(product);
-	}
+		@Override
+		@Transactional
+		public void saveProduct(Product product) {
+			product.setCreatedAt(LocalDate.now());
+			this.productRepository.save(product);
+		}
 
 	@Override
 	@Transactional

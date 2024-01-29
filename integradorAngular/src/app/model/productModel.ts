@@ -1,10 +1,12 @@
+import { ProvidersModel } from "./providerModel";
+
 export interface ProductsModel {
     
     idProduct: number,
     code: string,
     productName: string,
     category: Category,
-    provider: string,
+    provider: ProvidersModel,
     description: string,
     price: number
     img: string

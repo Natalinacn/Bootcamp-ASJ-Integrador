@@ -3,25 +3,44 @@ export interface ProvidersModel {
   providerCode: string;
   businessName: string;
   cuit: string;
-  industry: string;
+  website: string;
+  phone: string;
+  email: string;
+  industry: {
+    idIndustry: number;
+    industry: string;
+  }
   address: {
+    idAddress: number;
     streetAndNumber: string;
     postalCode: string;
-    locality: string;
-    city: string;
-    province: string;
-    country: string;
+    city: {
+      idCity: number;
+      city: string;
+      province: {
+        idProvince: number;
+        province: string;
+        country: {
+          idCountry: number;
+          country: string;
+        },
+      }
+    }
   };
-  contact: {
-    website: string;
-    phone: string;
-    email: string;
-  };
+  // address: {
+  //   idAddress: number,
+  //   streetAndNumber: string;
+  //   postalCode: string;
+  //   city: string;
+  //   province: string;
+  //   country: string;
+  // };
   IvaCondition: {
-    idIvaCondition?: number;
+    idIvaCondition: number;
     ivaCondition: string;
   };
   responsiblePerson: {
+    idResponsiblePerson: number,
     firstName: string;
     lastName: string;
     phone: string;

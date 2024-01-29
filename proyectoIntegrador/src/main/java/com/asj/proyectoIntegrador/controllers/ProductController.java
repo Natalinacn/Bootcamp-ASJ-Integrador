@@ -65,6 +65,7 @@ public class ProductController {
 			iProductService.saveProduct(product);
 			return new ResponseEntity<>(product, HttpStatus.OK);
 		} catch (Exception e) {
+			e.getStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}

@@ -135,16 +135,14 @@
         class="form-select"
         id="validationDefault04"
         name="providerSelect"
-        [(ngModel)]="product.provider"
+        [(ngModel)]="product.provider.idProvider"
        
       >
         <option selected disabled value="">Elige proveedor...</option>
         <option
-          *ngFor="let provider of providers || []"
-          [value]="provider.businessName"
-        >
-          {{ provider.businessName }}
-          
+          *ngFor="let provider of providersData"
+          value={{provider.idProvider}}>
+          {{ provider.businessName }}          
         </option>
       </select>
       <div

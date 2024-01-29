@@ -22,30 +22,51 @@ export class ProviderAddFormComponent implements OnInit {
 
   id!: string;
 
+
   provider: ProvidersModel = {
     idProvider: 0,
     providerCode: '',
     businessName: '',
     cuit: '',
-    industry: '',
+    website: '',
+    phone: '',
+    email: '',
+    industry: {
+      idIndustry: 0,
+      industry: '',
+    },
+    // address: {
+    //   idAddress: 0,
+    //   streetAndNumber: '',
+    //   postalCode: '',
+    //   locality: '',
+    //   city: '',
+    //   province: '',
+    //   country: '',
+    // },
     address: {
+      idAddress: 0,
       streetAndNumber: '',
       postalCode: '',
-      locality: '',
-      city: '',
-      province: '',
-      country: '',
-    },
-    contact: {
-      website: '',
-      phone: '',
-      email: '',
+      city: {
+        idCity: 0,
+        city: '',
+        province: {
+          idProvince: 0,
+          province: '',
+          country: {
+            idCountry: 0,
+            country: '',
+          },
+        }
+      }
     },
     IvaCondition: {
-      
+      idIvaCondition: 0,
       ivaCondition: '',
     },
     responsiblePerson: {
+      idResponsiblePerson: 0,
       firstName: '',
       lastName: '',
       phone: '',
@@ -62,10 +83,12 @@ export class ProviderAddFormComponent implements OnInit {
       let id = response.get('id');
       if (id != undefined) {
         this.id = id;
-        this.provider = this.providerService.getPoviderById(Number(id))!;
+        // this.provider = this.providerService.getPoviderById(Number(id))!;
         console.log(this.provider);
       }
     });
+
+
   }
 
   createProvider(form: NgForm): void {
@@ -123,4 +146,7 @@ export class ProviderAddFormComponent implements OnInit {
       );
     }
   }
+
+
+
 }

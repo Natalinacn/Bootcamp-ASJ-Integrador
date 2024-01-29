@@ -11,7 +11,7 @@ import { ProvidersService } from 'src/app/services/providers.service';
   styleUrls: ['./provider-list.component.css'],
 })
 export class ProviderListComponent implements OnInit {
-  providersData: ProvidersModel[] | null = [];
+  providersData: ProvidersModel[] = [];
 
   constructor(
     private providersService: ProvidersService,
@@ -30,11 +30,9 @@ export class ProviderListComponent implements OnInit {
     listProviders(){
       //COnsumir los datos del observable (suscribirnos)
   
-      this.providersService.getProviders().subscribe(
-        data =>{
+      this.providersService.getProviders().subscribe((data)=>{
           this.providersData = data;
-        }
-      )
+        });
     }
 
 
@@ -81,9 +79,9 @@ export class ProviderListComponent implements OnInit {
     );
   }
 
-  updateProvider(providerId: number){
+  updateProvider(idProvider: number){
 
-    this.router.navigate([`/proveedores/formulario/${providerId}`]);
+    this.router.navigate([`/proveedores/formulario/${idProvider}`]);
 
   }
 }

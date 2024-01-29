@@ -34,7 +34,7 @@ public class CityServiceIMPL implements ICityService {
 	    if (city.getCity() != null) {
 	        return cityRepository.save(city);
 	    } else {
-	        throw new Exception("No se pudo guardar la ciudad");
+	        throw new Exception("El nombre de la ciudad no puede estar vacío");
 	    }
 	}
 

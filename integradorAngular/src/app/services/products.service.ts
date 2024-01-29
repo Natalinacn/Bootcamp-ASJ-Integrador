@@ -25,16 +25,26 @@ export class ProductsService {
 
   //Creo el método createProduct ----> Reemplazar luego el nombre por createProduct
 
+  // createProduct(product: ProductsModel): Observable<ProductsModel> {
+  //   const url = this.baseUrl + '/formulario';
+  //   return this.clienteHttp.post<ProductsModel>(url, product).pipe(
+  //     catchError((error) => {
+  //       const errorMessage = 'Error al agregar producto:';
+
+  //       return throwError(() => new Error(errorMessage));
+  //     })
+  //   );
+  // }
+
   createProduct(product: ProductsModel): Observable<ProductsModel> {
     const url = this.baseUrl + '/formulario';
     return this.clienteHttp.post<ProductsModel>(url, product).pipe(
       catchError((error) => {
-        const errorMessage = 'Error al agregar producto:';
-
-        return throwError(() => new Error(errorMessage));
+        return throwError(error); // Propaga el error recibido del servidor
       })
     );
   }
+  
 
   deleteProduct(idProduct: number): Observable<any> {
     const url = `${this.baseUrl}/${idProduct}`;

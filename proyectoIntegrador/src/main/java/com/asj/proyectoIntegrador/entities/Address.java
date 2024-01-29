@@ -18,14 +18,18 @@ public class Address {
 	private Integer idAddress;
 	private String streetAndNumber;
 	private String postalCode;
-	@ManyToOne(optional = false)
-	@JoinColumn(name = "address_id")
+	@ManyToOne
+	@JoinColumn(name = "city_id")
 	private City city;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
 	
 	public Address() {
 	}
+
+
+
+
 
 	public Address(Integer idAddress, String streetAndNumber, String postalCode, City city, LocalDate createdAt,
 			LocalDate updatedAt) {
@@ -36,6 +40,10 @@ public class Address {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
+
+
+
+
 
 	public Integer getIdAddress() {
 		return idAddress;
@@ -61,13 +69,26 @@ public class Address {
 		this.postalCode = postalCode;
 	}
 
+
+
+
+
+
 	public City getCity() {
 		return city;
 	}
 
+
+
+
+
 	public void setCity(City city) {
 		this.city = city;
 	}
+
+
+
+
 
 	public LocalDate getCreatedAt() {
 		return createdAt;
@@ -85,12 +106,8 @@ public class Address {
 		this.updatedAt = updatedAt;
 	}
 
-	@Override
-	public String toString() {
-		return "Address [idAddress=" + idAddress + ", streetAndNumber=" + streetAndNumber + ", postalCode=" + postalCode
-				+ ", city=" + city + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
-	}
-	
+
+
 	
 	
 }

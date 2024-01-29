@@ -24,8 +24,8 @@
       <tbody >
         <tr class="text-center" *ngFor="let product of productsData">
           <td>{{ product.productName }}</td>
-          <td>{{ product.category }}</td>
-          <td>{{ product.provider }}</td>
+          <td>{{ product.category?.category }}</td>
+          <td>{{ product.provider?.businessName }}</td>
           <td>{{ product.price | currency: 'ARS' }}</td>
           <td>
             <div class="d-grid">

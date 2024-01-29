@@ -3,6 +3,7 @@ package com.asj.proyectoIntegrador.services;
 import java.util.List;
 
 import com.asj.proyectoIntegrador.entities.Product;
+import com.asj.proyectoIntegrador.entities.Provider;
 
 public interface IProductService {
 
@@ -17,5 +18,7 @@ public interface IProductService {
 	Product updateProduct(Integer idProduct, Product product) throws Exception;
 
 	List<Product> listProductsNotDeleted();
+	
+	
 
 }

@@ -14,7 +14,7 @@ public class City {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idCity;
 	private String city;
-	@ManyToOne(optional = false)
+	@ManyToOne
 	@JoinColumn(name = "province_id")
 	private Province province;
 	

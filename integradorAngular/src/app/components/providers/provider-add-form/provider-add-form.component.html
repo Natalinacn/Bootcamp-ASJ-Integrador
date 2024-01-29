@@ -166,7 +166,7 @@
           id="inputPais"
           class="form-control"
           name="pais"
-          [(ngModel)]="provider.address.country"
+          [(ngModel)]="provider.address.city.province.country.idCountry"
           required
         >
           <option value="" selected>Elige el país...</option>
@@ -192,7 +192,7 @@
           id="inputProv"
           class="form-control"
           name="prov"
-          [(ngModel)]="provider.address.province"
+          [(ngModel)]="provider.address.city.province.idProvince"
           required
         >
           <option value="" selected>Elige la provincia...</option>
@@ -273,7 +273,7 @@
           id="inputSitio"
           placeholder="Sitio web"
           name="web"
-          [(ngModel)]="provider.contact.website"
+          [(ngModel)]="provider.website"
           pattern="https?://.+"
           title="Ingrese una URL válida con http:// o https://"
         />
@@ -293,7 +293,7 @@
             id="inputTel"
             placeholder="Teléfono"
             name="tel"
-            [(ngModel)]="provider.contact.phone"
+            [(ngModel)]="provider.phone"
             required
             minlength="8"
             maxlength="20"
@@ -328,7 +328,7 @@
           id="inputEmail1"
           placeholder="Email"
           name="mail"
-          [(ngModel)]="provider.contact.email"
+          [(ngModel)]="provider.email"
           required
           pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
           minlength="8"

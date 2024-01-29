@@ -17,12 +17,13 @@ export class ProvidersService {
   ) {}
 
     //Agrego la url de mi endpoint
-  private urlBase = "http://localhost:8080/sistema-gestion/proveedores";
+  private baseUrl = "http://localhost:8080/proveedores";
 
 
   //Creo el método getProviders ----> Reemplazar luego el nombre por getProviders
   getProviders(): Observable<ProvidersModel[]>{
-    return this.clienteHttp.get<ProvidersModel[]>(this.urlBase);
+    const url = `${this.baseUrl}/listado`;
+    return this.clienteHttp.get<ProvidersModel[]>(url);
   }
 
 

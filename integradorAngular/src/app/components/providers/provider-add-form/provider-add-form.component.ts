@@ -35,15 +35,6 @@ export class ProviderAddFormComponent implements OnInit {
       idIndustry: 0,
       industry: '',
     },
-    // address: {
-    //   idAddress: 0,
-    //   streetAndNumber: '',
-    //   postalCode: '',
-    //   locality: '',
-    //   city: '',
-    //   province: '',
-    //   country: '',
-    // },
     address: {
       idAddress: 0,
       streetAndNumber: '',
@@ -91,9 +82,14 @@ export class ProviderAddFormComponent implements OnInit {
 
   }
 
-  createProvider(form: NgForm): void {
+  createProvider(form: NgForm){
     if (form.valid) {
-      this.providerService.createProvider(this.provider);
+      this.providerService.createProvider(this.provider).subscribe(
+        ()=>{
+          console.log('Provider en el CREATE', this.provider);
+
+        }
+      );
 
       // Primero abro el modal
       const modalRef = this.modalService.open(ConfirmationModalComponent);

@@ -27,14 +27,6 @@ export interface ProvidersModel {
       }
     }
   };
-  // address: {
-  //   idAddress: number,
-  //   streetAndNumber: string;
-  //   postalCode: string;
-  //   city: string;
-  //   province: string;
-  //   country: string;
-  // };
   IvaCondition: {
     idIvaCondition: number;
     ivaCondition: string;

@@ -98,8 +98,9 @@ export class ProductAddFormComponent implements OnInit {
     this.route.paramMap.subscribe((response) => {
       let id = response.get('id');
       if (id != undefined) {
+
         this.id = id;
-        this.product = this.productService.getProductById(Number(id))!;
+        this.getProductById(Number(id));
         console.log(this.product);
       }
     });
@@ -114,8 +115,6 @@ export class ProductAddFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    // let provider = this.providersService.getPoviderById(1);
-    // this.product.provider = provider!;
     console.log(this.product);
     if (this.id) {
       this.updateProduct(form);
@@ -125,7 +124,6 @@ export class ProductAddFormComponent implements OnInit {
   }
 
   //METODOS NUEVOS
-  //cambiar nombre a saveProduct
   saveProduct(form: NgForm) {
     if (form.valid) {
       console.log(this.product);
@@ -184,6 +182,7 @@ export class ProductAddFormComponent implements OnInit {
       );
     }
   }
+
   listCategories() {
     this.productService.getCategories().subscribe((data) => {
       console.log("Lista de categorias ", this.categoriesData);
@@ -198,50 +197,16 @@ export class ProductAddFormComponent implements OnInit {
       });
   }
 
-  //METODOS VIEJOS
-
-  // saveProduct(form: NgForm) {
-  //   if (form.valid) {
-  //     this.productService.createProduct(this.product);
-
-  //     const modalRef = this.modalService.open(ConfirmationModalComponent);
-  //     modalRef.componentInstance.message = 'Producto agregado correctamente';
-
-  //     setTimeout(() => {
-  //       modalRef.close('timeout');
-  //       this.router.navigate(['/productos/listado']);
-  //     }, 2000);
-
-  //     modalRef.result.then(
-  //       (result) => {
-  //         console.log('Modal cerrado', result);
-  //       },
-  //       (reason) => {
-  //         console.log('Modal descartado', reason);
-  //       }
-  //     );
-  //   }
-  // }
-
-  // updateProduct(form: NgForm) {
-  //   if (form.valid) {
-  //     this.productService.updateProduct(this.product);
-
-  //     const modalRef = this.modalService.open(ConfirmationModalComponent);
-  //     modalRef.componentInstance.message = 'Producto editado correctamente';
-
-  //     setTimeout(() => {
-  //       modalRef.close('timeout');
-  //       this.router.navigate(['/productos/listado']);
-  //     }, 2000);
-  //     modalRef.result.then(
-  //       (result) => {
-  //         console.log('Modal cerrado', result);
-  //       },
-  //       (reason) => {
-  //         console.log('Modal descartado', reason);
-  //       }
-  //     );
-  //   }
-  // }
+  getProductById(idProduct: number) {
+    this.productService.getProductById(idProduct).subscribe(
+      (data) => {
+        this.product = data;
+        console.log(this.product);
+      },
+      (error) => {
+        console.error('Error al obtener el producto:', error);
+      }
+    );
+  }
+  
 }

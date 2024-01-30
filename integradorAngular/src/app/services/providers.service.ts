@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'; //Importo el modulo http
 import { Injectable } from '@angular/core';
 import { ProvidersModel } from '../model/providerModel';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 
 
 @Injectable({
@@ -29,31 +29,12 @@ export class ProvidersService {
 
 
 
-  createProvider(provider: ProvidersModel): void {
-    try {
-      const providerFromLocal: string | null =
-        localStorage.getItem('providers');
+  createProvider(provider: ProvidersModel): Observable<ProvidersModel> {
 
-      if (providerFromLocal !== null) {
-        let providersFromLocal: ProvidersModel[] =
-          JSON.parse(providerFromLocal);
+      const url = this.baseUrl + '/formulario';
+      return this.clienteHttp.post<ProvidersModel>(url, provider)
 
-          const uniqueId = Math.floor(Math.random() * 1000000); 
-          provider.idProvider = uniqueId;
-
-        console.log(provider);
-
-        providersFromLocal.push(provider);
-
-        localStorage.setItem('providers', JSON.stringify(providersFromLocal));
-      } else {
-        const providersFromLocal: ProvidersModel[] = [provider];
-        localStorage.setItem('providers', JSON.stringify(providersFromLocal));
       }
-    } catch (error) {
-      console.log('Error al agregar proveedor al localStorage: ', error);
-    }
-  }
 
   // getProvider(): ProvidersModel[] | null {
   //   try {

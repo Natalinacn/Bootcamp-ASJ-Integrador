@@ -20,14 +20,10 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.productsData = this.productService.getHardcodedProducts();
-    //this.listProducts();
-
-    this.sortProductsByProductName();
     this.listProducts();
+    this.sortProductsByProductName();
   }
 
-  //Reemplazar luego con listProducts
   listProducts() {
     this.productService.getProducts().subscribe((data) => {
       this.productsData = data;
@@ -58,43 +54,6 @@ export class ProductListComponent implements OnInit {
       }
     );
   }
-
-  //MËTODOS VIEJOS!!!
-  // listProducts() {
-  //   const res = this.productService.getProducts();
-
-  //   console.log('respuesta del get', res);
-
-  //   if (res !== null) {
-  //     this.productsData = res;
-  //   } else {
-  //     console.error('La respuesta es nula');
-  //   }
-  // }
-
-  // deleteProduct(id: string) {
-  //   const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
-
-  //   modalRef.componentInstance.message =
-  //     '¿Está seguro de que desea eliminar este producto?';
-
-  //   modalRef.result.then(
-  //     (result) => {
-  //       if (result === 'confirm') {
-  //         const res = this.productService.deleteProduct(Number(id)); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
-
-  //         if (res !== null && res !== undefined) {
-  //           this.productsData = res;
-  //         } else {
-  //           console.error('La respuesta es nula');
-  //         }
-  //       }
-  //     },
-  //     (reason) => {
-  //       console.log('Modal de confirmación cerrado sin confirmar: ', reason);
-  //     }
-  //   );
-  // }
 
   sortProductsByProductName() {
     this.productsData.sort((a, b) =>

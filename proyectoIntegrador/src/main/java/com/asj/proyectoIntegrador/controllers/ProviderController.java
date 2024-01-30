@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.asj.proyectoIntegrador.entities.Product;
 import com.asj.proyectoIntegrador.entities.Provider;
 import com.asj.proyectoIntegrador.services.IProviderService;
 

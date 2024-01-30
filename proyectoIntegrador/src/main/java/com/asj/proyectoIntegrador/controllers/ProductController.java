@@ -1,10 +1,8 @@
 package com.asj.proyectoIntegrador.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,24 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asj.proyectoIntegrador.entities.Product;
-import com.asj.proyectoIntegrador.repositories.ProductRepository;
 import com.asj.proyectoIntegrador.services.IProductService;
-import com.asj.proyectoIntegrador.services.servicesIMPL.ProductServiceIMPL;
 
 @RestController
 @RequestMapping("productos")
 @CrossOrigin(origins = "http://localhost:4200") // Permite peticiones desde el puerto 4200 de angular al 8080 de spring
 public class ProductController {
-
-//	private ProductServiceIMPL productServiceIMPL;
-//
-//	public ProductController(ProductServiceIMPL productServiceIMPL) {
-//		this.productServiceIMPL = productServiceIMPL;
-//	}
 
 	private IProductService iProductService;
 

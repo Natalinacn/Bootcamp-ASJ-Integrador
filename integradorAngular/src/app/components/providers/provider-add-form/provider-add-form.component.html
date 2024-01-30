@@ -72,7 +72,7 @@
           id="inputRubro"
           class="form-control"
           name="inputRubro"
-          [(ngModel)]="provider.industry"
+          [(ngModel)]="provider.industry.idIndustry"
           required
         >
           <option value="" selected>Elige el rubro...</option>
@@ -242,7 +242,7 @@
           id="inputLoc"
           placeholder="Localidad"
           name="ciudad"
-          [(ngModel)]="provider.address.city"
+          [(ngModel)]="provider.address.city.idCity"
           required
           minlength="3"
         />
@@ -403,7 +403,7 @@
         id="iva"
         class="form-control"
         name="iva"
-        [(ngModel)]="provider.industry"
+        [(ngModel)]="provider.industry.idIndustry"
         required
       >
         <option value="" selected>Elige la condición...</option>

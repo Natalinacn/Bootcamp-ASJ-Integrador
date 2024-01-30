@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.asj.proyectoIntegrador.entities.Address;
@@ -97,7 +98,7 @@ public class ProviderServiceIMPL implements IProviderService {
 			Provider provider = providerRepository.findById(idProvider).get();
 			return provider;
 		} else {
-			throw new Exception("No se encontró el proveedor");
+			throw new Exception("No se encontró el proveedor con ID "+ idProvider);
 
 		}
 	}

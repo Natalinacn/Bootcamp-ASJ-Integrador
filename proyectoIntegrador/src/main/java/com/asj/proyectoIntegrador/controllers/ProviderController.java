@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.asj.proyectoIntegrador.entities.Provider;
 import com.asj.proyectoIntegrador.services.IProviderService;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("proveedores")
@@ -36,7 +39,7 @@ public class ProviderController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@GetMapping("/listado")
 	public ResponseEntity<List<Provider>> getProviders() {
 		List<Provider> providers;
@@ -46,11 +49,38 @@ public class ProviderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			
 		}
-		
-
+	}
+	
+	@GetMapping("/{idProvider}")
+	public ResponseEntity<Provider> getProviderById(@PathVariable Integer idProvider){		
+		try {
+			Provider provider = iProviderService.findProviderById(idProvider);
+			return new ResponseEntity<>(provider, HttpStatus.OK);			
+		} catch (Exception e) {
+			System.out.println("Hola");
+			e.printStackTrace();
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}		
 	}
 
-	
+	@DeleteMapping("/{idProvider}")
+	public ResponseEntity<?> deleteProvider(@PathVariable Integer idProvider) {
+		try {
+			iProviderService.deleteProvider(idProvider);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@PutMapping("actualizar/{idProvider}")
+	public ResponseEntity<Provider> updateProvider(@PathVariable Integer idProvider, @RequestBody Provider provider) {
+		try {
+			iProviderService.updateProvider(idProvider, provider);
+			return new ResponseEntity<>(provider, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 }

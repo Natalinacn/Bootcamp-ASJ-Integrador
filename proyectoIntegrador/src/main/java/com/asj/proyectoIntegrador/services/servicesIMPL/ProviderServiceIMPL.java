@@ -3,8 +3,6 @@ package com.asj.proyectoIntegrador.services.servicesIMPL;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.asj.proyectoIntegrador.entities.Address;
@@ -21,21 +19,19 @@ public class ProviderServiceIMPL implements IProviderService {
 
 	private ProviderRepository providerRepository;
 	private AddressRepository addressRepository;
-	
+
 	public ProviderServiceIMPL(ProviderRepository providerRepository, AddressRepository addressRepository) {
 		this.providerRepository = providerRepository;
 		this.addressRepository = addressRepository;
 	}
-
-
 
 	@Override
 	@Transactional
 	public Provider saveProvider(Provider provider) throws Exception {
 		if (provider.getbusinessName() != null) {
 			provider.setCreatedAt(LocalDate.now());
-	        Address address = addressRepository.save(provider.getAddress());
-	        provider.setAddress(address);
+			Address address = addressRepository.save(provider.getAddress());
+			provider.setAddress(address);
 			providerRepository.save(provider);
 			return provider;
 		} else {
@@ -44,27 +40,26 @@ public class ProviderServiceIMPL implements IProviderService {
 	}
 
 	@Override
-	public List<Provider> listAllProviders() throws Exception {
-		List<Provider> providerList = providerRepository.findAllByOrderByBusinessNameAsc();
-		if (providerList.isEmpty()) {
-			throw new Exception("No hay proveedores cargados");
-		} else {
-			return providerList;
-		}
+	@Transactional
+	public List<Provider> listAllProviders() {
+		return providerRepository.findAllProviderByDeletedAtIsNullOrderByBusinessNameAsc();
+//		if (providerList.isEmpty()) {
+//			throw new Exception("No hay proveedores cargados");
+//		} else {
+//			return providerList;
+//		}
 	}
 
 	@Override
 	public void deleteProvider(Integer idProvider) {
 		Provider provider = providerRepository.findByIdProviderAndDeletedAtNull(idProvider);
-		
-		if(provider != null) {
+
+		if (provider != null) {
 			provider.setDeletedAt(LocalDate.now());
 			providerRepository.save(provider);
-		}else {
+		} else {
 			throw new ResourceNotFoundException(idProvider);
 		}
-		
-		
 
 	}
 
@@ -72,7 +67,7 @@ public class ProviderServiceIMPL implements IProviderService {
 	@Transactional
 	public Provider updateProvider(Integer idProvider, Provider provider) throws Exception {
 		Provider updatedprovider = providerRepository.findByIdProviderAndDeletedAtNull(idProvider);
-		if(updatedprovider != null) {
+		if (updatedprovider != null) {
 			updatedprovider.setProviderCode(provider.getProviderCode());
 			updatedprovider.setbusinessName(provider.getbusinessName());
 			updatedprovider.setCuit(provider.getCuit());
@@ -85,10 +80,10 @@ public class ProviderServiceIMPL implements IProviderService {
 			updatedprovider.setResponsiblePerson(provider.getResponsiblePerson());
 			updatedprovider.setUpdatedAt(LocalDate.now());
 			providerRepository.save(updatedprovider);
-		}else {
+		} else {
 			throw new Exception("Error al guardar el proveedor con id " + idProvider);
 		}
-		
+
 		return null;
 	}
 
@@ -98,7 +93,7 @@ public class ProviderServiceIMPL implements IProviderService {
 			Provider provider = providerRepository.findById(idProvider).get();
 			return provider;
 		} else {
-			throw new Exception("No se encontró el proveedor con ID "+ idProvider);
+			throw new Exception("No se encontró el proveedor con ID " + idProvider);
 
 		}
 	}

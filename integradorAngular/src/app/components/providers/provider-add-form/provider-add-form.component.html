@@ -76,9 +76,7 @@
           required
         >
           <option value="" selected>Elige el rubro...</option>
-          <option value="Informatica">Informatica</option>
-          <option value="Alimentos">Alimentos</option>
-          <option value="Moda">Moda</option>
+          <option *ngFor="let industry of industriesData" value="{{industry.idIndustry}}">{{industry.industry}}</option>
         </select>
         <div
           *ngIf="
@@ -170,7 +168,7 @@
           required
         >
           <option value="" selected>Elige el país...</option>
-          <option value="Argentina">Argentina</option>
+          <option *ngFor="let country of countriesData" value="{{country.idCountry}}">{{country.country}}</option>
         </select>
         <div
           *ngIf="
@@ -196,29 +194,7 @@
           required
         >
           <option value="" selected>Elige la provincia...</option>
-          <option value="Buenos Aires">Buenos Aires</option>
-          <option value="Catamarca">Catamarca</option>
-          <option value="Chaco">Chaco</option>
-          <option value="Chubut">Chubut</option>
-          <option value="Córdoba">Córdoba</option>
-          <option value="Corrientes">Corrientes</option>
-          <option value="Entre Ríos">Entre Ríos</option>
-          <option value="Formosa">Formosa</option>
-          <option value="Jujuy">Jujuy</option>
-          <option value="La Pampa">La Pampa</option>
-          <option value="La Rioja">La Rioja</option>
-          <option value="Mendoza">Mendoza</option>
-          <option value="Misiones">Misiones</option>
-          <option value="Neuquén">Neuquén</option>
-          <option value="Río Negro">Río Negro</option>
-          <option value="Salta">Salta</option>
-          <option value="San Juan">San Juan</option>
-          <option value="San Luis">San Luis</option>
-          <option value="Santa Cruz">Santa Cruz</option>
-          <option value="Santa Fe">Santa Fe</option>
-          <option value="Santiago del Estero">Santiago del Estero</option>
-          <option value="Tierra del Fuego">Tierra del Fuego</option>
-          <option value="Tucumán">Tucumán</option>
+          <option *ngFor="let province of provinceData" value="{{province.idProvince}}">{{province.province}}</option>
         </select>
         <div
           *ngIf="
@@ -242,7 +218,7 @@
           id="inputLoc"
           placeholder="Localidad"
           name="ciudad"
-          [(ngModel)]="provider.address.city.idCity"
+          [(ngModel)]="provider.address.city.city"
           required
           minlength="3"
         />
@@ -272,17 +248,17 @@
           class="form-control"
           id="inputSitio"
           placeholder="Sitio web"
-          name="web"
+          name="website"
           [(ngModel)]="provider.website"
           pattern="https?://.+"
           title="Ingrese una URL válida con http:// o https://"
         />
-        <div
-          *ngIf="providerForm.controls['web'].hasError('pattern')"
+        <!-- <div
+          *ngIf="providerForm.controls['website'].hasError('pattern')"
           class="text-danger"
         >
           El sitio web no es una URL válida.
-        </div>
+        </div> -->
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
@@ -403,15 +379,11 @@
         id="iva"
         class="form-control"
         name="iva"
-        [(ngModel)]="provider.industry.idIndustry"
+        [(ngModel)]="provider.IvaCondition.idIvaCondition"
         required
       >
         <option value="" selected>Elige la condición...</option>
-        <option value="Informatica">Responsable inscripto</option>
-        <option value="Alimentos">Responsable NO inscripto</option>
-        <option value="Moda">Sujeto Exento</option>
-        <option value="Finanzas">Consumidor final</option>
-        <option value="Salud">Responsable monotributo</option>
+        <option *ngFor="let iva of ivaConditionsData" value="{{iva.idIvaCondition}}">{{iva.ivaCondition}}</option>
       </select>
       <div
         *ngIf="

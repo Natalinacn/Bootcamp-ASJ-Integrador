@@ -6,6 +6,10 @@ import { NgForm } from '@angular/forms';
 import { ProvidersService } from 'src/app/services/providers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
+import { Industry } from 'src/app/model/industryModel';
+import { Country } from 'src/app/model/countryModel';
+import { IvaConditionModel } from 'src/app/model/ivaConditionModel';
+import { Province } from 'src/app/model/provinceModel';
 
 @Component({
   selector: 'app-provider-add-form',
@@ -21,7 +25,10 @@ export class ProviderAddFormComponent implements OnInit {
   ) {}
 
   id!: string;
-
+  industriesData: Industry[] = [];
+  countriesData: Country[] = [];
+  provinceData: Province[] = [];
+  ivaConditionsData: IvaConditionModel[] = [];
 
   provider: ProvidersModel = {
     idProvider: 0,
@@ -49,8 +56,8 @@ export class ProviderAddFormComponent implements OnInit {
             idCountry: 0,
             country: '',
           },
-        }
-      }
+        },
+      },
     },
     IvaCondition: {
       idIvaCondition: 0,
@@ -78,18 +85,17 @@ export class ProviderAddFormComponent implements OnInit {
         console.log(this.provider);
       }
     });
-
-
+    this.listIndustries();
+    this.listCountries();
+    this.listProvinces();
+    this.listIvaConditions();
   }
 
-  createProvider(form: NgForm){
+  createProvider(form: NgForm) {
     if (form.valid) {
-      this.providerService.createProvider(this.provider).subscribe(
-        ()=>{
-          console.log('Provider en el CREATE', this.provider);
-
-        }
-      );
+      this.providerService.createProvider(this.provider).subscribe(() => {
+        console.log('Provider en el CREATE', this.provider);
+      });
 
       // Primero abro el modal
       const modalRef = this.modalService.open(ConfirmationModalComponent);
@@ -123,7 +129,14 @@ export class ProviderAddFormComponent implements OnInit {
 
   updateProvider(form: NgForm) {
     if (form.valid) {
-      this.providerService.updateProvider(this.provider);
+      this.providerService
+        .updateProvider(this.provider.idProvider, this.provider)
+        .subscribe(() => {
+          console.log(
+            'Provider en el UPDATE actualizado correctamente',
+            this.provider
+          );
+        });
 
       const modalRef = this.modalService.open(ConfirmationModalComponent);
       modalRef.componentInstance.message = 'Proveedor editado correctamente';
@@ -143,6 +156,27 @@ export class ProviderAddFormComponent implements OnInit {
     }
   }
 
+  listIndustries() {
+    this.providerService.getIndustries().subscribe((data) => {
+      this.industriesData = data;
+    });
+  }
 
+  listCountries() {
+    this.providerService.getCountries().subscribe((data) => {
+      this.countriesData = data;
+    });
+  }
 
+  listProvinces() {
+    this.providerService.getProvinces().subscribe((data) => {
+      this.provinceData = data;
+    });
+  }
+
+  listIvaConditions() {
+    this.providerService.getIvaConditions().subscribe((data)=>{
+      this.ivaConditionsData = data;
+    });
+  }
 }

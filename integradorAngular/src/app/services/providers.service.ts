@@ -1,134 +1,87 @@
 import { HttpClient } from '@angular/common/http'; //Importo el modulo http
-import { Injectable } from '@angular/core';
+import { Injectable, Provider } from '@angular/core';
 import { ProvidersModel } from '../model/providerModel';
-import { Observable, catchError } from 'rxjs';
-
+import { Industry } from '../model/industryModel'
+import { Observable, catchError, throwError } from 'rxjs';
+import { Province } from '../model/provinceModel';
+import { Country } from '../model/countryModel';
+import { IvaConditionModel } from '../model/ivaConditionModel';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProvidersService {
-
-
-  
   constructor(
-        //Traigo el parámetro http para realizar las peticiones
-        private clienteHttp: HttpClient
+    //Traigo el parámetro http para realizar las peticiones
+    private clienteHttp: HttpClient
   ) {}
 
-    //Agrego la url de mi endpoint
-  private baseUrl = "http://localhost:8080/proveedores";
-
+  //Agrego la url de mi endpoint
+  private baseUrl = 'http://localhost:8080/proveedores';
 
   //Creo el método getProviders ----> Reemplazar luego el nombre por getProviders
-  getProviders(): Observable<ProvidersModel[]>{
+  getProviders(): Observable<ProvidersModel[]> {
     const url = `${this.baseUrl}/listado`;
     return this.clienteHttp.get<ProvidersModel[]>(url);
   }
 
-
-
-
   createProvider(provider: ProvidersModel): Observable<ProvidersModel> {
-
-      const url = this.baseUrl + '/formulario';
-      return this.clienteHttp.post<ProvidersModel>(url, provider)
-
-      }
-
-  // getProvider(): ProvidersModel[] | null {
-  //   try {
-  //     const providerFromLocal: string | null =
-  //       localStorage.getItem('providers');
-
-  //     if (providerFromLocal !== null) {
-  //       // return JSON.parse(providerFromLocal);
-  //       const providers = JSON.parse(providerFromLocal);
-  //       console.log('Lista de proveedores en el servicio:', providers);
-  //       return providers;
-  //     }
-  //     return null;
-  //   } catch (error) {
-  //     console.error('Error parseando el localStorage:', error);
-
-  //     return null;
-  //   }
-  // }
-
-
-
-  deleteProvider(id: number) {
-    try {
-      //Traigo la info del LocalStorage y la guardo en providerFromLocal
-      const providerFromLocal: string | null =
-        localStorage.getItem('providers');
-
-      if (providerFromLocal !== null) {
-        //Si el local tiene info creo una nueva variable para guardarla como Json
-        let providersListToJson: ProvidersModel[] = JSON.parse(providerFromLocal);
-
-        //Filtro el id que deseo eliminar y lo guardo en la variable updateProviderList
-        const updateProviderList = providersListToJson.filter(function (provider) {
-          return provider.idProvider !== id;
-        });
-
-        //Actualizo el localStorage con la lista filtrada
-        localStorage.setItem('providers', JSON.stringify(updateProviderList));
-
-        //Retorna la lista nueva sin el eliminado
-        return updateProviderList;
-      }
-      return null;
-    } catch (error) {
-      console.log('La lista de proveedores del LocalStorage es nula ', error);
-
-      return null;
-    }
+    console.log(provider);
+    const url = this.baseUrl + '/formulario';
+    return this.clienteHttp.post<ProvidersModel>(url, provider);
   }
 
-  getPoviderById(id: number): ProvidersModel | null {
-    try {
-      const providerFromLocal: string | null = localStorage.getItem('providers');
-  
-      if (providerFromLocal !== null) {
-        const providerListToJson: ProvidersModel[] = JSON.parse(providerFromLocal);
-  
-        const providerToUpdate: ProvidersModel | undefined = providerListToJson.find(provider => provider.idProvider === id);
-  
-        return providerToUpdate || null;
-      }
-      return null;
-    } catch (error) {
-      console.log('Error al obtener el proveedor del LocalStorage: ', error);
-      return null;
-    }
-  }
-  
+  deleteProvider(idProvider: number): Observable<Provider>{
+    const url = `${this.baseUrl}/${idProvider}`;
 
-
-  updateProvider(provider : ProvidersModel): void{
-    try{
-      const providerFromLocal: string | null = localStorage.getItem('providers');
-
-      if(providerFromLocal !== null){
-
-        let providerString: ProvidersModel[] = JSON.parse(providerFromLocal);
-
-        let indice = providerString.findIndex(function(p){
-          return p.idProvider == provider.idProvider
-        })
-
-        providerString[indice] = provider;
-
-        localStorage.setItem('providers', JSON.stringify(providerString));
-       
-      }  
-
-    }catch(error){
-      console.log("Error al agregar proveedor al localStorage: ", error);
-
-    }
+    return this.clienteHttp.delete<Provider>(url).pipe(
+      catchError((error) => {
+        const errorMessage = 'Error al eliminar el proveedor';
+        return throwError(() => new Error(errorMessage));
+      })
+    );
 
   }
 
+  getPoviderById(idProvider: number): Observable<Provider> {
+    const url = `${this.baseUrl}/${idProvider}`;
+
+    return this.clienteHttp.get<Provider>(url).pipe(
+      catchError((error) => {
+        const errorMessage = 'Error al obtener el proveedor';
+        return throwError(() => new Error(errorMessage));
+      })
+    );
+  }
+
+  updateProvider(idProvider: number, provider: ProvidersModel): Observable<Provider>{
+    const url = `${this.baseUrl}/actualizar/${idProvider}`;
+
+    return this.clienteHttp.put<Provider>(url, provider).pipe(
+      catchError((error) => {
+        const errorMessage = 'Error al actualizar el proveedor';
+        return throwError(() => new Error(errorMessage));
+      })
+    );
+  }
+
+  getIndustries(): Observable<Industry[]>{
+    const url = 'http://localhost:8080/industrias/listado';
+    return this.clienteHttp.get<Industry[]>(url);
+  }
+
+  getProvinces(): Observable<Province[]>{
+    const url = 'http://localhost:8080/provincias/listado';
+    return this.clienteHttp.get<Province[]>(url);
+  }
+
+  getCountries(): Observable<Country[]>{
+    const url = 'http://localhost:8080/paises/listado';
+    return this.clienteHttp.get<Country[]>(url);
+  }
+
+  getIvaConditions(): Observable<IvaConditionModel[]>{
+    const url = 'http://localhost:8080/iva/listado';
+    return this.clienteHttp.get<IvaConditionModel[]>(url);
+  }
 }

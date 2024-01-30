@@ -30,34 +30,26 @@ export class ProviderListComponent implements OnInit {
     });
   }
 
-  deleteProvider(id: number) {
-    //Abro el modal
+  deleteProvider(idProvider: number) {
     const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
 
-    //Le pongo el mensaje
     modalRef.componentInstance.message =
       '¿Está seguro de que desea eliminar este proveedor?';
 
-    //Manejar la promesa
     modalRef.result.then(
       (result) => {
         if (result === 'confirm') {
-          const res = this.providersService.deleteProvider(id); //Acá traigo toda la lista actualizada con el eliminado y la meto en la variable res
-
-          if (res !== null && res !== undefined) {
-            this.providersData = res;
-          } else {
-            console.error('La respuesta es nula');
-          }
+          this.providersService.deleteProvider(Number(idProvider)).subscribe(() => {
+            this.listProviders();
+          });
         }
       },
-
       (reason) => {
         console.log('Modal de confirmación cerrado sin confirmar: ', reason);
       }
     );
   }
-
+  
   updateProvider(idProvider: number) {
     this.router.navigate([`/proveedores/formulario/${idProvider}`]);
   }

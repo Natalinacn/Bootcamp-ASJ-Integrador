@@ -2,6 +2,7 @@ package com.asj.proyectoIntegrador.entities;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -18,7 +19,7 @@ public class Address {
 	private Integer idAddress;
 	private String streetAndNumber;
 	private String postalCode;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "city_id")
 	private City city;
 	private LocalDate createdAt;
@@ -26,10 +27,6 @@ public class Address {
 	
 	public Address() {
 	}
-
-
-
-
 
 	public Address(Integer idAddress, String streetAndNumber, String postalCode, City city, LocalDate createdAt,
 			LocalDate updatedAt) {

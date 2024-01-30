@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit {
   }
 
 
-  deleteProduct(idProduct: string) {
+  deleteProduct(idProduct: number) {
     const modalRef = this.modalService.open(DeleteConfirmationModalComponent);
 
     modalRef.componentInstance.message =
@@ -61,7 +61,7 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  updateProduct(productId: string) {
+  updateProduct(productId: number) {
     this.router.navigate([`/productos/formulario/${productId}`]);
   }
 }

@@ -29,7 +29,7 @@ public class ProductServiceIMPL implements IProductService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Product> listProductsNotDeleted() {
-		return this.productRepository.findAllProductByDeletedAtIsNullOrderByProductName();
+		return productRepository.findAllProductByDeletedAtIsNullOrderByProductName();
 	}
 
 	@Override

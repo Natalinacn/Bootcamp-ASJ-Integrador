@@ -10,7 +10,7 @@ public interface IPurchaseOrderService {
 
 	List<PurchaseOrder> listAllPurchaseOrders() throws Exception;
 
-	void deletePucharseOrder(Integer idPurchaseOrder) throws Exception;
+	PurchaseOrder deletePucharseOrder(Integer idPurchaseOrder) throws Exception;
 
 	PurchaseOrder updatePurchaseOrder(Integer idPurchaseOrder, PurchaseOrder purchaseOrder) throws Exception;
 

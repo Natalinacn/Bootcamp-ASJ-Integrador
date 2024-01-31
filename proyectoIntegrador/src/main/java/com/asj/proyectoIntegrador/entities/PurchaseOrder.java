@@ -14,7 +14,7 @@ public class PurchaseOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idPurchaseOrder;
-	private Integer orderNumber;
+	private String orderNumber;
 	private LocalDate issueDate;
 	private LocalDate deliveryDate;
 	private String receptionInfo;
@@ -32,7 +32,7 @@ public class PurchaseOrder {
 	public PurchaseOrder() {
 	}
 
-	public PurchaseOrder(Integer idPurchaseOrder, Integer orderNumber, LocalDate issueDate, LocalDate deliveryDate,
+	public PurchaseOrder(Integer idPurchaseOrder, String orderNumber, LocalDate issueDate, LocalDate deliveryDate,
 			String receptionInfo, String description, Boolean status, Double totalAmount, LocalDate createdAt,
 			LocalDate updatedAt, LocalDate deletedAt, Provider provider) {
 		this.idPurchaseOrder = idPurchaseOrder;
@@ -57,11 +57,11 @@ public class PurchaseOrder {
 		this.idPurchaseOrder = idPurchaseOrder;
 	}
 
-	public Integer getOrderNumber() {
+	public String getOrderNumber() {
 		return orderNumber;
 	}
 
-	public void setOrderNumber(Integer orderNumber) {
+	public void setOrderNumber(String orderNumber) {
 		this.orderNumber = orderNumber;
 	}
 

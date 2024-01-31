@@ -25,6 +25,7 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 	@Override
 	public PurchaseOrder savePurchaseOrder(PurchaseOrder purchaseOrder) throws Exception {
 		if (purchaseOrder != null) {
+			purchaseOrder.setCreatedAt(LocalDate.now());
 			return purchaseOrderRepository.save(purchaseOrder);
 		} else {
 			throw new Exception("Error al guardar la órden de compra" + purchaseOrder.getOrderNumber());
@@ -80,16 +81,18 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 	}
 
 	@Override
-	public void deletePucharseOrder(Integer idPurchaseOrder) throws Exception {
+	public PurchaseOrder deletePucharseOrder(Integer idPurchaseOrder) throws Exception {
 
 		PurchaseOrder purchaseOrder = purchaseOrderRepository.findByIdPurchaseOrderAndDeletedAtNull(idPurchaseOrder);
 
 		if (purchaseOrder != null) {
-			purchaseOrder.setDeliveryDate(LocalDate.now());
+			purchaseOrder.setDeletedAt(LocalDate.now());
 			purchaseOrderRepository.save(purchaseOrder);
+			return purchaseOrder;
 		} else {
 			throw new Exception("Error al cancelar la órden de compra" + purchaseOrder.getOrderNumber());
 		}
+		
 
 	}
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'; //Importo el modulo http
 import { Injectable, Provider } from '@angular/core';
 import { ProvidersModel } from '../model/providerModel';
-import { Industry } from '../model/industryModel'
+import { Industry } from '../model/industryModel';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Province } from '../model/provinceModel';
 import { Country } from '../model/countryModel';
@@ -31,7 +31,7 @@ export class ProvidersService {
     return this.clienteHttp.post<ProvidersModel>(url, provider);
   }
 
-  deleteProvider(idProvider: number): Observable<Provider>{
+  deleteProvider(idProvider: number): Observable<Provider> {
     const url = `${this.baseUrl}/${idProvider}`;
 
     return this.clienteHttp.delete<Provider>(url).pipe(
@@ -40,7 +40,6 @@ export class ProvidersService {
         return throwError(() => new Error(errorMessage));
       })
     );
-
   }
 
   getPoviderById(idProvider: number): Observable<ProvidersModel> {
@@ -54,7 +53,10 @@ export class ProvidersService {
     );
   }
 
-  updateProvider(idProvider: number, provider: ProvidersModel): Observable<ProvidersModel>{
+  updateProvider(
+    idProvider: number,
+    provider: ProvidersModel
+  ): Observable<ProvidersModel> {
     const url = `${this.baseUrl}/actualizar/${idProvider}`;
 
     return this.clienteHttp.put<ProvidersModel>(url, provider).pipe(
@@ -65,22 +67,22 @@ export class ProvidersService {
     );
   }
 
-  getIndustries(): Observable<Industry[]>{
+  getIndustries(): Observable<Industry[]> {
     const url = 'http://localhost:8080/industrias/listado';
     return this.clienteHttp.get<Industry[]>(url);
   }
 
-  getProvinces(): Observable<Province[]>{
+  getProvinces(): Observable<Province[]> {
     const url = 'http://localhost:8080/provincias/listado';
     return this.clienteHttp.get<Province[]>(url);
   }
 
-  getCountries(): Observable<Country[]>{
+  getCountries(): Observable<Country[]> {
     const url = 'http://localhost:8080/paises/listado';
     return this.clienteHttp.get<Country[]>(url);
   }
 
-  getIvaConditions(): Observable<IvaConditionModel[]>{
+  getIvaConditions(): Observable<IvaConditionModel[]> {
     const url = 'http://localhost:8080/iva/listado';
     return this.clienteHttp.get<IvaConditionModel[]>(url);
   }

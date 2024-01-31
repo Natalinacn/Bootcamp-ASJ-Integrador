@@ -25,6 +25,7 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 	@Override
 	public PurchaseOrder savePurchaseOrder(PurchaseOrder purchaseOrder) throws Exception {
 		if (purchaseOrder != null) {
+			purchaseOrder.setIssueDate(LocalDate.now());
 			purchaseOrder.setCreatedAt(LocalDate.now());
 			return purchaseOrderRepository.save(purchaseOrder);
 		} else {

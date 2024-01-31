@@ -1,4 +1,5 @@
 import { ProductsModel } from "./productModel";
+import { ProvidersModel } from "./providerModel";
 
 export interface ProductOrderModel {
     product: string;
@@ -8,16 +9,18 @@ export interface ProductOrderModel {
 
 export interface PurchaseOrdersModel {
     
-    id: number,
-    OrderNumber: string,
+    idPurchaseOrder: number,
+    orderNumber: string,
     issueDate: Date,
     deliveryDate: Date,
     receptionInfo: string,
     description: string,
-    provider: string,
-    products: ProductOrderModel[]; //Este lo recorro
     status: boolean,
-    totalAmount: number
+    totalAmount: number,
+    provider: ProvidersModel,
+    products: ProductOrderModel[]; //Este lo recorro
+    
+    
     created_at?: Date;
     updated_at?: Date;
     deleted_at?: Date;

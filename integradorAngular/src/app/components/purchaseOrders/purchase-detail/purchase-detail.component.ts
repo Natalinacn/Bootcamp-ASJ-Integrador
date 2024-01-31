@@ -21,10 +21,10 @@ export class PurchaseDetailComponent implements OnInit{
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const orderId = params.get('id');
-      if (orderId) {
-        this.purchase = this.purchaseOrdersService.getPurchaseOrderById(Number(orderId));
-        console.log(this.purchase);
-      }
+      // if (orderId) {
+      //   this.purchase = this.purchaseOrdersService.getPurchaseOrderById(Number(orderId));
+      //   console.log(this.purchase);
+      // }
     });
 
   }

@@ -21,20 +21,25 @@ export class PurchaseListComponent implements OnInit {
   ngOnInit(): void {
     // this.purchaseData = this.purchaseService.getHardcodedOrders();
     
-    this.list();
+    this.listPurchaseOrder();
   }
 
-  list() {
-    const res = this.purchaseService.getPurchase();
-
-    console.log('respuesta del get', res);
-
-    if (res !== null) {
-      this.purchaseData = res;
-    } else {
-      console.error('La respuesta es nula');
-    }
+  listPurchaseOrder(){
+    this.purchaseService.getPurchase().subscribe((data)=>{
+      this.purchaseData = data;
+    });
   }
+  // list() {
+  //   const res = this.purchaseService.getPurchase();
+
+  //   console.log('respuesta del get', res);
+
+  //   if (res !== null) {
+  //     this.purchaseData = res;
+  //   } else {
+  //     console.error('La respuesta es nula');
+  //   }
+  // }
 
   cancelPurchase(orderId: string) {
     //Usar el modal de confirmación antes de eliminar
@@ -50,7 +55,7 @@ export class PurchaseListComponent implements OnInit {
           const success= this.purchaseService.cancelPurchase(Number(orderId));
 
           if(success){
-            this.list();
+            this.listPurchaseOrder();
           }
                  }
       },

@@ -44,21 +44,65 @@ export class PurchaseAddFormComponent implements OnInit{
   }
 
   purchaseOrder: PurchaseOrdersModel = {
-  id: 0,
-  OrderNumber: '',
+  idPurchaseOrder: 0,
+  orderNumber: '',
   issueDate: new Date(), 
   deliveryDate: new Date(), 
   receptionInfo: '',
   description: '',
-  provider: '',
-  products: [],
   status: true,
   totalAmount: 0,
+  provider: {
+    idProvider: 0,
+    providerCode: '',
+    businessName: '',
+    cuit: '',
+    website: '',
+    phone: '',
+    email: '',
+    industry: {
+      idIndustry: 0,
+      industry: '',
+    },
+    address: {
+      idAddress: 0,
+      streetAndNumber: '',
+      postalCode: '',
+      city: {
+        idCity: 0,
+        city: '',
+        province: {
+          idProvince: 0,
+          province: '',
+          country: {
+            idCountry: 0,
+            country: '',
+          },
+        },
+      },
+    },
+  ivaCondition: {
+      idIvaCondition: 0,
+      ivaCondition: '',
+    },
+    responsiblePerson: {
+      idResponsiblePerson: 0,
+      firstName: '',
+      lastName: '',
+      phone: '',
+      email: '',
+      role: '',
+    },
+    created_at: undefined,
+    updated_at: undefined,
+    deleted_at: undefined,
+  },
+  products: [],
+
   created_at: undefined,
   updated_at: undefined,
   deleted_at: undefined,
 }
-
 productOrder: ProductOrderModel = {
   product: '',
   quantity: 1,

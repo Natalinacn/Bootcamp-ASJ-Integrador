@@ -23,8 +23,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let purchase of purchaseData">
-          <td>{{ purchase.OrderNumber }}</td>
-          <td>{{ purchase.provider }}</td>
+          <td>{{ purchase.orderNumber }}</td>
+          <td>{{ purchase.provider.businessName }}</td>
           <td>{{ purchase.issueDate }}</td>
           <td>{{ purchase.deliveryDate }}</td>
           <!-- <td>{{ purchase.receptionInfo }}</td> -->

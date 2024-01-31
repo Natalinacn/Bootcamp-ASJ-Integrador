@@ -29,6 +29,9 @@ export class ProviderAddFormComponent implements OnInit {
   countriesData: Country[] = [];
   provinceData: Province[] = [];
   ivaConditionsData: IvaConditionModel[] = [];
+  formTitle: string = "Registro de proveedores";
+
+
 
   provider: ProvidersModel = {
     idProvider: 0,
@@ -79,16 +82,17 @@ export class ProviderAddFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((response) => {
       let id = response.get('id');
-      if (id != undefined) {
+      if (id !== null && !isNaN(Number(id))) {
         this.id = id;
         this.getProviderById(Number(id))!;
-        console.log(this.provider);
+        this.formTitle = "Editar Proveedores";
       }
     });
     this.listIndustries();
     this.listCountries();
     this.listProvinces();
-    this.listIvaConditions();
+    this.listIvaConditions(); 
+
   }
 
   createProvider(form: NgForm) {
@@ -186,4 +190,6 @@ export class ProviderAddFormComponent implements OnInit {
       this.ivaConditionsData = data;
     });
   }
+
+
 }

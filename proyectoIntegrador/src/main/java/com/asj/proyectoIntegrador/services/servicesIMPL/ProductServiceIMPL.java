@@ -36,7 +36,7 @@ public class ProductServiceIMPL implements IProductService {
 	@Transactional(readOnly = true)
 	public Product findProductById(Integer idProduct) throws Exception {
 		if(idProduct != null) {
-		Product product = this.productRepository.findById(idProduct).orElse(null);
+		Product product = productRepository.findById(idProduct).orElse(null);
 		return product;
 		}else {
 			throw new Exception("Producto no encontrado con ID: " + idProduct);
@@ -47,7 +47,7 @@ public class ProductServiceIMPL implements IProductService {
 		@Transactional
 		public void saveProduct(Product product) {
 			product.setCreatedAt(LocalDate.now());
-			this.productRepository.save(product);
+			productRepository.save(product);
 		}
 
 	@Override
@@ -63,7 +63,7 @@ public class ProductServiceIMPL implements IProductService {
 			updatedProduct.setDescription(product.getDescription());
 			updatedProduct.setPrice(product.getPrice());
 			updatedProduct.setUpdatedAt(LocalDate.now());
-			this.productRepository.save(updatedProduct);
+			productRepository.save(updatedProduct);
 			return updatedProduct;
 		} else {
 			throw new ResourceNotFoundException(idProduct);
@@ -84,7 +84,7 @@ public class ProductServiceIMPL implements IProductService {
 	    Product product = this.productRepository.findByIdProductAndDeletedAtNull(idProduct);
 	    if (product != null) {
 	        product.setDeletedAt(LocalDate.now());
-	        this.productRepository.save(product);
+	        productRepository.save(product);
 	    } else {
 	    	throw new ResourceNotFoundException(idProduct);
 	    }

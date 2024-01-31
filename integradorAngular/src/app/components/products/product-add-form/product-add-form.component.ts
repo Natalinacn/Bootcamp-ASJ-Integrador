@@ -14,10 +14,11 @@ import { ProvidersModel } from 'src/app/model/providerModel';
   styleUrls: ['./product-add-form.component.css'],
 })
 export class ProductAddFormComponent implements OnInit {
+  id!: string;
   providers: ProvidersModel[] = [];
   categoriesData: Category[] = [];
   providersData: ProvidersModel[] = [];
-
+  formTitle: string = "Agregar Productos";
 
   constructor(
     private productService: ProductsService,
@@ -27,7 +28,7 @@ export class ProductAddFormComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-  id!: string;
+
 
   product: ProductsModel = {
     idProduct: 0,
@@ -97,9 +98,10 @@ export class ProductAddFormComponent implements OnInit {
 
     this.route.paramMap.subscribe((response) => {
       let id = response.get('id');
-      if (id != undefined) {
+      if (id !== null && !isNaN(Number(id))){
         this.id = id;
         this.getProductById(Number(id));
+        this.formTitle = "Editar Productos";
         console.log(this.product);
       }
     });

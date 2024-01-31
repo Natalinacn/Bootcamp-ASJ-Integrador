@@ -27,10 +27,9 @@ public class OrderDetail {
 	private PurchaseOrder purchaseOrder;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
-	
+
 	public OrderDetail() {
 	}
-
 
 	public OrderDetail(Integer idOrderDetail, Integer quantity, Double price, Product product,
 			PurchaseOrder purchaseOrder, LocalDate createdAt, LocalDate updatedAt) {
@@ -42,7 +41,6 @@ public class OrderDetail {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
-
 
 	public Integer getIdOrderDetail() {
 		return idOrderDetail;
@@ -68,27 +66,21 @@ public class OrderDetail {
 		this.price = price;
 	}
 
-
-
 	public Product getProduct() {
 		return product;
 	}
-
 
 	public void setProduct(Product product) {
 		this.product = product;
 	}
 
-
 	public PurchaseOrder getPurchaseOrder() {
 		return purchaseOrder;
 	}
 
-
 	public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
 		this.purchaseOrder = purchaseOrder;
 	}
-
 
 	public LocalDate getCreatedAt() {
 		return createdAt;
@@ -105,11 +97,4 @@ public class OrderDetail {
 	public void setUpdatedAt(LocalDate updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
-
-
-
-	
-	
-	
 }

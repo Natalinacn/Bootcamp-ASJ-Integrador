@@ -2,7 +2,6 @@ package com.asj.proyectoIntegrador.entities;
 
 import java.time.LocalDate;
 
-import ch.qos.logback.core.status.Status;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

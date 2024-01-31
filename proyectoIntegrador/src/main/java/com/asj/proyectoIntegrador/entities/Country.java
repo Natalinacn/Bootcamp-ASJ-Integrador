@@ -12,43 +12,33 @@ public class Country {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idCountry;
 	private String country;
-	
-	
+
 	public Country() {
 	}
-
 
 	public Country(Integer idCountry, String country) {
 		this.idCountry = idCountry;
 		this.country = country;
 	}
 
-
 	public Integer getIdCountry() {
 		return idCountry;
 	}
-
 
 	public void setIdCountry(Integer idCountry) {
 		this.idCountry = idCountry;
 	}
 
-
 	public String getCountry() {
 		return country;
 	}
-
 
 	public void setCountry(String country) {
 		this.country = country;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Country [idCountry=" + idCountry + ", country=" + country + "]";
 	}
-	
-	
-	
 }

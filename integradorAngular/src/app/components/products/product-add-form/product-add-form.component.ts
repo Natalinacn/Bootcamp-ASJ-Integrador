@@ -66,7 +66,7 @@ export class ProductAddFormComponent implements OnInit {
         }
       }
     },
-    IvaCondition: {
+    ivaCondition: {
       idIvaCondition: 0,
       ivaCondition: '',
     },
@@ -98,7 +98,6 @@ export class ProductAddFormComponent implements OnInit {
     this.route.paramMap.subscribe((response) => {
       let id = response.get('id');
       if (id != undefined) {
-
         this.id = id;
         this.getProductById(Number(id));
         console.log(this.product);

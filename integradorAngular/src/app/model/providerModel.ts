@@ -27,7 +27,7 @@ export interface ProvidersModel {
       }
     }
   };
-  IvaCondition: {
+  ivaCondition: {
     idIvaCondition: number;
     ivaCondition: string;
   };

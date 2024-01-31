@@ -29,6 +29,7 @@ public class ProviderServiceIMPL implements IProviderService {
 	@Transactional
 	public Provider saveProvider(Provider provider) throws Exception {
 		if (provider.getbusinessName() != null) {
+			System.out.println("Condicion de iva al guardar proveedor" + provider.getIvaCondition());
 			provider.setCreatedAt(LocalDate.now());
 			Address address = addressRepository.save(provider.getAddress());
 			provider.setAddress(address);

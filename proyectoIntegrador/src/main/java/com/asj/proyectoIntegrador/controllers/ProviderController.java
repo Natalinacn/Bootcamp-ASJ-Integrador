@@ -33,6 +33,7 @@ public class ProviderController {
 
 		try {
 			iProviderService.saveProvider(provider);
+			System.out.println("Condicion de iva en el controller" + provider.getIvaCondition());
 			return new ResponseEntity<>(provider, HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();

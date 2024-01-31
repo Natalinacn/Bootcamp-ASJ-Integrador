@@ -43,10 +43,10 @@ export class ProvidersService {
 
   }
 
-  getPoviderById(idProvider: number): Observable<Provider> {
+  getPoviderById(idProvider: number): Observable<ProvidersModel> {
     const url = `${this.baseUrl}/${idProvider}`;
 
-    return this.clienteHttp.get<Provider>(url).pipe(
+    return this.clienteHttp.get<ProvidersModel>(url).pipe(
       catchError((error) => {
         const errorMessage = 'Error al obtener el proveedor';
         return throwError(() => new Error(errorMessage));
@@ -54,10 +54,10 @@ export class ProvidersService {
     );
   }
 
-  updateProvider(idProvider: number, provider: ProvidersModel): Observable<Provider>{
+  updateProvider(idProvider: number, provider: ProvidersModel): Observable<ProvidersModel>{
     const url = `${this.baseUrl}/actualizar/${idProvider}`;
 
-    return this.clienteHttp.put<Provider>(url, provider).pipe(
+    return this.clienteHttp.put<ProvidersModel>(url, provider).pipe(
       catchError((error) => {
         const errorMessage = 'Error al actualizar el proveedor';
         return throwError(() => new Error(errorMessage));

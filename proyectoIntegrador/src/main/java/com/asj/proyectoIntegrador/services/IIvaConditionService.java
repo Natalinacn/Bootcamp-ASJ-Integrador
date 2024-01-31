@@ -8,4 +8,6 @@ public interface IIvaConditionService {
 	
 	public List<IvaCondition> listIvaCondition() throws Exception;
 
+	void saveIvaCondition(IvaCondition ivaCondition) throws Exception;
+
 }

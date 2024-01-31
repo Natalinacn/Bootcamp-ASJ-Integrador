@@ -250,15 +250,16 @@
           placeholder="Sitio web"
           name="website"
           [(ngModel)]="provider.website"
-          pattern="https?://.+"
+          pattern="[https?://].*"
           title="Ingrese una URL válida con http:// o https://"
         />
         <!-- <div
-          *ngIf="providerForm.controls['website'].hasError('pattern')"
+          *ngIf="providerForm.controls['website']?.hasError('pattern')" -->
+          <div *ngIf="providerForm.controls['website']?.invalid && (providerForm.controls['website']?.dirty || providerForm.controls['website']?.touched)"
           class="text-danger"
         >
           El sitio web no es una URL válida.
-        </div> -->
+        </div>
       </div>
       <div class="form-row">
         <div class="form-group col-md-4">
@@ -379,11 +380,11 @@
         id="iva"
         class="form-control"
         name="iva"
-        [(ngModel)]="provider.IvaCondition.idIvaCondition"
+        [(ngModel)]="provider.ivaCondition.idIvaCondition"
         required
       >
         <option value="" selected>Elige la condición...</option>
-        <option *ngFor="let iva of ivaConditionsData" value="{{iva.idIvaCondition}}">{{iva.ivaCondition}}</option>
+        <option *ngFor="let ivaCondition of ivaConditionsData" value="{{ivaCondition.idIvaCondition}}">{{ivaCondition.ivaCondition}}</option>
       </select>
       <div
         *ngIf="

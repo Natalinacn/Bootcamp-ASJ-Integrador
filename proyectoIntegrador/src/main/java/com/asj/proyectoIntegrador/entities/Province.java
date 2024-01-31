@@ -9,7 +9,7 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Province {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProvince;
@@ -17,11 +17,9 @@ public class Province {
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "country_id")
 	private Country country;
-	
-	
+
 	public Province() {
 	}
-
 
 	public Province(Integer idProvince, String province, Country country) {
 		this.idProvince = idProvince;
@@ -29,44 +27,33 @@ public class Province {
 		this.country = country;
 	}
 
-
 	public Integer getIdProvince() {
 		return idProvince;
 	}
-
 
 	public void setIdProvince(Integer idProvince) {
 		this.idProvince = idProvince;
 	}
 
-
 	public String getProvince() {
 		return province;
 	}
-
 
 	public void setProvince(String province) {
 		this.province = province;
 	}
 
-
 	public Country getCountry() {
 		return country;
 	}
-
 
 	public void setCountry(Country country) {
 		this.country = country;
 	}
 
-
 	@Override
 	public String toString() {
 		return "ProvinceRepository [idProvince=" + idProvince + ", province=" + province + ", country=" + country + "]";
 	}
-	
-	
-	
-	
-	
+
 }

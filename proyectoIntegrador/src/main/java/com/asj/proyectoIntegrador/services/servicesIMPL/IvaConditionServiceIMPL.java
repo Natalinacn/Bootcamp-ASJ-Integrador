@@ -1,9 +1,11 @@
 package com.asj.proyectoIntegrador.services.servicesIMPL;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.asj.proyectoIntegrador.entities.Industry;
 import com.asj.proyectoIntegrador.entities.IvaCondition;
 import com.asj.proyectoIntegrador.repositories.IvaConditionRepository;
 import com.asj.proyectoIntegrador.services.IIvaConditionService;
@@ -15,6 +17,16 @@ public class IvaConditionServiceIMPL implements IIvaConditionService {
 
 	public IvaConditionServiceIMPL(IvaConditionRepository ivaConditionRepository) {
 		this.ivaConditionRepository = ivaConditionRepository;
+	}
+
+	@Override
+	public void saveIvaCondition(IvaCondition ivaCondition) throws Exception {
+		if (ivaCondition.getIvaCondition() != null) {
+			ivaConditionRepository.save(ivaCondition);
+		} else {
+			throw new Exception("Error al crear la condición de iva");
+		}
+
 	}
 
 	@Override

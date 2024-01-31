@@ -19,7 +19,7 @@ public class Address {
 	private Integer idAddress;
 	private String streetAndNumber;
 	private String postalCode;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "city_id")
 	private City city;
 	private LocalDate createdAt;
@@ -37,10 +37,6 @@ public class Address {
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 	}
-
-
-
-
 
 	public Integer getIdAddress() {
 		return idAddress;

@@ -59,7 +59,7 @@ export class ProviderAddFormComponent implements OnInit {
         },
       },
     },
-    IvaCondition: {
+  ivaCondition: {
       idIvaCondition: 0,
       ivaCondition: '',
     },
@@ -81,7 +81,7 @@ export class ProviderAddFormComponent implements OnInit {
       let id = response.get('id');
       if (id != undefined) {
         this.id = id;
-        // this.provider = this.providerService.getPoviderById(Number(id))!;
+        this.getProviderById(Number(id))!;
         console.log(this.provider);
       }
     });
@@ -95,6 +95,8 @@ export class ProviderAddFormComponent implements OnInit {
     if (form.valid) {
       this.providerService.createProvider(this.provider).subscribe(() => {
         console.log('Provider en el CREATE', this.provider);
+        console.log('Iva condition desde create Provider' + this.provider.ivaCondition);
+        console.log('Industria desde create Provider' + this.provider.industry);
       });
 
       // Primero abro el modal
@@ -131,11 +133,10 @@ export class ProviderAddFormComponent implements OnInit {
     if (form.valid) {
       this.providerService
         .updateProvider(this.provider.idProvider, this.provider)
-        .subscribe(() => {
+        .subscribe((result) => {
           console.log(
             'Provider en el UPDATE actualizado correctamente',
-            this.provider
-          );
+            result);
         });
 
       const modalRef = this.modalService.open(ConfirmationModalComponent);
@@ -154,6 +155,12 @@ export class ProviderAddFormComponent implements OnInit {
         }
       );
     }
+  }
+
+  getProviderById(idProvider: number){
+    this.providerService.getPoviderById(idProvider).subscribe((data)=>{
+      this.provider = data;
+    });
   }
 
   listIndustries() {

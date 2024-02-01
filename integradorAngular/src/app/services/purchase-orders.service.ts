@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { PurchaseOrdersModel } from '../model/purchaseOrderModel';
+import { ProductOrderModel, PurchaseOrdersModel } from '../model/purchaseOrderModel';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { OrderDetailModel } from '../model/orderDetail';
 
 @Injectable({
   providedIn: 'root',
@@ -26,10 +27,16 @@ export class PurchaseOrdersService {
   }
 
   createPurchaseOrder(
-    purchaseOrder: PurchaseOrdersModel
+    purchaseOrder: PurchaseOrdersModel,
   ): Observable<PurchaseOrdersModel> {
     const url = this.baseUrl + '/formulario';
     return this.clienteHttp.post<PurchaseOrdersModel>(url, purchaseOrder);
+  }
+
+  createOrderDetail(productsDetails: OrderDetailModel[]): Observable<OrderDetailModel>{
+    const url = `${this.baseUrl}/createDetail`;
+    return this.clienteHttp.post<OrderDetailModel>(url, productsDetails);
+
   }
 
   cancelPurchase(idPurchaseOrder: number): Observable<PurchaseOrdersModel> {

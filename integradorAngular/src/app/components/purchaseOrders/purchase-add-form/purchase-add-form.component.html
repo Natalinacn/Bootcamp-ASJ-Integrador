@@ -1,74 +1,130 @@
-<main class="mt-5 mb-5" >
-    <h1 class="text-center"> Agregar órden de compra</h1>
+<main class="mt-5 mb-5">
+  <h1 class="text-center">Agregar órden de compra</h1>
 
-    <form #purchaseForm="ngForm" id="purchase-form" class="row g-3 m-5" (ngSubmit)="createPurchase(purchaseForm)">
-      
-       <!-- FORMULARIO DE ORDEN DE COMPRA -->
-   
-        <div class="col-md-4">
-          <label for="orderNumber" class="form-label">Número de orden (*)</label>
-          <input type="text" class="form-control" id="orderNumber" value="orderNumber" name="orderNumber" [(ngModel)]="purchaseOrder.orderNumber" required  minlength="3"
-          maxlength="30">
-          <div
-          *ngIf="
-            purchaseForm.controls['orderNumber']?.invalid &&
-            (purchaseForm.controls['orderNumber']?.dirty ||
-              purchaseForm.controls['orderNumber']?.touched)
-          "
-          class="text-danger"
+  <form
+    #purchaseForm="ngForm"
+    id="purchase-form"
+    class="row g-3 m-5"
+    (ngSubmit)="createPurchase(purchaseForm)"
+  >
+    <!-- FORMULARIO DE ORDEN DE COMPRA -->
+
+    <div class="col-md-4">
+      <label for="orderNumber" class="form-label">Número de orden (*)</label>
+      <input
+        type="text"
+        class="form-control"
+        id="orderNumber"
+        value="orderNumber"
+        name="orderNumber"
+        [(ngModel)]="purchaseOrder.orderNumber"
+        required
+        minlength="3"
+        maxlength="30"
+      />
+      <div
+        *ngIf="
+          purchaseForm.controls['orderNumber']?.invalid &&
+          (purchaseForm.controls['orderNumber']?.dirty ||
+            purchaseForm.controls['orderNumber']?.touched)
+        "
+        class="text-danger"
+      >
+        <small
+          *ngIf="purchaseForm.controls['orderNumber']?.errors?.['required']"
+          >Este campo es obligatorio.</small
         >
-          <small *ngIf="purchaseForm.controls['orderNumber']?.errors?.['required']"
-            >Este campo es obligatorio.</small
-          >
-          <small *ngIf="purchaseForm.controls['orderNumber']?.errors?.['minlength']"
-            >El código debe tener al menos 3 caracteres.</small
-          >
-          <small *ngIf="purchaseForm.controls['orderNumber']?.errors?.['maxlength']"
-            >El código no debe exceder los 30 caracteres.</small
-          >
-        </div>
-  
-        </div>
-        <div class="col-md-4">
-          <label for="issueDate" class="form-label">Fecha de emisión (*)</label>
-          <input type="date" class="form-control" id="issueDate" name="issueDate" [(ngModel)]="purchaseOrder.issueDate" required>
-  
-          <div *ngIf="purchaseForm.controls['issueDate']?.invalid && (purchaseForm.controls['issueDate']?.dirty || purchaseForm.controls['issueDate']?.touched)" class="text-danger">
-            <small *ngIf="purchaseForm.controls['issueDate']?.errors?.['required']">Este campo es obligatorio.</small>
-          </div>
-          
-  
-  
-        </div>
-        <div class="col-md-4">
-          <label for="deliveryDate" class="form-label">Fecha entrega esperada (*)</label>
-          <input type="date" class="form-control" id="deliveryDate" name="deliveryDate" [(ngModel)]="purchaseOrder.deliveryDate" required>
-  
-          <div *ngIf="purchaseForm.controls['deliveryDate']?.invalid && (purchaseForm.controls['deliveryDate']?.dirty || purchaseForm.controls['deliveryDate']?.touched)" class="text-danger">
-            <small *ngIf="purchaseForm.controls['deliveryDate']?.errors?.['required']">Este campo es obligatorio.</small>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <label for="receptionInfo" class="form-label">Información de recepción</label>
-          <textarea class="form-control" id="receptionInfo" name="receptionInfo" [(ngModel)]="purchaseOrder.receptionInfo"></textarea>
+        <small
+          *ngIf="purchaseForm.controls['orderNumber']?.errors?.['minlength']"
+          >El código debe tener al menos 3 caracteres.</small
+        >
+        <small
+          *ngIf="purchaseForm.controls['orderNumber']?.errors?.['maxlength']"
+          >El código no debe exceder los 30 caracteres.</small
+        >
       </div>
-      
-    
-  
-  
-      <!-- FORMULARIO DE AGREGAR PRODUCTOS -->
-      <div class="col-md-4">
-        <label for="provider" class="form-label">Proveedor (*) </label>
-        <select class="form-select" id="provider" name="provider" [(ngModel)]="purchaseOrder.provider" required>
-          <option selected disabled value="">Elige proveedor...</option>
-          <option
-          *ngFor="let provider of providers || []"
+    </div>
+    <div class="col-md-4">
+      <label for="issueDate" class="form-label">Fecha de emisión (*)</label>
+      <input
+        type="date"
+        class="form-control"
+        id="issueDate"
+        name="issueDate"
+        [(ngModel)]="purchaseOrder.issueDate"
+        required
+      />
+      <div
+        *ngIf="
+          purchaseForm.controls['issueDate']?.invalid &&
+          (purchaseForm.controls['issueDate']?.dirty ||
+            purchaseForm.controls['issueDate']?.touched)
+        "
+        class="text-danger"
+      >
+        <small *ngIf="purchaseForm.controls['issueDate']?.errors?.['required']"
+          >Este campo es obligatorio.</small
+        >
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="deliveryDate" class="form-label"
+        >Fecha entrega esperada (*)</label
+      >
+      <input
+        type="date"
+        class="form-control"
+        id="deliveryDate"
+        name="deliveryDate"
+        [(ngModel)]="purchaseOrder.deliveryDate"
+        required
+      />
+
+      <div
+        *ngIf="
+          purchaseForm.controls['deliveryDate']?.invalid &&
+          (purchaseForm.controls['deliveryDate']?.dirty ||
+            purchaseForm.controls['deliveryDate']?.touched)
+        "
+        class="text-danger"
+      >
+        <small
+          *ngIf="purchaseForm.controls['deliveryDate']?.errors?.['required']"
+          >Este campo es obligatorio.</small
+        >
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="receptionInfo" class="form-label"
+        >Información de recepción</label
+      >
+      <textarea
+        class="form-control"
+        id="receptionInfo"
+        name="receptionInfo"
+        [(ngModel)]="purchaseOrder.receptionInfo"
+      ></textarea>
+    </div>
+
+    <!-- FORMULARIO DE DETALLE-->
+    <div class="col-md-4">
+      <label for="provider" class="form-label">Proveedor (*) </label>
+      <select
+        class="form-select"
+        id="provider"
+        name="provider"
+        [(ngModel)]="purchaseOrder.provider"
+        required
+      >
+        <option selected disabled value="">Elige proveedor...</option>
+        <option
+          *ngFor="let provider of providers"
           [value]="provider.businessName"
         >
           {{ provider.businessName }}
         </option>
-        </select>
-        <div
+      </select>
+      <div
         *ngIf="
           purchaseForm.controls['provider']?.invalid &&
           (purchaseForm.controls['provider']?.dirty ||
@@ -80,20 +136,28 @@
           >Debe seleccionar un proveedor.</small
         >
       </div>
-      </div>
+    </div>
 
-      <div class="col-md-4">
-        <label for="products" class="form-label">Productos (*)</label>
-        <select #productSelect="ngModel" (change)="cargarPrecio(productSelect.value)" class="form-select" id="products" name="products" [(ngModel)]="productOrder.product" required>
-          <option selected disabled value="">Elige producto...</option>
-          <option
-          *ngFor="let product of products1 || []"
+    <div class="col-md-4">
+      <label for="products" class="form-label">Productos (*)</label>
+      <select
+        #productSelect="ngModel"
+        (change)="cargarProductoaDetail(productSelect.value)"
+        class="form-select"
+        id="products"
+        name="products"
+        [(ngModel)]="productOrder.product!.productName"
+        required
+      >
+        <option selected disabled value="">Elige producto...</option>
+        <option
+          *ngFor="let product of products1"
           [value]="product.productName"
         >
           {{ product.productName }}
         </option>
-        </select>
-        <div
+      </select>
+      <div
         *ngIf="
           purchaseForm.controls['products']?.invalid &&
           (purchaseForm.controls['products']?.dirty ||
@@ -105,11 +169,19 @@
           >Debe seleccionar un producto.</small
         >
       </div>
-      </div>
-      <div class="col-md-4">
-        <label for="quantity" class="form-label">Cantidad (*)</label>
-        <input type="number" class="form-control" id="quantity" name="quantity" [(ngModel)]="productOrder.quantity" required min="1">
-        <div
+    </div>
+    <div class="col-md-4">
+      <label for="quantity" class="form-label">Cantidad (*)</label>
+      <input
+        type="number"
+        class="form-control"
+        id="quantity"
+        name="quantity"
+        [(ngModel)]="productOrder.quantity"
+        required
+        min="1"
+      />
+      <div
         *ngIf="
           purchaseForm.controls['quantity']?.invalid &&
           (purchaseForm.controls['quantity']?.dirty ||
@@ -121,40 +193,50 @@
           >Este campo es obligatorio.</small
         >
         <small *ngIf="purchaseForm.controls['quantity']?.errors?.['min']"
-        >La cantidad debe ser de al menos un producto.</small
+          >La cantidad debe ser de al menos un producto.</small
+        >
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button
+        class="btn btn-success"
+        type="button"
+        (click)="agregarProducto()"
+        [disabled]="purchaseForm.invalid"
       >
+        Agregar producto
+      </button>
+    </div>
 
-      </div>
-      </div>
+    <!-- DETALLE DE PRODUCTOS AGREGADOS -->
 
-      <div class="col-12">
-        <button class="btn btn-success" type="button" (click)="agregarProducto()" [disabled]="purchaseForm.invalid">Agregar producto</button>
+    <div class="col-md-12" *ngIf="addedProducts.length > 0">
+      <h3>Productos Agregados</h3>
+      <ul>
+        <li *ngFor="let producto of addedProducts">
+          {{ producto.product?.productName }} - Cantidad: {{ producto.quantity }} - Precio:
+          {{ producto.price || "Precio no disponible" }}
+        </li>
+      </ul>
+      <div><strong>Total:</strong> {{ calcularTotal() | currency }}</div>
+    </div>
 
-      </div>
-
-<!-- DETALLE DE PRODUCTOS AGREGADOS -->
-
-   <div class="col-md-12" *ngIf="productosAgregados.length > 0">
-    <h3>Productos Agregados</h3>
-    <ul>
-      <li *ngFor="let producto of productosAgregados">
-        {{ producto.product }} - Cantidad: {{ producto.quantity }} - Precio: {{ producto.price || 'Precio no disponible' }}
-      </li>
-    </ul>
-    <div><strong>Total:</strong> {{ calcularTotal() | currency }}</div>
-  </div>
-
-
-     
-      <div class="col-12">
-        <button class="btn btn-primary" type="submit" [disabled]="purchaseForm.invalid">Guardar</button> 
-        <button routerLink="/ordenes/listado" class="btn btn-danger m-lg-1" type="button">Cancelar</button> 
-      </div>
-
-    
-
-    </form>
-
-
-  </main>
-
+    <div class="col-12">
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="purchaseForm.invalid"
+      >
+        Guardar
+      </button>
+      <button
+        routerLink="/ordenes/listado"
+        class="btn btn-danger m-lg-1"
+        type="button"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</main>

@@ -39,7 +39,7 @@ public class PurchaseOrderController {
 		}
 	}
 	
-	@PostMapping("/crear")
+	@PostMapping("/formulario")
 	public ResponseEntity<PurchaseOrder> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
 		try {
 			PurchaseOrder newPurchaseOrder = purchaseOrderService.savePurchaseOrder(purchaseOrder);

@@ -29,19 +29,9 @@ export class PurchaseListComponent implements OnInit {
       this.purchaseData = data;
     });
   }
-  // list() {
-  //   const res = this.purchaseService.getPurchase();
 
-  //   console.log('respuesta del get', res);
+  cancelPurchase(idPurchaseOrder: number) {
 
-  //   if (res !== null) {
-  //     this.purchaseData = res;
-  //   } else {
-  //     console.error('La respuesta es nula');
-  //   }
-  // }
-
-  cancelPurchase(orderId: string) {
     //Usar el modal de confirmación antes de eliminar
     const modalRef = this.modalService.open(CancelConfirmationModalComponent);
 
@@ -52,7 +42,7 @@ export class PurchaseListComponent implements OnInit {
     //Tengo que manejar la promesa del modal con el result-then
     modalRef.result.then((result) => {
         if (result === 'confirm') {
-          const success= this.purchaseService.cancelPurchase(Number(orderId));
+          const success= this.purchaseService.cancelPurchase(Number(idPurchaseOrder));
 
           if(success){
             this.listPurchaseOrder();

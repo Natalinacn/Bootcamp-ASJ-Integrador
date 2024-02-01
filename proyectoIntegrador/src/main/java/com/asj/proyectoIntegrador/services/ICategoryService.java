@@ -10,5 +10,7 @@ public interface ICategoryService {
 
 	List<Category> listAllCategories() throws Exception;
 
-	void deleteCategory(Integer categoryId);
+	Category deleteCategory(Integer categoryId) throws Exception;
+
+	Category updateCategory(Integer categoryId, Category category) throws Exception;
 }

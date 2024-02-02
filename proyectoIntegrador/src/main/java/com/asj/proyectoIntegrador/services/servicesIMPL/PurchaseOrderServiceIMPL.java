@@ -122,16 +122,6 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 		} else {
 			throw new Exception("No hay órdenes de compra cargados");
 		}
-	}
-	
-//	@Override
-//	public List<Product> getproductFromProvider(Integer provider_id) throws Exception{
-//		List<Product> productProviderList = purchaseOrderRepository.findProductsByProviderId(provider_id);
-//		if(productProviderList.isEmpty()) {
-//			throw new Exception("La lista de proveedores está vacía");
-//		}else {		
-//		return productProviderList;
-//		}
-//	}
+	}	
 
 }

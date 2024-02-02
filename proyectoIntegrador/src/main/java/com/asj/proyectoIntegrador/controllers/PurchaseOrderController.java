@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.asj.proyectoIntegrador.entities.Product;
 import com.asj.proyectoIntegrador.entities.PurchaseOrder;
 import com.asj.proyectoIntegrador.services.IPurchaseOrderService;
 
@@ -93,16 +92,4 @@ public class PurchaseOrderController {
 		}		
 	}
 	
-//	@GetMapping("/productos")
-//	public ResponseEntity<List<Product>> findProductsByProviderId(Integer providerId){
-//		try {
-//			List<Product> productsList = purchaseOrderService.getproductFromProvider(providerId);
-//			return new ResponseEntity<List<Product>>(productsList);
-//		
-//		} catch (Exception e) {
-//			// TODO: handle exception
-//		}
-//		
-//	}
-
 }

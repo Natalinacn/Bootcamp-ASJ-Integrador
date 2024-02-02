@@ -11,4 +11,5 @@ public interface IProviderService {
 	public void deleteProvider(Integer idProvider);
 	public Provider updateProvider(Integer idProvider, Provider provider) throws Exception;
 	public Provider findProviderById(Integer idProvider) throws Exception;
+	Integer getTotalProviderCount() throws Exception;
 }

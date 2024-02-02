@@ -3,8 +3,10 @@ package com.asj.proyectoIntegrador.repositories;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.asj.proyectoIntegrador.entities.Product;
 import com.asj.proyectoIntegrador.entities.PurchaseOrder;
 
 @Repository
@@ -17,5 +19,9 @@ public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, In
 	
 	//Lista las canceladas
 	List<PurchaseOrder> findAllPurchaseOrderByDeletedAtIsNotNullOrderByOrderNumber();
+	
+	
+	@Query("SELECT COUNT(or) FROM PurchaseOrder or")
+	Integer getTotalOrderCount();
 
 }

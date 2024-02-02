@@ -18,7 +18,7 @@ export class ProductAddFormComponent implements OnInit {
   providers: ProvidersModel[] = [];
   categoriesData: Category[] = [];
   providersData: ProvidersModel[] = [];
-  formTitle: string = "Agregar Productos";
+  formTitle: string = 'Agregar Productos';
 
   constructor(
     private productService: ProductsService,
@@ -28,8 +28,6 @@ export class ProductAddFormComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
 
-
-
   product: ProductsModel = {
     idProduct: 0,
     code: '',
@@ -38,51 +36,51 @@ export class ProductAddFormComponent implements OnInit {
       categoryId: 0,
       category: '',
     },
-    provider:{
-    idProvider: 0,
-    providerCode: '',
-    businessName: '',
-    cuit: '',
-    website: '',
-    phone: '',
-    email: '',
-    industry: {
-      idIndustry: 0,
-      industry: '',
-    },
-    address: {
-      idAddress: 0,
-      streetAndNumber: '',
-      postalCode: '',
-      city: {
-        idCity: 0,
-        city: '',
-        province: {
-          idProvince: 0,
-          province: '',
-          country: {
-            idCountry: 0,
-            country: '',
-          },
-        }
-      }
-    },
-    ivaCondition: {
-      idIvaCondition: 0,
-      ivaCondition: '',
-    },
-    responsiblePerson: {
-      idResponsiblePerson: 0,
-      firstName: '',
-      lastName: '',
+    provider: {
+      idProvider: 0,
+      providerCode: '',
+      businessName: '',
+      cuit: '',
+      website: '',
       phone: '',
       email: '',
-      role: '',
-    },
-    created_at: undefined,
-    updated_at: undefined,
-    deleted_at: undefined,
+      industry: {
+        idIndustry: 0,
+        industry: '',
       },
+      address: {
+        idAddress: 0,
+        streetAndNumber: '',
+        postalCode: '',
+        city: {
+          idCity: 0,
+          city: '',
+          province: {
+            idProvince: 0,
+            province: '',
+            country: {
+              idCountry: 0,
+              country: '',
+            },
+          },
+        },
+      },
+      ivaCondition: {
+        idIvaCondition: 0,
+        ivaCondition: '',
+      },
+      responsiblePerson: {
+        idResponsiblePerson: 0,
+        firstName: '',
+        lastName: '',
+        phone: '',
+        email: '',
+        role: '',
+      },
+      created_at: undefined,
+      updated_at: undefined,
+      deleted_at: undefined,
+    },
     description: '',
     price: 0,
     img: '',
@@ -98,10 +96,10 @@ export class ProductAddFormComponent implements OnInit {
 
     this.route.paramMap.subscribe((response) => {
       let id = response.get('id');
-      if (id !== null && !isNaN(Number(id))){
+      if (id !== null && !isNaN(Number(id))) {
         this.id = id;
         this.getProductById(Number(id));
-        this.formTitle = "Editar Productos";
+        this.formTitle = 'Editar Productos';
         console.log(this.product);
       }
     });
@@ -109,10 +107,8 @@ export class ProductAddFormComponent implements OnInit {
     // Agrega este console.log para verificar si la lista de proveedores se carga correctamente
     console.log('Lista de proveedores en ngOnInit:', this.providers);
 
-  
     this.listCategories();
     this.listProviders();
-    
   }
 
   onSubmit(form: NgForm) {
@@ -134,7 +130,6 @@ export class ProductAddFormComponent implements OnInit {
           const modalRef = this.modalService.open(ConfirmationModalComponent);
           modalRef.componentInstance.message =
             'Producto agregado correctamente';
-
 
           setTimeout(() => {
             modalRef.close('timeout');
@@ -186,16 +181,16 @@ export class ProductAddFormComponent implements OnInit {
 
   listCategories() {
     this.productService.getCategories().subscribe((data) => {
-      console.log("Lista de categorias ", this.categoriesData);
+      console.log('Lista de categorias ', this.categoriesData);
       this.categoriesData = data;
-      console.log("Lista de categorias ", this.categoriesData);
+      console.log('Lista de categorias ', this.categoriesData);
     });
   }
 
-  listProviders(){
-    this.providersService.getProviders().subscribe((data)=>{
-        this.providersData = data;
-      });
+  listProviders() {
+    this.providersService.getProviders().subscribe((data) => {
+      this.providersData = data;
+    });
   }
 
   getProductById(idProduct: number) {
@@ -209,5 +204,4 @@ export class ProductAddFormComponent implements OnInit {
       }
     );
   }
-  
 }

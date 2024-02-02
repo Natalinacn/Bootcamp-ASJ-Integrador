@@ -5,14 +5,14 @@
     <div *ngIf="purchase" class="contenedor-detalle">
       <div class="detalle-info">
         <p><strong>N° de orden:</strong> {{ purchase.orderNumber }}</p>
-        <p><strong>Proveedor:</strong> {{ purchase.provider }}</p>
+        <p><strong>Proveedor:</strong> {{ purchase.provider.businessName }}</p>
         <p><strong>Fecha de Emisión:</strong> {{ purchase.issueDate | date }}</p>
         <p><strong>Fecha entrega esperada:</strong> {{ purchase.deliveryDate | date }}</p>
         <p><strong>Estado:</strong> {{ purchase.status ? 'Activa' : 'Cancelada' }}</p>
       </div>
   
       <div class="detalle-productos">
-        <h2>Productos:</h2>
+        <h2>Detalle:</h2>
         <table class="table table-dark table-striped mt-2">
           <thead>
             <tr>
@@ -23,11 +23,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let producto of addedProducts">
-              <td>{{ producto.product}}</td>
-              <td>{{ producto.quantity }}</td>
-              <td>{{ producto.price | currency }}</td>
-              <td>{{ producto.quantity * producto.price | currency }}</td>
+            <tr *ngFor="let detalle of addedProducts">
+              <td>{{ detalle.product?.productName}}</td>
+              <td>{{ detalle.quantity }}</td>
+              <td>{{ detalle.price | currency }}</td>
+              <td>{{ detalle.quantity * detalle.price | currency }}</td>
             </tr>
           </tbody>
         </table>

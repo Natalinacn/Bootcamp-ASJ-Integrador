@@ -13,4 +13,6 @@ public interface ICategoryService {
 	Category deleteCategory(Integer categoryId) throws Exception;
 
 	Category updateCategory(Integer categoryId, Category category) throws Exception;
+
+	Category getCategoryById(Integer categoryId) throws Exception;
 }

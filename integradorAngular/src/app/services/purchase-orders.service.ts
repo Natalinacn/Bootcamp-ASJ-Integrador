@@ -33,14 +33,19 @@ export class PurchaseOrdersService {
     return this.clienteHttp.post<PurchaseOrdersModel>(url, purchaseOrder);
   }
 
-  createOrderDetail(productsDetails: OrderDetailModel[]): Observable<OrderDetailModel>{
-    const url = `${this.baseUrl}/createDetail`;
+  createOrderDetail(productsDetails: OrderDetailModel): Observable<OrderDetailModel>{
+    const url = 'http://localhost:8080/detalle/crear'
     return this.clienteHttp.post<OrderDetailModel>(url, productsDetails);
-
   }
 
   cancelPurchase(idPurchaseOrder: number): Observable<PurchaseOrdersModel> {
     const url = `${this.baseUrl}/${idPurchaseOrder}`;
     return this.clienteHttp.delete<PurchaseOrdersModel>(url);
   }
+
+  getOrderDetails(): Observable<OrderDetailModel[]>{
+    const url = 'http://localhost:8080/detalle/listado';
+    return this.clienteHttp.get<OrderDetailModel[]>(url);
+  }
+
 }

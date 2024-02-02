@@ -32,8 +32,8 @@
           <td>{{ purchase.status ? 'Activa' : 'Cancelada'}}</td>
           <td>
             <div class="d-grid">
-              <button type="button" class="btn btn-primary btn-sm mb-1" (click)="showDetailsPurchase(purchase.id)">Detalle</button>
-              <button type="button" class="btn btn-danger btn-sm" (click)="cancelPurchase(purchase.id)" [disabled]="purchase.status === false">Cancelar</button>
+              <button type="button" class="btn btn-primary btn-sm mb-1" (click)="showDetailsPurchase(purchase.idPurchaseOrder)">Detalle</button>
+              <button type="button" class="btn btn-danger btn-sm" (click)="cancelPurchase(purchase.idPurchaseOrder)" [disabled]="purchase.deletedAt">Cancelar</button>
             </div>
           </td>
         </tr>

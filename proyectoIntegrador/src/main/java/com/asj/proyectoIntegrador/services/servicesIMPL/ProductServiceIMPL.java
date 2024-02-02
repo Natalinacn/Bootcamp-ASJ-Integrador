@@ -35,20 +35,20 @@ public class ProductServiceIMPL implements IProductService {
 	@Override
 	@Transactional(readOnly = true)
 	public Product findProductById(Integer idProduct) throws Exception {
-		if(idProduct != null) {
-		Product product = productRepository.findById(idProduct).orElse(null);
-		return product;
-		}else {
+		if (idProduct != null) {
+			Product product = productRepository.findById(idProduct).orElse(null);
+			return product;
+		} else {
 			throw new Exception("Producto no encontrado con ID: " + idProduct);
 		}
 	}
 
-		@Override
-		@Transactional
-		public void saveProduct(Product product) {
-			product.setCreatedAt(LocalDate.now());
-			productRepository.save(product);
-		}
+	@Override
+	@Transactional
+	public void saveProduct(Product product) {
+		product.setCreatedAt(LocalDate.now());
+		productRepository.save(product);
+	}
 
 	@Override
 	@Transactional
@@ -81,14 +81,32 @@ public class ProductServiceIMPL implements IProductService {
 	@Override
 	@Transactional
 	public void deleteProductById(Integer idProduct) throws Exception {
-	    Product product = this.productRepository.findByIdProductAndDeletedAtNull(idProduct);
-	    if (product != null) {
-	        product.setDeletedAt(LocalDate.now());
-	        productRepository.save(product);
-	    } else {
-	    	throw new ResourceNotFoundException(idProduct);
-	    }
+		Product product = this.productRepository.findByIdProductAndDeletedAtNull(idProduct);
+		if (product != null) {
+			product.setDeletedAt(LocalDate.now());
+			productRepository.save(product);
+		} else {
+			throw new ResourceNotFoundException(idProduct);
+		}
 	}
 
+	@Override
+	public Integer getTotalProductCount() throws Exception {
+		Integer productsQuantity = productRepository.getTotalProductCount();
+		if (productsQuantity >= 0) {
+			return productsQuantity;
+		} else {
+			throw new Exception("No hay productos cargados");
+		}
+	}
+	
+	@Override
+	public List<Product> findProductByProvider(Integer idProvider){
+		
+		List<Product> productList = productRepository.findByProviderIdProvider(idProvider);
+		
+		return productList;
+		
+	}
 
 }

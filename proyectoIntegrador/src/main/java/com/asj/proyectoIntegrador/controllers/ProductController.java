@@ -47,9 +47,27 @@ public class ProductController {
 		}
 	}
 
+	@GetMapping("/cantidad")
+	public ResponseEntity<Integer> getTotalProductCount() {
+		try {
+			Integer productQuantity = iProductService.getTotalProductCount();
+			return new ResponseEntity<Integer>(productQuantity, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@GetMapping("/proveedor/{idProvider}")
+	public ResponseEntity<List<Product>> getProductsByProvider(@PathVariable Integer idProvider) {
+
+		List<Product> productsList = iProductService.findProductByProvider(idProvider);
+		return new ResponseEntity<List<Product>>(productsList, HttpStatus.OK);
+
+	}
+
 	@PostMapping("/formulario")
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-
 		try {
 			iProductService.saveProduct(product);
 			return new ResponseEntity<>(product, HttpStatus.OK);
@@ -71,14 +89,11 @@ public class ProductController {
 
 	@PutMapping("/actualizar/{idProduct}")
 	public ResponseEntity<Product> updateProduct(@PathVariable Integer idProduct, @RequestBody Product product) {
-
 		try {
 			iProductService.updateProduct(idProduct, product);
 			return new ResponseEntity<>(product, HttpStatus.OK);
-
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-
 	}
 }

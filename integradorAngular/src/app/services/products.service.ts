@@ -62,4 +62,9 @@ export class ProductsService {
     const url = `${this.baseUrl}/${idProduct}`;
     return this.clienteHttp.get<ProductsModel>(url);
   }
+
+  getProductsByProvider(idProvider: number): Observable<ProductsModel[]>{
+    const url = `${this.baseUrl}/proveedor/${idProvider}`;
+    return this.clienteHttp.get<ProductsModel[]>(url);
+  }
 }

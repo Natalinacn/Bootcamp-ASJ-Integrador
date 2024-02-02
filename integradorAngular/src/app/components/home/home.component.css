@@ -17,3 +17,24 @@
   p {
     margin-top: 0.5em;
   }
+
+  .detalle{
+    display: flex;
+    }
+
+  .square{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 20px;
+    width: 250px;
+    height: 180px;
+    padding: 10px;
+  }
+
+    .btn{
+      width: fit-content;
+    }
+
+  

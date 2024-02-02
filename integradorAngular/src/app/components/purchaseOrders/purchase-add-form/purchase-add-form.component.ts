@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import {
-  ProductOrderModel,
-  PurchaseOrdersModel,
-} from 'src/app/model/purchaseOrderModel';
+import { PurchaseOrdersModel } from 'src/app/model/purchaseOrderModel';
 import { PurchaseOrdersService } from 'src/app/services/purchase-orders.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ConfirmationModalComponent } from 'src/app/modals/confirmation-modal/confirmation-modal.component';
@@ -22,6 +19,7 @@ import { OrderDetailModel } from 'src/app/model/orderDetail';
 export class PurchaseAddFormComponent implements OnInit {
   productoAgregado: boolean = false;
 
+  id!: string;
   providers: ProvidersModel[] = [];
   products1: ProductsModel[] = [];
   addedProducts: OrderDetailModel[] = [];
@@ -31,17 +29,14 @@ export class PurchaseAddFormComponent implements OnInit {
     private providersService: ProvidersService,
     private productsService: ProductsService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.providersService.getProviders().subscribe(
       (providers) => (this.providers = providers || []),
       (error) => console.error('Error obteniendo proveedores', error)
-    );
-    this.productsService.getProducts().subscribe(
-      (products) => (this.products1 = products || []),
-      (error) => console.error('Error obteniendo productos', error)
     );
   }
 
@@ -115,51 +110,51 @@ export class PurchaseAddFormComponent implements OnInit {
         categoryId: 0,
         category: '',
       },
-      provider:{
-      idProvider: 0,
-      providerCode: '',
-      businessName: '',
-      cuit: '',
-      website: '',
-      phone: '',
-      email: '',
-      industry: {
-        idIndustry: 0,
-        industry: '',
-      },
-      address: {
-        idAddress: 0,
-        streetAndNumber: '',
-        postalCode: '',
-        city: {
-          idCity: 0,
-          city: '',
-          province: {
-            idProvince: 0,
-            province: '',
-            country: {
-              idCountry: 0,
-              country: '',
-            },
-          }
-        }
-      },
-      ivaCondition: {
-        idIvaCondition: 0,
-        ivaCondition: '',
-      },
-      responsiblePerson: {
-        idResponsiblePerson: 0,
-        firstName: '',
-        lastName: '',
+      provider: {
+        idProvider: 0,
+        providerCode: '',
+        businessName: '',
+        cuit: '',
+        website: '',
         phone: '',
         email: '',
-        role: '',
-      },
-      created_at: undefined,
-      updated_at: undefined,
-      deleted_at: undefined,
+        industry: {
+          idIndustry: 0,
+          industry: '',
         },
+        address: {
+          idAddress: 0,
+          streetAndNumber: '',
+          postalCode: '',
+          city: {
+            idCity: 0,
+            city: '',
+            province: {
+              idProvince: 0,
+              province: '',
+              country: {
+                idCountry: 0,
+                country: '',
+              },
+            },
+          },
+        },
+        ivaCondition: {
+          idIvaCondition: 0,
+          ivaCondition: '',
+        },
+        responsiblePerson: {
+          idResponsiblePerson: 0,
+          firstName: '',
+          lastName: '',
+          phone: '',
+          email: '',
+          role: '',
+        },
+        created_at: undefined,
+        updated_at: undefined,
+        deleted_at: undefined,
+      },
       description: '',
       price: 0,
       img: '',
@@ -169,18 +164,24 @@ export class PurchaseAddFormComponent implements OnInit {
     },
     purchaseOrder: this.purchaseOrder,
     createdAt: undefined,
-    updatedAt: undefined        
+    updatedAt: undefined,
   };
 
   createPurchase(form: NgForm) {
     if (form.valid) {
+      console.log(this.purchaseOrder);
       this.purchaseOrdersService
         .createPurchaseOrder(this.purchaseOrder)
         .subscribe((data) => {
           for (const detail of this.addedProducts) {
-            detail.purchaseOrder = data;            
+            detail.purchaseOrder = data;
+            console.log(detail);
+            this.purchaseOrdersService
+              .createOrderDetail(detail)
+              .subscribe((data) => {
+                console.log(data);
+              });
           }
-          this.purchaseOrdersService.createOrderDetail(this.addedProducts)
         });
       // Primero abro el modal
       const modalRef = this.modalService.open(ConfirmationModalComponent);
@@ -195,35 +196,37 @@ export class PurchaseAddFormComponent implements OnInit {
 
       // Manejo el resultado de la promesa
       modalRef.result.then(
-        (result) => {
-          console.log('Modal cerrado', result);
-        },
-        (reason) => {
-          console.log('Modal descartado', reason);
-        }
+        (result) => {},
+        (reason) => {}
       );
     }
   }
-  
-  cargarProductoaDetail(productName : string){
-    this.productOrder.product = 
-    this.products1.find((prod)=>
-    productName === prod.productName
+
+  cargarProductoaDetail(productName: string) {
+    this.productOrder.product = this.products1.find(
+      (prod) => productName === prod.productName
     );
     this.cargarPrecio(this.productOrder.product!);
+    console.log(this.productOrder.product);
   }
 
-  cargarPrecio(product : ProductsModel) {
-      this.productOrder.price = product.price;
+  cargarPrecio(product: ProductsModel) {
+    this.productOrder.price = product.price;
   }
 
   agregarProducto() {
-    this.productoAgregado = true;
-
-    this.cargarPrecio(this.productOrder.product!);
-    console.log(this.productOrder);
-
-    this.addedProducts.push(structuredClone(this.productOrder));
+    let idProducts = this.addedProducts.map(
+      (detalle) => detalle.product?.idProduct
+    );
+    if (idProducts.includes(this.productOrder.product?.idProduct)) {
+      let index = this.addedProducts.findIndex(
+        (detalle) =>
+          detalle.product?.idProduct === this.productOrder.product?.idProduct
+      );
+      this.addedProducts[index].quantity += this.productOrder.quantity;
+    } else {
+      this.addedProducts.push(structuredClone(this.productOrder));
+    }
     const modalRef = this.modalService.open(ConfirmationModalComponent);
     modalRef.componentInstance.message = 'Producto agregado correctamente';
   }
@@ -241,5 +244,11 @@ export class PurchaseAddFormComponent implements OnInit {
     // Almaceno el total en la propiedad totalAmount
     this.purchaseOrder.totalAmount = total;
     return total;
+  }
+
+  getProductsByProvider(idProvider: number) {
+    this.productsService.getProductsByProvider(idProvider).subscribe((data) => {
+      this.products1 = data;
+    });
   }
 }

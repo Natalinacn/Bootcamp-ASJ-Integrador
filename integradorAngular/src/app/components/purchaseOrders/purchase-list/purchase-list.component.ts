@@ -20,8 +20,9 @@ export class PurchaseListComponent implements OnInit {
 
   ngOnInit(): void {
     // this.purchaseData = this.purchaseService.getHardcodedOrders();
-    
+
     this.listPurchaseOrder();
+    
   }
 
   listPurchaseOrder(){
@@ -42,7 +43,9 @@ export class PurchaseListComponent implements OnInit {
     //Tengo que manejar la promesa del modal con el result-then
     modalRef.result.then((result) => {
         if (result === 'confirm') {
-          const success= this.purchaseService.cancelPurchase(Number(idPurchaseOrder));
+          const success= this.purchaseService.cancelPurchase(Number(idPurchaseOrder)).subscribe((data)=>{
+            this.listPurchaseOrder();
+          });
 
           if(success){
             this.listPurchaseOrder();

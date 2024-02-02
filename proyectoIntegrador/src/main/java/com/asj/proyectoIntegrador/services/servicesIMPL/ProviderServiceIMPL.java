@@ -98,5 +98,15 @@ public class ProviderServiceIMPL implements IProviderService {
 
 		}
 	}
+	
+	@Override
+	public Integer getTotalProviderCount() throws Exception {
+		Integer providersQuantity = providerRepository.getTotalProviderCount();
+		if (providersQuantity >= 0) {
+			return providersQuantity;
+		} else {
+			throw new Exception("No hay proveedores cargados");
+		}
+	}
 
 }

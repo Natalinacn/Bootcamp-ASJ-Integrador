@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.asj.proyectoIntegrador.entities.Product;
 import com.asj.proyectoIntegrador.entities.PurchaseOrder;
 import com.asj.proyectoIntegrador.services.IPurchaseOrderService;
 
@@ -36,6 +37,28 @@ public class PurchaseOrderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<List<PurchaseOrder>>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/{idPurchaseOrder}")
+	public ResponseEntity<PurchaseOrder> getPurchaseOrderById(@PathVariable Integer idPurchaseOrder){
+		try {
+			PurchaseOrder purchaseOrder = purchaseOrderService.findPurchaseOrderById(idPurchaseOrder);
+			return new ResponseEntity<PurchaseOrder>(purchaseOrder, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<PurchaseOrder>(HttpStatus.NOT_FOUND);
+		}		
+	}
+	
+	@GetMapping("/cantidad")
+	public ResponseEntity<Integer> getTotalPurchaseCount() {
+		try {
+			Integer purchaseQuantity = purchaseOrderService.getTotalPurchaseCount();
+			return new ResponseEntity<Integer>(purchaseQuantity, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
 		}
 	}
 	
@@ -67,8 +90,19 @@ public class PurchaseOrderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<PurchaseOrder>(HttpStatus.NOT_FOUND);
-		}
-		
+		}		
 	}
+	
+//	@GetMapping("/productos")
+//	public ResponseEntity<List<Product>> findProductsByProviderId(Integer providerId){
+//		try {
+//			List<Product> productsList = purchaseOrderService.getproductFromProvider(providerId);
+//			return new ResponseEntity<List<Product>>(productsList);
+//		
+//		} catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//		
+//	}
 
 }

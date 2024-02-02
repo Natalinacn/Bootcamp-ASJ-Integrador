@@ -1,4 +1,21 @@
   <div class="container">
     <h2 class="text-uppercase ">Sistema de Gestión de Productos</h2>
     <p>Bienvenido a nuestro Sistema de Gestión de Productos. Simplificamos la administración de tu inventario para que puedas centrarte en hacer crecer tu negocio.</p>
+  <div class="detalle">
+    <div class="square bg-dark text-bg-dark">
+    <h3>PROVEEDORES</h3>
+    <p>Cantidad cargada: {{providerQ}}</p>
+    <button class="btn btn-success fw-bold" routerLink="/proveedores/formulario">Agregar</button>
+  </div>
+  <div class="square bg-dark text-bg-dark">
+    <h3>PRODUCTOS</h3>
+    <p>Cantidad cargada: {{productQ}}</p>
+    <button class="btn btn-success fw-bold" routerLink="/productos/formulario">Agregar</button>
+  </div>
+  <div class="square bg-dark text-bg-dark">
+    <h3>ÓRDENES</h3>
+    <p>Cantidad cargada: {{purchaseQ}}</p>
+    <button class="btn btn-success fw-bold" routerLink="/ordenes/formulario">Agregar</button>
+  </div>
+</div>
   </div>

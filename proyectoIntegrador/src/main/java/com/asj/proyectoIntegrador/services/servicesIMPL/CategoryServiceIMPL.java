@@ -42,6 +42,17 @@ public class CategoryServiceIMPL implements ICategoryService {
 
 		return categoryList;
 	}
+	
+	@Override
+	@Transactional
+	public Category getCategoryById(Integer categoryId) throws Exception {
+		if(categoryId != null) {
+		Category category = categoryRepository.findByCategoryIdAndDeletedAtNull(categoryId);
+		return category;
+		}else {
+			throw new Exception("Nop se encontró la categoría"); 
+		}
+	}
 
 	@Override
 	@Transactional

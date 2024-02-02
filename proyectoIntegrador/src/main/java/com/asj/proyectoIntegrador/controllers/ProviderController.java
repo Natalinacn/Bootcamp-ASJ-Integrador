@@ -64,6 +64,17 @@ public class ProviderController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
 	}
+	
+	@GetMapping("/cantidad")
+	public ResponseEntity<Integer> getTotalProviderCount() {
+		try {
+			Integer providerQuantity = iProviderService.getTotalProviderCount();
+			return new ResponseEntity<Integer>(providerQuantity, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		}
+	}
 
 	@DeleteMapping("/{idProvider}")
 	public ResponseEntity<?> deleteProvider(@PathVariable Integer idProvider) {

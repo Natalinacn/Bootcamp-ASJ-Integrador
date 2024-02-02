@@ -113,13 +113,14 @@
         class="form-select"
         id="provider"
         name="provider"
-        [(ngModel)]="purchaseOrder.provider"
+        [(ngModel)]="purchaseOrder.provider.idProvider"
+        (change)="getProductsByProvider(purchaseOrder.provider.idProvider)"
         required
       >
         <option selected disabled value="">Elige proveedor...</option>
         <option
           *ngFor="let provider of providers"
-          [value]="provider.businessName"
+          [value]="provider.idProvider"
         >
           {{ provider.businessName }}
         </option>
@@ -141,19 +142,15 @@
     <div class="col-md-4">
       <label for="products" class="form-label">Productos (*)</label>
       <select
-        #productSelect="ngModel"
+        #productSelect
         (change)="cargarProductoaDetail(productSelect.value)"
         class="form-select"
         id="products"
         name="products"
-        [(ngModel)]="productOrder.product!.productName"
         required
       >
         <option selected disabled value="">Elige producto...</option>
-        <option
-          *ngFor="let product of products1"
-          [value]="product.productName"
-        >
+        <option *ngFor="let product of products1" [value]="product.productName">
           {{ product.productName }}
         </option>
       </select>
@@ -215,7 +212,8 @@
       <h3>Productos Agregados</h3>
       <ul>
         <li *ngFor="let producto of addedProducts">
-          {{ producto.product?.productName }} - Cantidad: {{ producto.quantity }} - Precio:
+          {{ producto.product?.productName }} - Cantidad:
+          {{ producto.quantity }} - Precio:
           {{ producto.price || "Precio no disponible" }}
         </li>
       </ul>

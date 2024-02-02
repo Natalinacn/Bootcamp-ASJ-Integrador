@@ -20,4 +20,8 @@ public interface IPurchaseOrderService {
 
 	List<PurchaseOrder> listCanceledPurchaseOrders() throws Exception;
 
+	Integer getTotalPurchaseCount() throws Exception;
+
+//	List<Product> getproductFromProvider(Integer provider_id) throws Exception;
+
 }

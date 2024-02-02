@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.asj.proyectoIntegrador.entities.Product;
 import com.asj.proyectoIntegrador.entities.PurchaseOrder;
-import com.asj.proyectoIntegrador.exception.ResourceNotFoundException;
 import com.asj.proyectoIntegrador.repositories.PurchaseOrderRepository;
 import com.asj.proyectoIntegrador.services.IPurchaseOrderService;
 
@@ -113,5 +113,25 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 			throw new Exception("Error al actualizar la órden de compra" + purchaseOrder.getOrderNumber());
 		}
 	}
+	
+	@Override
+	public Integer getTotalPurchaseCount() throws Exception {
+		Integer purchaseQuantity = purchaseOrderRepository.getTotalOrderCount();
+		if (purchaseQuantity >= 0) {
+			return purchaseQuantity;
+		} else {
+			throw new Exception("No hay órdenes de compra cargados");
+		}
+	}
+	
+//	@Override
+//	public List<Product> getproductFromProvider(Integer provider_id) throws Exception{
+//		List<Product> productProviderList = purchaseOrderRepository.findProductsByProviderId(provider_id);
+//		if(productProviderList.isEmpty()) {
+//			throw new Exception("La lista de proveedores está vacía");
+//		}else {		
+//		return productProviderList;
+//		}
+//	}
 
 }

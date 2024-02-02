@@ -22,10 +22,19 @@ export class PurchaseDetailComponent implements OnInit{
   
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
-      const orderId = params.get('id');
-      if (orderId) {
-        this.purchaseOrdersService.getPurchaseOrderById(Number(orderId));
-        console.log(this.purchase);
+      const idPurchaseOrder = params.get('idPurchaseOrder');
+      if (idPurchaseOrder) {
+        this.getPurchaseOrderById(Number(idPurchaseOrder));
+      }
+    });
+  
+
+    
+    this.route.paramMap.subscribe((response) => {
+      let id = response.get('id');
+      if (id !== null && !isNaN(Number(id))) {
+        this.id = id;
+        this.getPurchaseOrderById(Number(id))!;
       }
     });
 
@@ -37,10 +46,79 @@ export class PurchaseDetailComponent implements OnInit{
   //   idOrderDetail: 0,
   //   quantity: 0,
   //   price: 0,
-	//   product: ProductOrderModel[],
-  //   purchaseOrder: PurchaseOrdersModel = {},
+	//   product: {
+  //     idProduct: 0,
+  //     code: '',
+  //     productName: '',
+  //     category: {
+  //       categoryId: 0,
+  //       category: '',
+  //     },
+  //     provider:{
+  //     idProvider: 0,
+  //     providerCode: '',
+  //     businessName: '',
+  //     cuit: '',
+  //     website: '',
+  //     phone: '',
+  //     email: '',
+  //     industry: {
+  //       idIndustry: 0,
+  //       industry: '',
+  //     },
+  //     address: {
+  //       idAddress: 0,
+  //       streetAndNumber: '',
+  //       postalCode: '',
+  //       city: {
+  //         idCity: 0,
+  //         city: '',
+  //         province: {
+  //           idProvince: 0,
+  //           province: '',
+  //           country: {
+  //             idCountry: 0,
+  //             country: '',
+  //           },
+  //         }
+  //       }
+  //     },
+  //     ivaCondition: {
+  //       idIvaCondition: 0,
+  //       ivaCondition: '',
+  //     },
+  //     responsiblePerson: {
+  //       idResponsiblePerson: 0,
+  //       firstName: '',
+  //       lastName: '',
+  //       phone: '',
+  //       email: '',
+  //       role: '',
+  //     },
+  //     created_at: undefined,
+  //     updated_at: undefined,
+  //     deleted_at: undefined,
+  //       },
+  //     description: '',
+  //     price: 0,
+  //     img: '',
+  //     created_at: undefined,
+  //     updated_at: undefined,
+  //     deleted_at: undefined,
+  //   }
+  //   purchaseOrder: PurchaseOrdersModel,
   //   createdAt: undefined,
   //   updatedAt: undefined,
   // }
 
+
+
+  getPurchaseOrderById(idPurchaseOrder: number){
+    this.purchaseOrdersService.getPurchaseOrderById(idPurchaseOrder).subscribe((data)=>{
+      this.purchase = data;
+      this.purchaseOrdersService.getOrderDetails().subscribe((data)=>{
+        this.addedProducts = data.filter(detalle => detalle.purchaseOrder.idPurchaseOrder == this.purchase?.idPurchaseOrder)
+      });
+    });
+  }
 }

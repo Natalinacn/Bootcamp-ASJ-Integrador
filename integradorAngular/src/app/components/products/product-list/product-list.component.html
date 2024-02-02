@@ -14,6 +14,7 @@
     <table class="table table-dark table-striped mt-2 ">
       <thead>
         <tr class="text-center">
+          <th scope="col">Imagen</th>
           <th scope="col">Nombre Producto</th>
           <th scope="col">Categoría</th>
           <th scope="col">Proveedor</th>
@@ -23,6 +24,7 @@
       </thead>
       <tbody >
         <tr class="text-center" *ngFor="let product of productsData">
+          <td><img [src]="product.img" alt="{{ product.productName }}" style="max-width: 100px;"></td>
           <td>{{ product.productName }}</td>
           <td>{{ product.category?.category }}</td>
           <td>{{ product.provider?.businessName }}</td>

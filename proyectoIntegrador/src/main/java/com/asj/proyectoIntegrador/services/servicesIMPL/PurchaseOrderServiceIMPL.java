@@ -88,13 +88,12 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 
 		if (purchaseOrder != null) {
 			purchaseOrder.setDeletedAt(LocalDate.now());
+			purchaseOrder.setStatus(false);
 			purchaseOrderRepository.save(purchaseOrder);
 			return purchaseOrder;
 		} else {
 			throw new Exception("Error al cancelar la órden de compra" + purchaseOrder.getOrderNumber());
 		}
-		
-
 	}
 
 	@Override

@@ -160,6 +160,35 @@
 
     </div>
 
+    <div class="col-md-4">
+      <label for="validationDefault02" class="form-label"
+        >Imagen</label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="imagen"
+        value="img"
+        placeholder="URL de la imagen"
+        name="img"
+        [(ngModel)]="product.img"
+        minlength="3"
+      />
+      <div
+        *ngIf="
+          productForm.controls['img']?.invalid &&
+          (productForm.controls['img']?.dirty ||
+            productForm.controls['img']?.touched)
+        "
+        class="text-danger"
+      >
+        <small *ngIf="productForm.controls['prodName']?.errors?.['minlength']"
+          >El nombre del producto debe tener al menos 3 caracteres.</small
+        >
+
+      </div>
+    </div>
+
     <div class="col-md-12">
       <label for="description" class="form-label">Descripción</label>
       <textarea

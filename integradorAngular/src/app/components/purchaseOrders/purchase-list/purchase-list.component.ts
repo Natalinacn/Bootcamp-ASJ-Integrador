@@ -19,10 +19,7 @@ export class PurchaseListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.purchaseData = this.purchaseService.getHardcodedOrders();
-
-    this.listPurchaseOrder();
-    
+    this.listPurchaseOrder();    
   }
 
   listPurchaseOrder(){

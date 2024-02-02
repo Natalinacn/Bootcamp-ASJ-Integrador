@@ -32,6 +32,7 @@ public class Product {
 	private Provider provider;
 	private String description;
 	private Double price;
+	private String img;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
 	private LocalDate deletedAt;
@@ -40,20 +41,15 @@ public class Product {
 	}
 
 
-	public Product(Integer idProduct, String code, String productName, Category category,
-			Provider provider, String description, Double price, LocalDate createdAt, LocalDate updatedAt,
-			LocalDate deletedAt) {
-		this.idProduct = idProduct;
-		this.code = code;
-		this.productName = productName;
-		this.category = category;
-		this.provider = provider;
-		this.description = description;
-		this.price = price;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-		this.deletedAt = deletedAt;
+	public String getImg() {
+		return img;
 	}
+
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 
 
 	public Integer getIdProduct() {

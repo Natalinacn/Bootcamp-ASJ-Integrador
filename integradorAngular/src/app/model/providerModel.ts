@@ -2,6 +2,7 @@ export interface ProvidersModel {
   idProvider: number;
   providerCode: string;
   businessName: string;
+  img: string;
   cuit: string;
   website: string;
   phone: string;

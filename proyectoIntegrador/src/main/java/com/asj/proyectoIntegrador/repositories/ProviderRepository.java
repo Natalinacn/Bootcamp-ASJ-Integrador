@@ -17,6 +17,6 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
 	
 	List<Provider> findAllProviderByDeletedAtIsNullOrderByBusinessNameAsc();
 	
-	@Query("SELECT COUNT(pr) FROM Provider pr")
+	@Query("SELECT COUNT(pr) FROM Provider pr WHERE pr.deletedAt IS NULL")
 	Integer getTotalProviderCount();
 }

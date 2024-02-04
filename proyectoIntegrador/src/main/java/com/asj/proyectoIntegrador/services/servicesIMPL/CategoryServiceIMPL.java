@@ -38,7 +38,7 @@ public class CategoryServiceIMPL implements ICategoryService {
 	@Transactional(readOnly = true)
 	public List<Category> listAllCategories() throws Exception {
 
-		List<Category> categoryList = this.categoryRepository.findAllByOrderByCategoryAsc();
+		List<Category> categoryList = this.categoryRepository.findAllCategoryByDeletedAtIsNullOrderByCategoryAsc();
 
 		return categoryList;
 	}

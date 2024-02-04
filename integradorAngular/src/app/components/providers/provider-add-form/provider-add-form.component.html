@@ -91,6 +91,20 @@
           >
         </div>
       </div>
+
+      <div class="form-group col-md-4">
+
+      <label for="inputImagen">Imágen</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputImagen"
+        placeholder="URL de la imágen"
+        name="img"
+        [(ngModel)]="provider.img"
+        minlength="3"
+      />
+    </div>
     </div>
 
     <div class="form-group">
@@ -167,7 +181,7 @@
           [(ngModel)]="provider.address.city.province.country.idCountry"
           required
         >
-          <option value="" selected>Elige el país...</option>
+          <option value="" disabled selected>Elige el país...</option>
           <option *ngFor="let country of countriesData" value="{{country.idCountry}}">{{country.country}}</option>
         </select>
         <div
@@ -193,7 +207,7 @@
           [(ngModel)]="provider.address.city.province.idProvince"
           required
         >
-          <option value="" selected>Elige la provincia...</option>
+          <option value="" disabled selected>Elige la provincia...</option>
           <option *ngFor="let province of provinceData" value="{{province.idProvince}}">{{province.province}}</option>
         </select>
         <div

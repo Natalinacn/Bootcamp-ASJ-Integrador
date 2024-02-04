@@ -37,6 +37,7 @@ export class ProviderAddFormComponent implements OnInit {
     idProvider: 0,
     providerCode: '',
     businessName: '',
+    img: '',
     cuit: '',
     website: '',
     phone: '',

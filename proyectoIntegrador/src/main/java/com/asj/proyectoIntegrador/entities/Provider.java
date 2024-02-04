@@ -11,20 +11,20 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
-
 @Entity
 public class Provider {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProvider;
 	private String providerCode;
 	private String businessName;
+	private String img;
 	private String cuit;
 	private String website;
 	private String phone;
 	private String email;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "industry_id")
 	private Industry industry;
@@ -40,20 +40,21 @@ public class Provider {
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
 	private LocalDate deletedAt;
-	
+
 	public Provider() {
 	}
 
-	public Provider(Integer idProvider, String providerCode, String businessName, String cuit, String phone,
-			String email, String website, Industry industry, Address address, IvaCondition ivaCondition,
+	public Provider(Integer idProvider, String providerCode, String businessName, String img, String cuit,
+			String website, String phone, String email, Industry industry, Address address, IvaCondition ivaCondition,
 			ResponsiblePerson responsiblePerson, LocalDate createdAt, LocalDate updatedAt, LocalDate deletedAt) {
 		this.idProvider = idProvider;
 		this.providerCode = providerCode;
 		this.businessName = businessName;
+		this.img = img;
 		this.cuit = cuit;
+		this.website = website;
 		this.phone = phone;
 		this.email = email;
-		this.website = website;
 		this.industry = industry;
 		this.address = address;
 		this.ivaCondition = ivaCondition;
@@ -79,12 +80,21 @@ public class Provider {
 		this.providerCode = providerCode;
 	}
 
-	public String getbusinessName() {
+
+	public String getBusinessName() {
 		return businessName;
 	}
 
-	public void setbusinessName(String businessName) {
+	public void setBusinessName(String businessName) {
 		this.businessName = businessName;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public String getCuit() {
@@ -177,13 +187,11 @@ public class Provider {
 
 	@Override
 	public String toString() {
-		return "Provider [idProvider=" + idProvider + ", providerCode=" + providerCode + ", businessName=" + businessName
-				+ ", cuit=" + cuit + ", phone=" + phone + ", email=" + email + ", website=" + website + ", industry="
-				+ industry + ", address=" + address + ", ivaCondition=" + ivaCondition + ", responsiblePerson="
-				+ responsiblePerson + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", deletedAt="
-				+ deletedAt + "]";
+		return "Provider [idProvider=" + idProvider + ", providerCode=" + providerCode + ", businessName="
+				+ businessName + ", cuit=" + cuit + ", phone=" + phone + ", email=" + email + ", website=" + website
+				+ ", industry=" + industry + ", address=" + address + ", ivaCondition=" + ivaCondition
+				+ ", responsiblePerson=" + responsiblePerson + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt
+				+ ", deletedAt=" + deletedAt + "]";
 	}
-	
-	
 
 }

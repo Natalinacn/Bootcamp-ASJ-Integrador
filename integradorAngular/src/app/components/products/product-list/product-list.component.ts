@@ -40,10 +40,6 @@ export class ProductListComponent implements OnInit {
     modalRef.result.then(
       (result) => {
         if (result === 'confirm') {
-          console.log(result);
-          console.log(idProduct);
-          console.log(this.productsData);
-
           this.productService.deleteProduct(Number(idProduct)).subscribe(() => {
             this.listProducts();
           });

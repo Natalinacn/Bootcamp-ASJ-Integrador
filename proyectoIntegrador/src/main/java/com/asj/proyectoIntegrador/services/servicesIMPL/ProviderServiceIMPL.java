@@ -28,7 +28,7 @@ public class ProviderServiceIMPL implements IProviderService {
 	@Override
 	@Transactional
 	public Provider saveProvider(Provider provider) throws Exception {
-		if (provider.getbusinessName() != null) {
+		if (provider.getBusinessName() != null) {
 			System.out.println("Condicion de iva al guardar proveedor" + provider.getIvaCondition());
 			provider.setCreatedAt(LocalDate.now());
 			Address address = addressRepository.save(provider.getAddress());
@@ -70,7 +70,8 @@ public class ProviderServiceIMPL implements IProviderService {
 		Provider updatedprovider = providerRepository.findByIdProviderAndDeletedAtNull(idProvider);
 		if (updatedprovider != null) {
 			updatedprovider.setProviderCode(provider.getProviderCode());
-			updatedprovider.setbusinessName(provider.getbusinessName());
+			updatedprovider.setBusinessName(provider.getBusinessName());
+			updatedprovider.setImg(provider.getImg());
 			updatedprovider.setCuit(provider.getCuit());
 			updatedprovider.setPhone(provider.getPhone());
 			updatedprovider.setEmail(provider.getEmail());

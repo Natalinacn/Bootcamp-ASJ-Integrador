@@ -10,19 +10,8 @@ import { HomeComponent } from './components/home/home.component';
 import { PurchaseDetailComponent } from './components/purchaseOrders/purchase-detail/purchase-detail.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-
-// const routes: Routes = [
-//   {path: 'proveedores/listado', component: ProviderListComponent},
-//   {path: 'proveedores/formulario', component: ProviderAddFormComponent},
-//   {path: 'proveedores/formulario/:id', component: ProviderAddFormComponent},
-//   {path: 'productos/listado', component: ProductListComponent},
-//   {path: 'productos/formulario', component: ProductAddFormComponent},
-//   {path: 'productos/formulario/:id', component: ProductAddFormComponent},
-//   {path: 'ordenes/listado', component: PurchaseListComponent},
-//   {path: 'ordenes/formulario', component: PurchaseAddFormComponent},
-//   {path: 'ordenes/detalle/:id', component: PurchaseDetailComponent},
-//   {path: '', component: HomeComponent}
-// ];
+import { CategoriesComponent } from './components/categories/categories.component';
+import { IndustriesComponent } from './components/industries/industries.component';
 
 const routes: Routes = [
   {
@@ -47,6 +36,13 @@ const routes: Routes = [
       { path: 'listado', component: PurchaseListComponent },
       { path: 'formulario', component: PurchaseAddFormComponent },
       { path: 'detalle/:id', component: PurchaseDetailComponent },
+    ],
+  },
+  {
+    path: 'configuracion',
+    children: [
+      { path: 'categorias', component: CategoriesComponent },
+      { path: 'rubros', component: IndustriesComponent },
     ],
   },
   { path: 'home', component: HomeComponent },

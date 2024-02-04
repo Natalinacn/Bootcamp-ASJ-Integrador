@@ -25,6 +25,9 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { ErrorModalComponent } from './modals/error-modal/error-modal.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { IndustriesComponent } from './components/industries/industries.component';
+import { CreateorupdateComponent } from './modals/createorupdate/createorupdate.component';
 
 
 
@@ -49,6 +52,9 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     RegisterComponent,
     ErrorModalComponent,
+    CategoriesComponent,
+    IndustriesComponent,
+    CreateorupdateComponent,
 
     
     

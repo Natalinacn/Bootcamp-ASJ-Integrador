@@ -21,7 +21,7 @@ public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, In
 	List<PurchaseOrder> findAllPurchaseOrderByDeletedAtIsNotNullOrderByOrderNumber();
 	
 	
-	@Query("SELECT COUNT(or) FROM PurchaseOrder or")
+	@Query("SELECT COUNT(or) FROM PurchaseOrder or WHERE or.deletedAt IS NULL")
 	Integer getTotalOrderCount();
 
 }

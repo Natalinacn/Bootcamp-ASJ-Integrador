@@ -15,7 +15,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 	List<Product> findAllProductByDeletedAtIsNullOrderByProductName();
 
-	@Query("SELECT COUNT(p) FROM Product p")
+	@Query("SELECT COUNT(p) FROM Product p WHERE p.deletedAt IS NULL")
 	Integer getTotalProductCount();
 
     List<Product> findByProviderIdProvider(Integer idProvider);

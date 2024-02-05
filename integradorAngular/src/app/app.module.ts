@@ -29,6 +29,8 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { IndustriesComponent } from './components/industries/industries.component';
 import { CreateorupdateComponent } from './modals/createorupdate/createorupdate.component';
 import { NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
+import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
+import { ProviderDetailComponent } from './components/providers/provider-detail/provider-detail.component';
 
 
 
@@ -56,6 +58,8 @@ import { NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
     CategoriesComponent,
     IndustriesComponent,
     CreateorupdateComponent,
+    ProductDetailComponent,
+    ProviderDetailComponent
 
     
     

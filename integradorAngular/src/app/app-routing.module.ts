@@ -12,6 +12,9 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { IndustriesComponent } from './components/industries/industries.component';
+import { ProviderDetailComponent } from './components/providers/provider-detail/provider-detail.component';
+import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
+
 
 const routes: Routes = [
   {
@@ -20,6 +23,7 @@ const routes: Routes = [
       { path: 'listado', component: ProviderListComponent },
       { path: 'formulario', component: ProviderAddFormComponent },
       { path: 'formulario/:id', component: ProviderAddFormComponent },
+      { path: 'detalle/:id', component: ProviderDetailComponent },
     ],
   },
   {
@@ -28,6 +32,7 @@ const routes: Routes = [
       { path: 'listado', component: ProductListComponent },
       { path: 'formulario', component: ProductAddFormComponent },
       { path: 'formulario/:id', component: ProductAddFormComponent },
+      { path: 'detalle/:id', component: ProductDetailComponent },
     ],
   },
   {

@@ -65,6 +65,13 @@
             <td>
               <div class="d-grid">
                 <button
+                type="button"
+                class="btn btn-warning btn-sm mb-1"
+                [routerLink]="['/proveedores/detalle', provider.idProvider]"
+              >
+                Ver
+              </button>
+                <button
                   type="button"
                   class="btn btn-primary btn-sm mb-1"
                   (click)="updateProvider(provider.idProvider)"

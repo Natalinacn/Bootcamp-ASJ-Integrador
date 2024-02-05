@@ -1,0 +1,51 @@
+<div class="d-flex align-items-center justify-content-center" style="height: 60vh; margin-top: 20vh;">
+    <div class="card text-bg-dark" style="max-width: 40rem; min-width: 20rem;">
+        <img src="{{ provider.img }}" class="card-img-top" alt="logo" style="max-height: 15rem;">
+    <div class="card-body">
+      <h5 class="card-title text-uppercase">{{ provider.businessName }}</h5>
+      <p class="reduce-interlineado">Código: {{ provider.providerCode }}</p>
+    </div>
+    <ul class="list-group list-group-flush ">
+      <li class="list-group-item  text-bg-dark ">
+        <p class="card-text fw-bold text-uppercase reduce-interlineado">Contacto:</p>
+        <p class="fw-bold reduce-interlineado">
+          Website:
+          <a href="{{ provider.website }}" class="card-link" target="_blank">{{
+            provider.website
+          }}</a>
+        </p>
+        <p class="fw-bold reduce-interlineado">Mail: <a href="mailto:{{ provider.email }}" class="card-link">{{
+            provider.email}}</a></p>
+        <p class="fw-bold reduce-interlineado">Teléfono: {{ provider.phone }}</p>
+        <p class="fw-bold reduce-interlineado">
+          Dirección: {{ provider.address.streetAndNumber }},
+          {{ provider.address.city.city }},
+          {{ provider.address.city.province.province }},
+          {{ provider.address.city.province.country.country }}
+        </p>
+      </li>
+      <li class="list-group-item  text-bg-dark ">
+        <p class="card-text fw-bold text-uppercase reduce-interlineado">Información fiscal:</p>
+        <p class="fw-bold reduce-interlineado">Rubro: {{ provider.industry.industry }}</p>
+        <p class="fw-bold reduce-interlineado">Condición ante el Iva: {{ provider.ivaCondition.ivaCondition }}</p>
+        <p class="fw-bold reduce-interlineado">CUIT: {{ provider.cuit }}</p>
+      </li>
+    </ul>
+    <div class="card-body">
+      <p class="card-text fw-bold text-uppercase reduce-interlineado">
+        Persona Responsable:
+        {{ provider.responsiblePerson.firstName }}
+        {{ provider.responsiblePerson.lastName }}
+        ({{ provider.responsiblePerson.role }})
+      </p>
+      <p class="fw-bold reduce-interlineado">Mail: <a
+        href="mailto:{{ provider.responsiblePerson.email }}"
+        class="card-link"
+        >{{ provider.responsiblePerson.email }}</a></p>
+      <p class="fw-bold reduce-interlineado">Teléfono: {{ provider.responsiblePerson.phone }}</p>
+    </div>
+    <div class="d-flex align-items-center justify-content-center m-2  ">
+      <button class="btn btn-success" [routerLink]="['/proveedores/listado']">Volver</button>
+  </div>
+  </div>
+</div>

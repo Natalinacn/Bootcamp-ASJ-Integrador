@@ -31,6 +31,13 @@
           <td>{{ product.price | currency: 'ARS' }}</td>
           <td>
             <div class="d-grid">
+              <button
+              type="button"
+              class="btn btn-warning btn-sm mb-1"
+              [routerLink]="['/productos/detalle', product.idProduct]"
+            >
+              Ver
+            </button>
               <button type="button" class="btn btn-primary btn-sm mb-1" (click)="updateProduct(product.idProduct)">Editar</button>
               <button type="button" class="btn btn-danger btn-sm " (click)="deleteProduct(product.idProduct)">Eliminar</button>
             </div>

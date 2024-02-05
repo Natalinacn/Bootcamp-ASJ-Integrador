@@ -15,3 +15,6 @@
     text-overflow: ellipsis; /* Agrega puntos suspensivos cuando el contenido desborda */
 }
 
+.search{
+    width: 245px;
+}

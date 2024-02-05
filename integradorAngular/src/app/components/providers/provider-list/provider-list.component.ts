@@ -13,6 +13,7 @@ import { ProvidersService } from 'src/app/services/providers.service';
 export class ProviderListComponent implements OnInit {
 
   providersData: ProvidersModel[] = [];
+  criteria: string = '';
 
   constructor(
     private providersService: ProvidersService,
@@ -25,6 +26,7 @@ export class ProviderListComponent implements OnInit {
   }
 
   listProviders() {
+    console.log('Criteria:', this.criteria);
     //COnsumir los datos del observable (suscribirnos)
     this.providersService.getProviders().subscribe((data) => {
       this.providersData = data;

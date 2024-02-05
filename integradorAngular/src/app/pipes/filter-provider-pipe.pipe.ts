@@ -1,18 +1,21 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { ProvidersModel } from '../model/providerModel';
 
 @Pipe({
   name: 'filterProviderPipe'
 })
 export class FilterProviderPipePipe implements PipeTransform {
 
-  transform(values: string[], args: string): string[] {
-    let result: string[] = [];
-    for(const value of values){
-      if(value.indexOf(args) > -1){
-        result = [...result, value]
-      }
+  transform(providers: ProvidersModel[], criteria: string): ProvidersModel[] {
+    console.log('Filtering with criteria:', criteria);
+    if(!criteria || criteria === ''){
+      return providers
     }
-    return result;
+    const lowerCaseCriteria = criteria.toLowerCase();
+    return providers.filter(provider=>
+      provider.businessName.toLowerCase().includes(lowerCaseCriteria) ||
+      provider.providerCode.toLowerCase().includes(lowerCaseCriteria)
+      );
     
   }
 

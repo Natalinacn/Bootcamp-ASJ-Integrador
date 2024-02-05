@@ -32,6 +32,7 @@ import { NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { ProviderDetailComponent } from './components/providers/provider-detail/provider-detail.component';
 import { FilterProviderPipePipe } from './pipes/filter-provider-pipe.pipe';
+import { FilterProductPipePipe } from './pipes/filter-product-pipe.pipe';
 
 
 
@@ -61,7 +62,8 @@ import { FilterProviderPipePipe } from './pipes/filter-provider-pipe.pipe';
     CreateorupdateComponent,
     ProductDetailComponent,
     ProviderDetailComponent,
-    FilterProviderPipePipe
+    FilterProviderPipePipe,
+    FilterProductPipePipe
 
     
     

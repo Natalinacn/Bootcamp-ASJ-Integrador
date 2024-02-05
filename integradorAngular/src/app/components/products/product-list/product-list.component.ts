@@ -11,6 +11,7 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductListComponent implements OnInit {
   productsData: any[] = [];
+  criteria: string = '';
 
 
   constructor(

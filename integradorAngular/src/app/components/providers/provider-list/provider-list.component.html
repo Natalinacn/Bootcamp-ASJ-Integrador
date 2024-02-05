@@ -10,7 +10,7 @@
       Agregar +
     </button>
     <form class="d-flex" role="search">
-      <input class="form-control me-2 search" type="search" placeholder="Buscar por nombre ó código" aria-label="Search">
+      <input class="form-control me-2 search" type="search" placeholder="Buscar por nombre ó código" aria-label="Search" [(ngModel)]="criteria" name="searchCriteria">
       <button class="btn btn-success" type="submit">Buscar</button>
     </form>
   </div>
@@ -32,7 +32,7 @@
           </tr>
         </thead>
         <tbody id="dataProveedores">
-          <tr class="text-center" *ngFor="let provider of providersData">
+          <tr class="text-center" *ngFor="let provider of providersData | filterProviderPipe:criteria">
             <td><img [src]="provider.img" style="max-width: 100px" /></td>
             <td>{{ provider.providerCode }}</td>
             <td>{{ provider.businessName }}</td>

@@ -28,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { IndustriesComponent } from './components/industries/industries.component';
 import { CreateorupdateComponent } from './modals/createorupdate/createorupdate.component';
+import { NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -66,7 +67,8 @@ import { CreateorupdateComponent } from './modals/createorupdate/createorupdate.
     NgbModalModule,
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

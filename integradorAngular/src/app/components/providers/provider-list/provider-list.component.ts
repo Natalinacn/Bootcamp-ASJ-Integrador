@@ -11,6 +11,7 @@ import { ProvidersService } from 'src/app/services/providers.service';
   styleUrls: ['./provider-list.component.css'],
 })
 export class ProviderListComponent implements OnInit {
+
   providersData: ProvidersModel[] = [];
 
   constructor(
@@ -53,4 +54,6 @@ export class ProviderListComponent implements OnInit {
   updateProvider(idProvider: number) {
     this.router.navigate([`/proveedores/formulario/${idProvider}`]);
   }
+
+
 }

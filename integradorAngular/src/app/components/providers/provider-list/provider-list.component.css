@@ -8,3 +8,10 @@
     display: block;
 }
 
+.ttip{
+    max-width: 300px; /* Ancho máximo del tooltip */
+    white-space: nowrap; /* Evita el ajuste de línea */
+    overflow: hidden; /* Oculta el contenido que desborda */
+    text-overflow: ellipsis; /* Agrega puntos suspensivos cuando el contenido desborda */
+}
+

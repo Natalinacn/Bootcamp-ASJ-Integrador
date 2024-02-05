@@ -95,9 +95,9 @@ export class PurchaseAddFormComponent implements OnInit {
       updated_at: undefined,
       deleted_at: undefined,
     },
-    created_at: undefined,
-    updated_at: undefined,
-    deleted_at: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+    deletedAt: undefined,
   };
   productOrder: OrderDetailModel = {
     idOrderDetail: 0,

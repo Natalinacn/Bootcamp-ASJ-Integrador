@@ -33,6 +33,7 @@ import { ProductDetailComponent } from './components/products/product-detail/pro
 import { ProviderDetailComponent } from './components/providers/provider-detail/provider-detail.component';
 import { FilterProviderPipePipe } from './pipes/filter-provider-pipe.pipe';
 import { FilterProductPipePipe } from './pipes/filter-product-pipe.pipe';
+import { FilterPurchasePipePipe } from './pipes/filter-purchase-pipe.pipe';
 
 
 
@@ -63,7 +64,8 @@ import { FilterProductPipePipe } from './pipes/filter-product-pipe.pipe';
     ProductDetailComponent,
     ProviderDetailComponent,
     FilterProviderPipePipe,
-    FilterProductPipePipe
+    FilterProductPipePipe,
+    FilterPurchasePipePipe
 
     
     

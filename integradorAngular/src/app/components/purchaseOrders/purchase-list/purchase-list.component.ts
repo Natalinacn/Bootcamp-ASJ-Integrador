@@ -11,6 +11,7 @@ import { PurchaseOrdersService } from 'src/app/services/purchase-orders.service'
 })
 export class PurchaseListComponent implements OnInit {
   purchaseData: any[] = [];
+  criteria: string = '';
 
   constructor(
     private purchaseService: PurchaseOrdersService,
@@ -56,9 +57,9 @@ export class PurchaseListComponent implements OnInit {
   }
 
 
-  showDetailsPurchase(purchaseId: string) {
+  showDetailsPurchase(idPurchaseOrder: number) {
    
-    this.router.navigate([`/ordenes/detalle/${purchaseId}`]);
+    this.router.navigate([`/ordenes/detalle/${idPurchaseOrder}`]);
   }
 
 

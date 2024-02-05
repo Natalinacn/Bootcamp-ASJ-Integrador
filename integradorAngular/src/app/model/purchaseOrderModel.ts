@@ -18,8 +18,8 @@ export interface PurchaseOrdersModel {
     status: boolean,
     totalAmount: number,
     provider: ProvidersModel,
-    created_at?: Date;
-    updated_at?: Date;
-    deleted_at?: Date;
+    createdAt?: Date;
+    updatedAt?: Date;
+    deletedAt?: Date;
 }
 

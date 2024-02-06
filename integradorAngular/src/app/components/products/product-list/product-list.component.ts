@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { DeleteConfirmationModalComponent } from 'src/app/modals/delete-confirmation-modal/delete-confirmation-modal.component';
 import { ProductsService } from 'src/app/services/products.service';
+import { ProductsModel } from 'src/app/model/productModel';
 
 @Component({
   selector: 'app-product-list',
@@ -12,6 +13,8 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductListComponent implements OnInit {
   productsData: any[] = [];
   criteria: string = '';
+  productActivate!: ProductsModel;
+
 
 
   constructor(
@@ -70,7 +73,21 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  updateProduct(productId: number) {
-    this.router.navigate([`/productos/formulario/${productId}`]);
+  updateProduct(idProduct: number) {
+    this.router.navigate([`/productos/formulario/${idProduct}`]);
   }
+
+  reactivateProduct(idProduct: number) {
+    const productToReactivate = this.productsData.find(product => product.idProduct === idProduct);
+    if (productToReactivate) {
+      productToReactivate.deletedAt = null;
+
+      this.productService.updateProduct(idProduct, productToReactivate).subscribe((response) => {
+        console.log('Producto reactivado:', response);
+      });
+    } else {
+      console.error('Producto no encontrado');
+    }
+  }
+  
 }

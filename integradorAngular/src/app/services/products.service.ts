@@ -78,4 +78,6 @@ export class ProductsService {
     const url = `${this.baseUrl}/proveedor/${idProvider}`;
     return this.clienteHttp.get<ProductsModel[]>(url);
   }
+
+
 }

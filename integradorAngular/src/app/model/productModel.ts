@@ -10,9 +10,9 @@ export interface ProductsModel {
     description: string,
     price: number
     img: string
-    created_at?: Date;
-    updated_at?: Date;
-    deleted_at?: Date;
+    createdAt: Date | null;
+    updatedAt: Date | null;
+    deletedAt: Date | null;
 
 
 }

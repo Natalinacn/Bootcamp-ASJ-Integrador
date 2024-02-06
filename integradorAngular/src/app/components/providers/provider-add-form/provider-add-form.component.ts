@@ -75,9 +75,9 @@ export class ProviderAddFormComponent implements OnInit {
       email: '',
       role: '',
     },
-    created_at: undefined,
-    updated_at: undefined,
-    deleted_at: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+    deletedAt: undefined,
   };
 
   ngOnInit(): void {

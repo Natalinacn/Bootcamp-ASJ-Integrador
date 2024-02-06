@@ -70,6 +70,7 @@ public class ProductServiceIMPL implements IProductService {
 			updatedProduct.setDescription(product.getDescription());
 			updatedProduct.setPrice(product.getPrice());
 			updatedProduct.setImg(product.getImg());
+			updatedProduct.setDeletedAt(product.getDeletedAt());
 			updatedProduct.setUpdatedAt(LocalDate.now());
 			productRepository.save(updatedProduct);
 			return updatedProduct;

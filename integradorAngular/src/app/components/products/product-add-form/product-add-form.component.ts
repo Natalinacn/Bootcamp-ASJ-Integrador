@@ -78,16 +78,16 @@ export class ProductAddFormComponent implements OnInit {
         email: '',
         role: '',
       },
-      created_at: undefined,
-      updated_at: undefined,
-      deleted_at: undefined,
+      createdAt: undefined,
+      updatedAt: undefined,
+      deletedAt: undefined,
     },
     description: '',
     price: 0,
     img: '',
-    created_at: undefined,
-    updated_at: undefined,
-    deleted_at: undefined,
+    createdAt: null,
+    updatedAt: null,
+    deletedAt: null,
   };
 
   ngOnInit(): void {

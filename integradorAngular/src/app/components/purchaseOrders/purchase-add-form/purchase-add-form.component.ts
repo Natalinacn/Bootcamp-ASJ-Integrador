@@ -34,7 +34,7 @@ export class PurchaseAddFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.providersService.getProviders().subscribe(
+    this.providersService.getActivatedProviders().subscribe(
       (providers) => (this.providers = providers || []),
       (error) => console.error('Error obteniendo proveedores', error)
     );

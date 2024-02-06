@@ -189,7 +189,7 @@ export class ProductAddFormComponent implements OnInit {
   }
 
   listProviders() {
-    this.providersService.getProviders().subscribe((data) => {
+    this.providersService.getActivatedProviders().subscribe((data) => {
       this.providersData = data;
     });
   }

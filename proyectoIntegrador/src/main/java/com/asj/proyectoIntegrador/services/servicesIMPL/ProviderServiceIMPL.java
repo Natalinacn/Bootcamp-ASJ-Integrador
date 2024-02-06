@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.asj.proyectoIntegrador.entities.Address;
+import com.asj.proyectoIntegrador.entities.Product;
 import com.asj.proyectoIntegrador.entities.Provider;
 import com.asj.proyectoIntegrador.exception.ResourceNotFoundException;
 import com.asj.proyectoIntegrador.repositories.AddressRepository;
@@ -41,14 +42,20 @@ public class ProviderServiceIMPL implements IProviderService {
 	}
 
 	@Override
-	@Transactional
 	public List<Provider> listAllProviders() {
+		return providerRepository.findAll();
+	}
+	
+	// Lista los no eliminados solamente, es el que debería ir en mi listado
+	@Override
+	public List<Provider> listProvidersNotDeleted() {
 		return providerRepository.findAllProviderByDeletedAtIsNullOrderByBusinessNameAsc();
-//		if (providerList.isEmpty()) {
-//			throw new Exception("No hay proveedores cargados");
-//		} else {
-//			return providerList;
-//		}
+	}
+	
+	//Lista los eliminados
+	@Override
+	public List<Provider> listProvidersDeleted() {
+		return providerRepository.findAllProviderByDeletedAtIsNotNullOrderByBusinessNameAsc();
 	}
 
 	@Override
@@ -80,6 +87,7 @@ public class ProviderServiceIMPL implements IProviderService {
 			updatedprovider.setAddress(provider.getAddress());
 			updatedprovider.setIvaCondition(provider.getIvaCondition());
 			updatedprovider.setResponsiblePerson(provider.getResponsiblePerson());
+			updatedprovider.setDeletedAt(provider.getDeletedAt());
 			updatedprovider.setUpdatedAt(LocalDate.now());
 			providerRepository.save(updatedprovider);
 		} else {

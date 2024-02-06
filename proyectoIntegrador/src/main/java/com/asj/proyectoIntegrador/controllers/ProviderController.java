@@ -41,7 +41,7 @@ public class ProviderController {
 		}
 	}
 
-	@GetMapping("/listado")
+	@GetMapping("/listadoTotal")
 	public ResponseEntity<List<Provider>> getProviders() {
 		List<Provider> providers;
 		try {
@@ -51,6 +51,22 @@ public class ProviderController {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
+	}
+	
+	// Traigo los proveedores que no estan eliminados ACTIVOS
+	@GetMapping("/listado")
+	public ResponseEntity<List<Provider>> getActivatedProviders() {
+		List<Provider> providers = this.iProviderService.listProvidersNotDeleted();
+		return new ResponseEntity<>(providers, HttpStatus.OK);
+
+	}
+
+	//Traigo los eliminados
+	
+	@GetMapping("/listadoEliminados")
+	public ResponseEntity<List<Provider>> getDeletedProviders() {
+		List<Provider> providers = this.iProviderService.listProvidersDeleted();
+		return new ResponseEntity<>(providers , HttpStatus.OK);
 	}
 	
 	@GetMapping("/{idProvider}")

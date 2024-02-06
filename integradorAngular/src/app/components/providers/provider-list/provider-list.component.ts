@@ -12,6 +12,22 @@ import { ProvidersService } from 'src/app/services/providers.service';
 })
 export class ProviderListComponent implements OnInit {
 
+reactivateProvider(arg0: number) {
+throw new Error('Method not implemented.');
+}
+
+listDeletedProviders() {
+  this.providersService.getDeletedProviders().subscribe((data)=>{
+    this.providersData = data;
+  });
+}
+
+listAllProviders() {
+this.providersService.getAllProviders().subscribe((data)=>{
+  this.providersData = data;
+});
+}
+
   providersData: ProvidersModel[] = [];
   criteria: string = '';
 
@@ -22,13 +38,13 @@ export class ProviderListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listProviders(); //Este es el que va con observables FINAL
+    this.listActivatedProviders();
   }
 
-  listProviders() {
+  listActivatedProviders() {
     console.log('Criteria:', this.criteria);
     //COnsumir los datos del observable (suscribirnos)
-    this.providersService.getProviders().subscribe((data) => {
+    this.providersService.getActivatedProviders().subscribe((data) => {
       this.providersData = data;
     });
   }
@@ -43,7 +59,7 @@ export class ProviderListComponent implements OnInit {
       (result) => {
         if (result === 'confirm') {
           this.providersService.deleteProvider(Number(idProvider)).subscribe(() => {
-            this.listProviders();
+            this.listActivatedProviders();
           });
         }
       },

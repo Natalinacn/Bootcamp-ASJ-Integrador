@@ -20,7 +20,7 @@ export class ProvidersService {
   private baseUrl = 'http://localhost:8080/proveedores';
 
   //Creo el método getProviders ----> Reemplazar luego el nombre por getProviders
-  getProviders(): Observable<ProvidersModel[]> {
+  getActivatedProviders(): Observable<ProvidersModel[]> {
     const url = `${this.baseUrl}/listado`;
     return this.clienteHttp.get<ProvidersModel[]>(url);
   }
@@ -86,4 +86,16 @@ export class ProvidersService {
     const url = 'http://localhost:8080/iva/listado';
     return this.clienteHttp.get<IvaConditionModel[]>(url);
   }
+
+
+  getAllProviders(): Observable<ProvidersModel[]>{
+    const url = this.baseUrl + '/listadoTotal';
+    return this.clienteHttp.get<ProvidersModel[]>(url);
+  }
+
+  getDeletedProviders(): Observable<ProvidersModel[]>{
+    const url = this.baseUrl + '/listadoEliminados';
+    return this.clienteHttp.get<ProvidersModel[]>(url);
+  }
+
 }

@@ -11,23 +11,6 @@ import { ProvidersService } from 'src/app/services/providers.service';
   styleUrls: ['./provider-list.component.css'],
 })
 export class ProviderListComponent implements OnInit {
-
-reactivateProvider(arg0: number) {
-throw new Error('Method not implemented.');
-}
-
-listDeletedProviders() {
-  this.providersService.getDeletedProviders().subscribe((data)=>{
-    this.providersData = data;
-  });
-}
-
-listAllProviders() {
-this.providersService.getAllProviders().subscribe((data)=>{
-  this.providersData = data;
-});
-}
-
   providersData: ProvidersModel[] = [];
   criteria: string = '';
 
@@ -58,9 +41,11 @@ this.providersService.getAllProviders().subscribe((data)=>{
     modalRef.result.then(
       (result) => {
         if (result === 'confirm') {
-          this.providersService.deleteProvider(Number(idProvider)).subscribe(() => {
-            this.listActivatedProviders();
-          });
+          this.providersService
+            .deleteProvider(Number(idProvider))
+            .subscribe(() => {
+              this.listActivatedProviders();
+            });
         }
       },
       (reason) => {
@@ -68,10 +53,33 @@ this.providersService.getAllProviders().subscribe((data)=>{
       }
     );
   }
-  
+
   updateProvider(idProvider: number) {
     this.router.navigate([`/proveedores/formulario/${idProvider}`]);
   }
 
+  listDeletedProviders() {
+    this.providersService.getDeletedProviders().subscribe((data) => {
+      this.providersData = data;
+    });
+  }
 
+  listAllProviders() {
+    this.providersService.getAllProviders().subscribe((data) => {
+      this.providersData = data;
+    });
+  }
+
+  reactivateProvider(idProvider: number) {
+    const providerToReactivate = this.providersData.find(provider => provider.idProvider === idProvider);
+    if (providerToReactivate) {
+      providerToReactivate.deletedAt = null;
+
+      this.providersService.updateProvider(idProvider, providerToReactivate).subscribe((response) => {
+        console.log('Proveedor reactivado:', response);
+      });
+    } else {
+      console.error('Proveedor no encontrado');
+    }
+  }
 }

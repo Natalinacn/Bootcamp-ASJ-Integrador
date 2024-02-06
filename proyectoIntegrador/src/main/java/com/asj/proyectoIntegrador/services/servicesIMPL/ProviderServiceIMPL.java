@@ -74,7 +74,7 @@ public class ProviderServiceIMPL implements IProviderService {
 	@Override
 	@Transactional
 	public Provider updateProvider(Integer idProvider, Provider provider) throws Exception {
-		Provider updatedprovider = providerRepository.findByIdProviderAndDeletedAtNull(idProvider);
+		Provider updatedprovider = providerRepository.findById(idProvider).get();
 		if (updatedprovider != null) {
 			updatedprovider.setProviderCode(provider.getProviderCode());
 			updatedprovider.setBusinessName(provider.getBusinessName());
@@ -90,11 +90,10 @@ public class ProviderServiceIMPL implements IProviderService {
 			updatedprovider.setDeletedAt(provider.getDeletedAt());
 			updatedprovider.setUpdatedAt(LocalDate.now());
 			providerRepository.save(updatedprovider);
+			return updatedprovider;
 		} else {
 			throw new Exception("Error al guardar el proveedor con id " + idProvider);
 		}
-
-		return null;
 	}
 
 	@Override

@@ -40,7 +40,7 @@ export interface ProvidersModel {
     email: string;
     role: string;
   };
-  createdAt?: Date;
-  updatedAt?: Date;
-  deletedAt?: Date;
+  createdAt: Date | null;
+  updatedAt: Date | null;
+  deletedAt: Date | null;
 }

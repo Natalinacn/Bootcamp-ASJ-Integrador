@@ -10,6 +10,15 @@ import { PurchaseOrdersService } from 'src/app/services/purchase-orders.service'
   styleUrls: ['./purchase-list.component.css'],
 })
 export class PurchaseListComponent implements OnInit {
+listAllPurchases() {
+throw new Error('Method not implemented.');
+}
+listDeletedPurchases() {
+throw new Error('Method not implemented.');
+}
+listActivatedPurchases() {
+throw new Error('Method not implemented.');
+}
   purchaseData: any[] = [];
   criteria: string = '';
 

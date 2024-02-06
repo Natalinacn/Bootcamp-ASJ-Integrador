@@ -34,6 +34,7 @@ import { ProviderDetailComponent } from './components/providers/provider-detail/
 import { FilterProviderPipePipe } from './pipes/filter-provider-pipe.pipe';
 import { FilterProductPipePipe } from './pipes/filter-product-pipe.pipe';
 import { FilterPurchasePipePipe } from './pipes/filter-purchase-pipe.pipe';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 
 
@@ -65,7 +66,8 @@ import { FilterPurchasePipePipe } from './pipes/filter-purchase-pipe.pipe';
     ProviderDetailComponent,
     FilterProviderPipePipe,
     FilterProductPipePipe,
-    FilterPurchasePipePipe
+    FilterPurchasePipePipe,
+    BreadcrumbComponent
 
     
     

@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.asj.proyectoIntegrador.entities.Product;
 import com.asj.proyectoIntegrador.entities.PurchaseOrder;
 import com.asj.proyectoIntegrador.repositories.PurchaseOrderRepository;
 import com.asj.proyectoIntegrador.services.IPurchaseOrderService;

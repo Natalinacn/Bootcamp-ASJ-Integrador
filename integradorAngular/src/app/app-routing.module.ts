@@ -15,48 +15,106 @@ import { IndustriesComponent } from './components/industries/industries.componen
 import { ProviderDetailComponent } from './components/providers/provider-detail/provider-detail.component';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 
-
 const routes: Routes = [
   {
     path: 'proveedores',
+    data: { breadcrumb: 'Proveedores', url: '#'  },
     children: [
-      { path: 'listado', component: ProviderListComponent },
-      { path: 'formulario', component: ProviderAddFormComponent },
-      { path: 'formulario/:id', component: ProviderAddFormComponent },
-      { path: 'detalle/:id', component: ProviderDetailComponent },
+      {
+        path: 'listado',
+        component: ProviderListComponent,
+        data: { breadcrumb: 'Listado' },
+      },
+      {
+        path: 'formulario',
+        component: ProviderAddFormComponent,
+        data: { breadcrumb: 'Formulario' },
+      },
+      {
+        path: 'formulario/:id',
+        component: ProviderAddFormComponent,
+        data: { breadcrumb: 'Formulario' },
+      },
+      {
+        path: 'detalle/:id',
+        component: ProviderDetailComponent,
+        data: { breadcrumb: 'Detalle' },
+      },
     ],
   },
   {
     path: 'productos',
+    data: { breadcrumb: 'Productos', url: '#' },
     children: [
-      { path: 'listado', component: ProductListComponent },
-      { path: 'formulario', component: ProductAddFormComponent },
-      { path: 'formulario/:id', component: ProductAddFormComponent },
-      { path: 'detalle/:id', component: ProductDetailComponent },
+      {
+        path: 'listado',
+        component: ProductListComponent,
+        data: { breadcrumb: 'Listado' },
+      },
+      {
+        path: 'formulario',
+        component: ProductAddFormComponent,
+        data: { breadcrumb: 'Formulario' },
+      },
+      {
+        path: 'formulario/:id',
+        component: ProductAddFormComponent,
+        data: { breadcrumb: 'Formulario' },
+      },
+      {
+        path: 'detalle/:id',
+        component: ProductDetailComponent,
+        data: { breadcrumb: 'Detalle' },
+      },
     ],
   },
   {
     path: 'ordenes',
+    data: { breadcrumb: 'Ordenes', url: '#' },
     children: [
-      { path: 'listado', component: PurchaseListComponent },
-      { path: 'formulario', component: PurchaseAddFormComponent },
-      { path: 'detalle/:id', component: PurchaseDetailComponent },
+      {
+        path: 'listado',
+        component: PurchaseListComponent,
+        data: { breadcrumb: 'Listado' },
+      },
+      {
+        path: 'formulario',
+        component: PurchaseAddFormComponent,
+        data: { breadcrumb: 'Formulario' },
+      },
+      {
+        path: 'detalle/:id',
+        component: PurchaseDetailComponent,
+        data: { breadcrumb: 'Detalle' },
+      },
     ],
   },
   {
     path: 'configuracion',
+    data: { breadcrumb: 'Configuracion', url: '#' },
     children: [
-      { path: 'categorias', component: CategoriesComponent },
-      { path: 'rubros', component: IndustriesComponent },
+      {
+        path: 'categorias',
+        component: CategoriesComponent,
+        data: { breadcrumb: 'Categorias' },
+      },
+      {
+        path: 'rubros',
+        component: IndustriesComponent,
+        data: { breadcrumb: 'Rubros' },
+      },
     ],
   },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent},
-  { path: 'registro', component: RegisterComponent},
+  { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' } },
+  { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
+  {
+    path: 'registro',
+    component: RegisterComponent,
+    data: { breadcrumb: 'Registro' },
+  },
   //{ path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirecciona a /login por defecto
   { path: '**', redirectTo: '/login' }, // Redirige a /login si no encuentra la ruta
-  
 ];
 
 @NgModule({

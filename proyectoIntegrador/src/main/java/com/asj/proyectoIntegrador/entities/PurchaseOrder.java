@@ -97,6 +97,8 @@ public class PurchaseOrder {
 		this.description = description;
 	}
 
+
+
 	public Boolean getStatus() {
 		return status;
 	}

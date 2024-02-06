@@ -1,0 +1,25 @@
+<nav aria-label="breadcrumb" class="mt-2">
+  <ol class="breadcrumb">
+    <ng-container *ngIf="!isLoginPage() && !isHomePage()">
+      <li class="breadcrumb-item"><a href="/home">Home</a></li>
+    </ng-container>
+    <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
+      <li class="breadcrumb-item" [ngClass]="{'active': last}" [attr.aria-current]="last ? 'page' : ''">
+        <a *ngIf="breadcrumb.url !== '#'" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+        <span *ngIf="breadcrumb.url === '#'">{{ breadcrumb.label }}</span>
+      </li>
+    </ng-container>
+  </ol>
+</nav>
+
+
+<!-- <nav aria-label="breadcrumb" class="mt-2">
+  <ol class="breadcrumb">
+    <ng-container *ngFor="let breadcrumb of breadcrumbs; let last = last">
+      <li class="breadcrumb-item" [ngClass]="{'active': last}" [attr.aria-current]="last ? 'page' : ''">
+        <a *ngIf="breadcrumb.url !== '#'" [routerLink]="breadcrumb.url">{{ breadcrumb.label }}</a>
+        <span *ngIf="breadcrumb.url === '#'">{{ breadcrumb.label }}</span>
+      </li>
+    </ng-container>
+  </ol>
+</nav> -->

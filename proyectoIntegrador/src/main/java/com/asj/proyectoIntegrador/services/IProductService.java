@@ -22,4 +22,6 @@ public interface IProductService {
 
 	List<Product> findProductByProvider(Integer idProvider);
 
+	List<Product> listProductsDeleted();
+
 }

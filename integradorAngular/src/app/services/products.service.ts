@@ -16,10 +16,21 @@ export class ProductsService {
   ) {}
 
   //  NUEVOS METODOS
-  getProducts(): Observable<ProductsModel[]> {
+  getActivatedProducts(): Observable<ProductsModel[]> {
     const url = this.baseUrl + '/listado';
     return this.clienteHttp.get<ProductsModel[]>(url);
   }
+
+  getDeletedProducts(): Observable<ProductsModel[]> {
+    const url = this.baseUrl + '/listadoEliminados';
+    return this.clienteHttp.get<ProductsModel[]>(url);
+  }
+
+  getAllProducts(): Observable<ProductsModel[]> {
+    const url = this.baseUrl + '/listadoTotal';
+    return this.clienteHttp.get<ProductsModel[]>(url);
+  }
+  
 
   createProduct(product: ProductsModel): Observable<ProductsModel> {
     const url = this.baseUrl + '/formulario';

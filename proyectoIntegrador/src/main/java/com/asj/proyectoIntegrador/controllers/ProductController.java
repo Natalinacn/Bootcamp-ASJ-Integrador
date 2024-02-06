@@ -29,12 +29,26 @@ public class ProductController {
 	}
 
 	// http://localhost:8080/productos/listado
-	// Traigo los productos que no estan eliminados
+	// Traigo los productos que no estan eliminados ACTIVOS
 	@GetMapping("/listado")
-	public ResponseEntity<List<Product>> getProducts() {
+	public ResponseEntity<List<Product>> getActivatedProducts() {
 		List<Product> products = this.iProductService.listProductsNotDeleted();
 		return new ResponseEntity<>(products, HttpStatus.OK);
 
+	}
+	
+	@GetMapping("/listadoTotal")
+	public ResponseEntity<List<Product>> getAllProducts() {
+		List<Product> products = this.iProductService.listAllProducts();
+		return new ResponseEntity<>(products, HttpStatus.OK);
+	}
+	
+	//Traigo los eliminados
+	
+	@GetMapping("/listadoEliminados")
+	public ResponseEntity<List<Product>> getDeletedProducts() {
+		List<Product> products = this.iProductService.listProductsDeleted();
+		return new ResponseEntity<>(products, HttpStatus.OK);
 	}
 
 	@GetMapping("/{idProduct}")

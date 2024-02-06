@@ -31,6 +31,13 @@ public class ProductServiceIMPL implements IProductService {
 	public List<Product> listProductsNotDeleted() {
 		return productRepository.findAllProductByDeletedAtIsNullOrderByProductName();
 	}
+	
+	//Lista los eliminados
+	@Override
+	@Transactional(readOnly = true)
+	public List<Product> listProductsDeleted() {
+		return productRepository.findAllProductByDeletedAtIsNotNullOrderByProductName();
+	}
 
 	@Override
 	@Transactional(readOnly = true)

@@ -21,12 +21,24 @@ export class ProductListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.listProducts();
+    this.listActivatedProducts();
     this.sortProductsByProductName();
   }
 
-  listProducts() {
-    this.productService.getProducts().subscribe((data) => {
+  listActivatedProducts() {
+    this.productService.getActivatedProducts().subscribe((data) => {
+      this.productsData = data;
+    });
+  }
+
+  listDeletedProducts() {
+    this.productService.getDeletedProducts().subscribe((data) => {
+      this.productsData = data;
+    });
+  }
+
+  listAllProducts(){
+    this.productService.getAllProducts().subscribe((data)=>{
       this.productsData = data;
     });
   }
@@ -42,7 +54,7 @@ export class ProductListComponent implements OnInit {
       (result) => {
         if (result === 'confirm') {
           this.productService.deleteProduct(Number(idProduct)).subscribe(() => {
-            this.listProducts();
+            this.listActivatedProducts();
           });
         }
       },

@@ -117,7 +117,7 @@
         (change)="getProductsByProvider(purchaseOrder.provider.idProvider)"
         required
       >
-        <option selected disabled value="">Elige proveedor...</option>
+        <option selected value="">Elige proveedor...</option>
         <option
           *ngFor="let provider of providers"
           [value]="provider.idProvider"

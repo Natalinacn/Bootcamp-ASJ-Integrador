@@ -41,16 +41,7 @@ public class CategoryController {
 		}
 	}
 
-	
-	@GetMapping("/{categoryId}")
-	public ResponseEntity<Category> getCategoryById(@PathVariable Integer categoryId) {
-		try {
-			Category category = iCategoryService.getCategoryById(categoryId);
-			return new ResponseEntity<>(category, HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-	}
+
 	
 	
 	@PostMapping("/crear")

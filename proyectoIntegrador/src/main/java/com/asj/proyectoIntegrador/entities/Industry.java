@@ -22,16 +22,32 @@ public class Industry {
 	private String industry;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
+	private LocalDate deletedAt;
 	
 	public Industry() {
 	}
 
-	public Industry(Integer idIndustry, String industry, LocalDate createdAt, LocalDate updatedAt) {
+
+	public Industry(Integer idIndustry, @NotNull @NotBlank @Size(min = 3) String industry, LocalDate createdAt,
+			LocalDate updatedAt, LocalDate deletedAt) {
 		this.idIndustry = idIndustry;
 		this.industry = industry;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
+		this.deletedAt = deletedAt;
 	}
+
+	
+
+	public LocalDate getDeletedAt() {
+		return deletedAt;
+	}
+
+
+	public void setDeletedAt(LocalDate deletedAt) {
+		this.deletedAt = deletedAt;
+	}
+
 
 	public Integer getIdIndustry() {
 		return idIndustry;

@@ -12,7 +12,7 @@ export class IndustriesService {
   constructor(private clienteHttp: HttpClient) {}
 
   getIndustries(): Observable<Industry[]> {
-    const url = this.baseUrl + '/listado';
+    const url = this.baseUrl + '/listadoActivas';
     return this.clienteHttp.get<Industry[]>(url);    
   }
 

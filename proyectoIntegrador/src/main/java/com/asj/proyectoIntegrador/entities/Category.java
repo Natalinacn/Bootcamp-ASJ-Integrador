@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Category {
@@ -17,6 +18,7 @@ public class Category {
 	private Integer categoryId;
 	@NotNull
 	@NotBlank
+	@Size(min=3)
 	private String category;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;

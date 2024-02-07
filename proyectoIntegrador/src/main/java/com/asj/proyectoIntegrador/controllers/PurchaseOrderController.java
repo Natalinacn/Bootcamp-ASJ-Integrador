@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.asj.proyectoIntegrador.entities.Provider;
 import com.asj.proyectoIntegrador.entities.PurchaseOrder;
 import com.asj.proyectoIntegrador.services.IPurchaseOrderService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -89,7 +90,7 @@ public class PurchaseOrderController {
 	}
 	
 	@PostMapping("/formulario")
-	public ResponseEntity<PurchaseOrder> createPurchaseOrder(@RequestBody PurchaseOrder purchaseOrder) {
+	public ResponseEntity<PurchaseOrder> createPurchaseOrder(@Valid @RequestBody PurchaseOrder purchaseOrder) {
 		try {
 			PurchaseOrder newPurchaseOrder = purchaseOrderService.savePurchaseOrder(purchaseOrder);
 			return new ResponseEntity<PurchaseOrder>(newPurchaseOrder, HttpStatus.OK);
@@ -109,7 +110,7 @@ public class PurchaseOrderController {
 	}
 	
 	@PutMapping("/actualizar/{idPurchaseOrder}")
-	public ResponseEntity<PurchaseOrder> updatePurchaseOrder(@PathVariable Integer idPurchaseOrder, @RequestBody PurchaseOrder purchaseOrder) {
+	public ResponseEntity<PurchaseOrder> updatePurchaseOrder(@PathVariable Integer idPurchaseOrder, @Valid @RequestBody PurchaseOrder purchaseOrder) {
 		try {
 			PurchaseOrder updatedPurchaseOrder  = purchaseOrderService.updatePurchaseOrder(idPurchaseOrder, purchaseOrder);
 			return new ResponseEntity<PurchaseOrder>(updatedPurchaseOrder, HttpStatus.OK);

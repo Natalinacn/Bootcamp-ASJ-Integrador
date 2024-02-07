@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.asj.proyectoIntegrador.entities.Provider;
 import com.asj.proyectoIntegrador.services.IProviderService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
@@ -29,7 +32,7 @@ public class ProviderController {
 	}
 
 	@PostMapping("/formulario")
-	public ResponseEntity<Provider> createProvider(@RequestBody Provider provider) {
+	public ResponseEntity<Provider> createProvider(@Valid @RequestBody Provider provider) {
 
 		try {
 			iProviderService.saveProvider(provider);
@@ -103,7 +106,7 @@ public class ProviderController {
 	}
 
 	@PutMapping("actualizar/{idProvider}")
-	public ResponseEntity<Provider> updateProvider(@PathVariable Integer idProvider, @RequestBody Provider provider) {
+	public ResponseEntity<Provider> updateProvider(@PathVariable Integer idProvider, @Valid @RequestBody Provider provider) {
 		try {
 			iProviderService.updateProvider(idProvider, provider);
 			return new ResponseEntity<>(provider, HttpStatus.OK);

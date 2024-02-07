@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asj.proyectoIntegrador.entities.City;
-import com.asj.proyectoIntegrador.repositories.CityRepository;
 import com.asj.proyectoIntegrador.services.ICityService;
+
+import jakarta.validation.Valid;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -37,7 +38,7 @@ public class CityController {
 	}
 
 	@PostMapping("/crear")
-	public ResponseEntity<City> createCity(@RequestBody City city) {
+	public ResponseEntity<City> createCity(@Valid @RequestBody City city) {
 		try {
 			return new ResponseEntity<>(cityService.saveCity(city), HttpStatus.OK);
 		} catch (Exception e) {

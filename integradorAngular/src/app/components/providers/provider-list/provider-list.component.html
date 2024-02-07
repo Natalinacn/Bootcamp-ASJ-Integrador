@@ -78,7 +78,17 @@
               let provider of providersData | filterProviderPipe : criteria
             "
           >
-            <td><img [src]="provider.img" style="max-width: 100px" /></td>
+            <td><img 
+              *ngIf="provider.img; else defaultImage"
+              [src]="provider.img" style="max-width: 100px" />
+              <ng-template #defaultImage>
+                <img src="assets/defaultImage.JPG" 
+                alt="Imagen predeterminada"
+                style="max-width: 100px"/>                
+              </ng-template>
+            </td>
+
+
             <td>{{ provider.providerCode }}</td>
             <td>{{ provider.businessName }}</td>
             <td>

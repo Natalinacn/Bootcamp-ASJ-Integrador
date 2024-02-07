@@ -10,6 +10,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Provider {
@@ -17,12 +21,22 @@ public class Provider {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProvider;
+	@NotNull
+	@NotBlank
+	@Size(min=3)
 	private String providerCode;
+	@NotNull
+	@NotBlank
+	@Size(min=3)
 	private String businessName;
 	private String img;
+	@NotNull
+	@NotBlank
+	@Size(min=10)
 	private String cuit;
 	private String website;
 	private String phone;
+	@Email
 	private String email;
 
 	@ManyToOne

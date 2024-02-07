@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.asj.proyectoIntegrador.entities.Product;
 import com.asj.proyectoIntegrador.services.IProductService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("productos")
 @CrossOrigin(origins = "http://localhost:4200") // Permite peticiones desde el puerto 4200 de angular al 8080 de spring
@@ -81,7 +83,7 @@ public class ProductController {
 	}
 
 	@PostMapping("/formulario")
-	public ResponseEntity<Product> createProduct(@RequestBody Product product) {
+	public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
 		try {
 			iProductService.saveProduct(product);
 			return new ResponseEntity<>(product, HttpStatus.OK);
@@ -102,7 +104,7 @@ public class ProductController {
 	}
 
 	@PutMapping("/actualizar/{idProduct}")
-	public ResponseEntity<Product> updateProduct(@PathVariable Integer idProduct, @RequestBody Product product) {
+	public ResponseEntity<Product> updateProduct(@PathVariable Integer idProduct, @Valid @RequestBody Product product) {
 		try {
 			iProductService.updateProduct(idProduct, product);
 			return new ResponseEntity<>(product, HttpStatus.OK);

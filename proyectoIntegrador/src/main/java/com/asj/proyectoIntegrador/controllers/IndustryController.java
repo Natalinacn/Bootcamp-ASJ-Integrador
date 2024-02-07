@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.asj.proyectoIntegrador.entities.Industry;
 import com.asj.proyectoIntegrador.services.IIndustryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/industrias")
@@ -37,7 +39,7 @@ public class IndustryController {
 	}
 	
 	@PostMapping("/crear")
-	public ResponseEntity<Industry> createIndustry(@RequestBody Industry industry) {
+	public ResponseEntity<Industry> createIndustry(@Valid @RequestBody Industry industry) {
 		try {
 			iIndustryService.saveIndustry(industry);
 			return new ResponseEntity<>(industry, HttpStatus.OK);

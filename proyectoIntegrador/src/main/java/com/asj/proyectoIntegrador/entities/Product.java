@@ -8,21 +8,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-
-
-//
-//@NoArgsConstructor //Genera un constructor vacio
-//@AllArgsConstructor //Genera un constructor lleno
-//@ToString //Método To String
-//@Data //Para que se creen automaticamente los getters y setters
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Product {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProduct;
+	@NotNull
+	@NotBlank
+	@Size(min = 3)
 	private String code;
+	@NotNull
+	@NotBlank
+	@Size(min = 3)
 	private String productName;
 	@ManyToOne
 	@JoinColumn(name = "category_id")
@@ -31,126 +34,103 @@ public class Product {
 	@JoinColumn(name = "provider_id")
 	private Provider provider;
 	private String description;
+	@DecimalMin(value = "0.01", message = "El precio debe ser mayor a 0")
 	private Double price;
 	private String img;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;
 	private LocalDate deletedAt;
-    
+
 	public Product() {
 	}
-
 
 	public String getImg() {
 		return img;
 	}
 
-
 	public void setImg(String img) {
 		this.img = img;
 	}
-
-
 
 	public Integer getIdProduct() {
 		return idProduct;
 	}
 
-
 	public void setIdProduct(Integer idProduct) {
 		this.idProduct = idProduct;
 	}
-
 
 	public String getCode() {
 		return code;
 	}
 
-
 	public void setCode(String code) {
 		this.code = code;
 	}
-
 
 	public String getProductName() {
 		return productName;
 	}
 
-
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
-
 
 	public Category getCategory() {
 		return category;
 	}
 
-
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-
 
 	public Provider getProvider() {
 		return provider;
 	}
 
-
 	public void setProvider(Provider provider) {
 		this.provider = provider;
 	}
-
 
 	public String getDescription() {
 		return description;
 	}
 
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 	public Double getPrice() {
 		return price;
 	}
 
-
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-
 
 	public LocalDate getCreatedAt() {
 		return createdAt;
 	}
 
-
 	public void setCreatedAt(LocalDate createdAt) {
 		this.createdAt = createdAt;
 	}
-
 
 	public LocalDate getUpdatedAt() {
 		return updatedAt;
 	}
 
-
 	public void setUpdatedAt(LocalDate updatedAt) {
 		this.updatedAt = updatedAt;
 	}
-
 
 	public LocalDate getDeletedAt() {
 		return deletedAt;
 	}
 
-
 	public void setDeletedAt(LocalDate deletedAt) {
 		this.deletedAt = deletedAt;
 	}
-
 
 	@Override
 	public String toString() {
@@ -158,6 +138,5 @@ public class Product {
 				+ ", category=" + category + ", provider=" + provider + ", description=" + description + ", price="
 				+ price + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", deletedAt=" + deletedAt + "]";
 	}
-
 
 }

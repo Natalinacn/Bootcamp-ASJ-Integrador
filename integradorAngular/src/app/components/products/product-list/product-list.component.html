@@ -89,10 +89,16 @@
           >
             <td>
               <img
+              *ngIf="product.img; else defaultImage"
                 [src]="product.img"
                 alt="{{ product.productName }}"
                 style="max-width: 100px"
               />
+              <ng-template #defaultImage>
+                <img src="assets/defaultImage.JPG" 
+                alt="Imagen predeterminada"
+                style="max-width: 100px"/>                
+              </ng-template>
             </td>
             <td>{{ product.productName }}</td>
             <td>{{ product.category.category }}</td>

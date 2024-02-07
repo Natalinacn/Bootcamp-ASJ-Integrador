@@ -6,6 +6,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Industry {
@@ -13,6 +16,9 @@ public class Industry {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idIndustry;
+	@NotNull
+	@NotBlank
+	@Size(min=3)
 	private String industry;
 	private LocalDate createdAt;
 	private LocalDate updatedAt;

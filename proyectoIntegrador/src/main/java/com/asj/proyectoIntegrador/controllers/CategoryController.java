@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.asj.proyectoIntegrador.entities.Category;
 import com.asj.proyectoIntegrador.services.ICategoryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("categorias")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -52,7 +54,7 @@ public class CategoryController {
 	
 	
 	@PostMapping("/crear")
-	public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+	public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {
 
 		try {
 			this.iCategoryService.saveCategory(category);
@@ -74,7 +76,7 @@ public class CategoryController {
 	}
 	
 	@PutMapping("actualizar/{categoryId}")
-	public ResponseEntity<Category> updateCategory(@PathVariable Integer categoryId, @RequestBody Category category) {
+	public ResponseEntity<Category> updateCategory(@PathVariable Integer categoryId, @Valid @RequestBody Category category) {
 		try {
 			iCategoryService.updateCategory(categoryId, category);
 			return new ResponseEntity<>(category, HttpStatus.OK);

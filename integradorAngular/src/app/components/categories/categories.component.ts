@@ -139,5 +139,7 @@ export class CategoriesComponent implements OnInit {
         console.log('Modal cerrado sin acción: ', reason);
       }
     );
-  }
+  }  
+  
+  
 }

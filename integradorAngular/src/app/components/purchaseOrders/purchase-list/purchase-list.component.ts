@@ -10,15 +10,6 @@ import { PurchaseOrdersService } from 'src/app/services/purchase-orders.service'
   styleUrls: ['./purchase-list.component.css'],
 })
 export class PurchaseListComponent implements OnInit {
-listAllPurchases() {
-throw new Error('Method not implemented.');
-}
-listDeletedPurchases() {
-throw new Error('Method not implemented.');
-}
-listActivatedPurchases() {
-throw new Error('Method not implemented.');
-}
   purchaseData: any[] = [];
   criteria: string = '';
 
@@ -29,17 +20,28 @@ throw new Error('Method not implemented.');
   ) {}
 
   ngOnInit(): void {
-    this.listPurchaseOrder();    
+    this.listPurchaseOrders();
   }
 
-  listPurchaseOrder(){
-    this.purchaseService.getPurchase().subscribe((data)=>{
+  listPurchaseOrders() {
+    this.purchaseService.getPurchases().subscribe((data) => {
+      this.purchaseData = data;
+    });
+  }
+
+  listDeletedPurchases() {
+    this.purchaseService.getDeletedPurchases().subscribe((data) => {
+      this.purchaseData = data;
+    });
+  }
+
+  listActivatedPurchases() {
+    this.purchaseService.getActivatedPurchases().subscribe((data) => {
       this.purchaseData = data;
     });
   }
 
   cancelPurchase(idPurchaseOrder: number) {
-
     //Usar el modal de confirmación antes de eliminar
     const modalRef = this.modalService.open(CancelConfirmationModalComponent);
 
@@ -48,16 +50,19 @@ throw new Error('Method not implemented.');
       '¿Está seguro de que desea cancelar esta órden?';
 
     //Tengo que manejar la promesa del modal con el result-then
-    modalRef.result.then((result) => {
+    modalRef.result.then(
+      (result) => {
         if (result === 'confirm') {
-          const success= this.purchaseService.cancelPurchase(Number(idPurchaseOrder)).subscribe((data)=>{
-            this.listPurchaseOrder();
-          });
+          const success = this.purchaseService
+            .cancelPurchase(Number(idPurchaseOrder))
+            .subscribe((data) => {
+              this.listPurchaseOrders();
+            });
 
-          if(success){
-            this.listPurchaseOrder();
+          if (success) {
+            this.listPurchaseOrders();
           }
-                 }
+        }
       },
       (reason) => {
         console.log('Modal de confirmación cerrado sin confirmar: ', reason);
@@ -65,12 +70,7 @@ throw new Error('Method not implemented.');
     );
   }
 
-
   showDetailsPurchase(idPurchaseOrder: number) {
-   
     this.router.navigate([`/ordenes/detalle/${idPurchaseOrder}`]);
   }
-
-
-
 }

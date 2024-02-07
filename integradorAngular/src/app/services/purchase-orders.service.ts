@@ -14,8 +14,19 @@ export class PurchaseOrdersService {
 
   private baseUrl = 'http://localhost:8080/ordenes';
 
-  getPurchase(): Observable<PurchaseOrdersModel[]> {
+  getPurchases(): Observable<PurchaseOrdersModel[]> {
     const url = `${this.baseUrl}/listado`;
+    return this.clienteHttp.get<PurchaseOrdersModel[]>(url);
+  }
+
+  getActivatedPurchases(): Observable<PurchaseOrdersModel[]>{
+    const url = `${this.baseUrl}/listadoActivos`;
+    return this.clienteHttp.get<PurchaseOrdersModel[]>(url);
+  }
+
+
+  getDeletedPurchases(): Observable<PurchaseOrdersModel[]>{
+    const url = `${this.baseUrl}/listadoEliminados`;
     return this.clienteHttp.get<PurchaseOrdersModel[]>(url);
   }
 

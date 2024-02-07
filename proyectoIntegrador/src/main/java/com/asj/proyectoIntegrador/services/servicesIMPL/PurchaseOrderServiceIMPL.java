@@ -46,7 +46,7 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 	// Busca órdenes por id
 	@Override
 	public PurchaseOrder findPurchaseOrderById(Integer idPurchaseOrder) throws Exception {
-		PurchaseOrder purchaseOrder = purchaseOrderRepository.findByIdPurchaseOrderAndDeletedAtNull(idPurchaseOrder);
+		PurchaseOrder purchaseOrder = purchaseOrderRepository.findById(idPurchaseOrder).get();
 
 		if (purchaseOrder != null) {
 			return purchaseOrder;

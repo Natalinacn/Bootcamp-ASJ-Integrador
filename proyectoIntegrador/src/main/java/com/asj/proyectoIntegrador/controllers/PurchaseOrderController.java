@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.asj.proyectoIntegrador.entities.Provider;
 import com.asj.proyectoIntegrador.entities.PurchaseOrder;
 import com.asj.proyectoIntegrador.services.IPurchaseOrderService;
 
@@ -37,6 +38,32 @@ public class PurchaseOrderController {
 			e.printStackTrace();
 			return new ResponseEntity<List<PurchaseOrder>>(HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@GetMapping("/listadoEliminados")
+	public ResponseEntity<List<PurchaseOrder>> getDeletedPurchases() {
+		List<PurchaseOrder> purchases;
+		try {
+			purchases = this.purchaseOrderService.listCanceledPurchaseOrders();
+			return new ResponseEntity<>(purchases , HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<List<PurchaseOrder>>(HttpStatus.NOT_FOUND);
+		}
+		
+	}
+	
+	@GetMapping("/listadoActivos")
+	public ResponseEntity<List<PurchaseOrder>> getActivedPurchases() {
+		List<PurchaseOrder> purchases;
+		try {
+			purchases = this.purchaseOrderService.listActivePurchaseOrders();
+			return new ResponseEntity<>(purchases, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<List<PurchaseOrder>>(HttpStatus.NOT_FOUND);
+		}
+		
 	}
 	
 	@GetMapping("/{idPurchaseOrder}")

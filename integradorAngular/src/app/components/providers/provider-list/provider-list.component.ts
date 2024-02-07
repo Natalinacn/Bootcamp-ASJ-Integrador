@@ -76,6 +76,7 @@ export class ProviderListComponent implements OnInit {
       providerToReactivate.deletedAt = null;
 
       this.providersService.updateProvider(idProvider, providerToReactivate).subscribe((response) => {
+        this.listDeletedProviders();
         console.log('Proveedor reactivado:', response);
       });
     } else {

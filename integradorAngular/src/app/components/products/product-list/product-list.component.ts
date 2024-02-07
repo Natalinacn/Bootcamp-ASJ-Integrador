@@ -83,8 +83,11 @@ export class ProductListComponent implements OnInit {
       productToReactivate.deletedAt = null;
 
       this.productService.updateProduct(idProduct, productToReactivate).subscribe((response) => {
+        this.listDeletedProducts();
         console.log('Producto reactivado:', response);
       });
+
+
     } else {
       console.error('Producto no encontrado');
     }

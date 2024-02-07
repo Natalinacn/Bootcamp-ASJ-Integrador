@@ -37,7 +37,9 @@
         <p><strong>Total:</strong> {{ purchase.totalAmount | currency }}</p>
       </div>
     </div>
-  
+    <div class="d-flex align-items-center justify-content-center m-2  ">
+      <button class="btn btn-success" [routerLink]="['/ordenes/listado']">Volver</button>
+  </div>
     <div *ngIf="!purchase" class="container-fluid text-bg-secondary text-center mt-5 p-3">
       <h2>No se encontró la orden de compra</h2>
     </div>

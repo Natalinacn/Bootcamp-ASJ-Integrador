@@ -82,7 +82,7 @@
         [(ngModel)]="product.category.categoryId"
         required
       >
-        <option selected disabled value="">Elige una categoría... (*)</option>
+        <option selected disabled value="0">Elige una categoría... (*)</option>
         <option *ngFor="let categoria of categoriesData" value="{{categoria.categoryId}}">{{categoria.category}}</option>
       </select>
       <div
@@ -138,7 +138,7 @@
         [(ngModel)]="product.provider.idProvider"
        
       >
-        <option selected disabled value="">Elige proveedor...</option>
+        <option  value="0" disabled selected >Elige proveedor...</option>
         <option
           *ngFor="let provider of providersData"
           value={{provider.idProvider}}>

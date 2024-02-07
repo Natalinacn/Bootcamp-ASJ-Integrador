@@ -38,6 +38,8 @@ export class PurchaseAddFormComponent implements OnInit {
       (providers) => (this.providers = providers || []),
       (error) => console.error('Error obteniendo proveedores', error)
     );
+    console.log(this.purchaseOrder);
+
   }
 
   purchaseOrder: PurchaseOrdersModel = {
@@ -169,6 +171,7 @@ export class PurchaseAddFormComponent implements OnInit {
     updatedAt: undefined,
   };
 
+  
   createPurchase(form: NgForm) {
     if (form.valid) {
       console.log(this.purchaseOrder);

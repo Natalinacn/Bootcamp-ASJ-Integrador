@@ -75,7 +75,7 @@
           [(ngModel)]="provider.industry.idIndustry"
           required
         >
-          <option value="" selected>Elige el rubro...</option>
+          <option value="0" selected>Elige el rubro...</option>
           <option *ngFor="let industry of industriesData" value="{{industry.idIndustry}}">{{industry.industry}}</option>
         </select>
         <div
@@ -181,7 +181,7 @@
           [(ngModel)]="provider.address.city.province.country.idCountry"
           required
         >
-          <option value="" disabled selected>Elige el país...</option>
+          <option value="0" disabled selected>Elige el país...</option>
           <option *ngFor="let country of countriesData" value="{{country.idCountry}}">{{country.country}}</option>
         </select>
         <div
@@ -207,7 +207,7 @@
           [(ngModel)]="provider.address.city.province.idProvince"
           required
         >
-          <option value="" disabled selected>Elige la provincia...</option>
+          <option value="0" disabled selected>Elige la provincia...</option>
           <option *ngFor="let province of provinceData" value="{{province.idProvince}}">{{province.province}}</option>
         </select>
         <div
@@ -397,7 +397,7 @@
         [(ngModel)]="provider.ivaCondition.idIvaCondition"
         required
       >
-        <option value="" selected>Elige la condición...</option>
+        <option value="0" selected>Elige la condición...</option>
         <option *ngFor="let ivaCondition of ivaConditionsData" value="{{ivaCondition.idIvaCondition}}">{{ivaCondition.ivaCondition}}</option>
       </select>
       <div

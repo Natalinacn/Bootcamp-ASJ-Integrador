@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.asj.proyectoIntegrador.entities.Category;
+import com.asj.proyectoIntegrador.entities.Industry;
 import com.asj.proyectoIntegrador.services.ICategoryService;
 
 import jakarta.validation.Valid;
@@ -42,7 +43,15 @@ public class CategoryController {
 	}
 
 
-	
+	@GetMapping("/{categoryId}")
+	public ResponseEntity<Category> getCategoryById(@PathVariable Integer categoryId) {
+		try {
+			Category category = iCategoryService.getCategoryById(categoryId);
+			return new ResponseEntity<>(category, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 	
 	@PostMapping("/crear")
 	public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {

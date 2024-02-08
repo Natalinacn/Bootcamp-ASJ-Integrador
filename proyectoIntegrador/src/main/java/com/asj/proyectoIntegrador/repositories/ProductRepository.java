@@ -23,5 +23,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     List<Product> findByProviderIdProvider(Integer idProvider);
     
+    Boolean existsByCode(String code);
+    
+    
 
 }

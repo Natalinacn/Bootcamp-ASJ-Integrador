@@ -136,9 +136,10 @@
         id="validationDefault04"
         name="providerSelect"
         [(ngModel)]="product.provider.idProvider"
+        required
        
       >
-        <option  value="0" disabled selected >Elige proveedor...</option>
+        <option  value="0" selected disabled >Elige proveedor...</option>
         <option
           *ngFor="let provider of providersData"
           value={{provider.idProvider}}>
@@ -213,6 +214,11 @@
       >
     </div>
     </div>
+
+    <div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+    
 
     <div class="col-12">
       <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid">Guardar</button>

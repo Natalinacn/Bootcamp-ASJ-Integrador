@@ -52,9 +52,14 @@ public class ProductServiceIMPL implements IProductService {
 
 	@Override
 	@Transactional
-	public void saveProduct(Product product) {
+	public void saveProduct(Product product) throws Exception {
+		
+	    if (productRepository.existsByCode(product.getCode())) {
+	        throw new Exception("El código del producto ya existe");
+	    }else {	    
 		product.setCreatedAt(LocalDate.now());
 		productRepository.save(product);
+	    }
 	}
 
 	@Override

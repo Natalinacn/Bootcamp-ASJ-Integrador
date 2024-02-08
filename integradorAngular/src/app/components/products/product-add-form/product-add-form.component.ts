@@ -20,6 +20,11 @@ export class ProductAddFormComponent implements OnInit {
   providersData: ProvidersModel[] = [];
   formTitle: string = 'Agregar Productos';
 
+  //ERRORES
+  errorMessage: string | null = null;
+  showErrorMessage: boolean = false;
+
+
   constructor(
     private productService: ProductsService,
     private providersService: ProvidersService,
@@ -127,7 +132,7 @@ export class ProductAddFormComponent implements OnInit {
       console.log(this.product);
       this.productService.createProduct(this.product).subscribe(
         (result) => {
-          console.log('Producto en el CREATE', this.product);
+          console.log('Respuesta exitosa del servidor:', result); 
           const modalRef = this.modalService.open(ConfirmationModalComponent);
           modalRef.componentInstance.message =
             'Producto agregado correctamente';
@@ -147,10 +152,15 @@ export class ProductAddFormComponent implements OnInit {
           );
         },
         (error) => {
-          console.log('Producto en el error de save', this.product);
-          console.error('Error al agregar el producto', error);
+          console.error('Error en la respuesta del servidor:', error); 
+          if (error.status !== 201) {
+            this.errorMessage = error.error;
+            this.showErrorMessage = true;
+          }
         }
+     
       );
+      this.showErrorMessage = false;   
     }
   }
 

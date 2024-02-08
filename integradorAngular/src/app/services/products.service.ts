@@ -32,9 +32,9 @@ export class ProductsService {
   }
   
 
-  createProduct(product: ProductsModel): Observable<ProductsModel> {
+  createProduct(product: ProductsModel): Observable<string> {
     const url = this.baseUrl + '/formulario';
-    return this.clienteHttp.post<ProductsModel>(url, product).pipe(
+    return this.clienteHttp.post<string>(url, product).pipe(
       catchError((error) => {
         return throwError(error); // Propaga el error recibido del servidor
       })

@@ -82,16 +82,27 @@ public class ProductController {
 
 	}
 
+//	@PostMapping("/formulario")
+//	public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
+//		try {
+//			iProductService.saveProduct(product);
+//			return new ResponseEntity<>(product, HttpStatus.OK);
+//		} catch (Exception e) {
+//			e.getStackTrace();
+//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//		}
+//	}
+	
 	@PostMapping("/formulario")
-	public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product) {
-		try {
-			iProductService.saveProduct(product);
-			return new ResponseEntity<>(product, HttpStatus.OK);
-		} catch (Exception e) {
-			e.getStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
+	public ResponseEntity<String> createProduct(@Valid @RequestBody Product product) {
+	    try {
+	        iProductService.saveProduct(product);
+	        return new ResponseEntity<>(HttpStatus.CREATED);
+	    } catch (Exception e) {
+	        return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+	    }
 	}
+
 
 	@DeleteMapping("/{idProduct}")
 	public ResponseEntity<?> deleteProduct(@PathVariable Integer idProduct) {

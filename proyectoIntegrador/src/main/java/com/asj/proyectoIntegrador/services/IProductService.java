@@ -10,7 +10,7 @@ public interface IProductService {
 
 	public Product findProductById(Integer idProduct) throws Exception;
 
-	public void saveProduct(Product product);
+	public void saveProduct(Product product) throws Exception;
 
 	public void deleteProductById(Integer idProduct) throws Exception;
 

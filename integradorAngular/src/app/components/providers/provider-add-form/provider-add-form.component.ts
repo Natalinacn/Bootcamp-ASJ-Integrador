@@ -30,7 +30,9 @@ export class ProviderAddFormComponent implements OnInit {
   provinceData: Province[] = [];
   ivaConditionsData: IvaConditionModel[] = [];
   formTitle: string = "Registro de proveedores";
-
+  //ERRORES
+  errorMessage: string | null = null;
+  showErrorMessage: boolean = false;
 
 
   provider: ProvidersModel = {
@@ -96,35 +98,67 @@ export class ProviderAddFormComponent implements OnInit {
 
   }
 
+  // createProvider(form: NgForm) {
+  //   if (form.valid) {
+  //     this.providerService.createProvider(this.provider).subscribe(() => {
+  //     });
+
+  //     // Primero abro el modal
+  //     const modalRef = this.modalService.open(ConfirmationModalComponent);
+  //     modalRef.componentInstance.message = 'Proveedor agregado correctamente';
+
+  //     // Uso setTimeout para cerrar el modal después de 3 segundos y navegar a otra página
+  //     setTimeout(() => {
+  //       modalRef.close('timeout');
+  //       this.router.navigate(['/proveedores/listado']);
+  //     }, 2000);
+
+  //     // Manejo el resultado de la promesa
+  //     modalRef.result.then(
+  //       (result) => {
+  //         console.log('Modal cerrado', result);
+  //       },
+  //       (reason) => {
+  //         console.log('Modal descartado', reason);
+  //       }
+  //     );
+  //   }
+  // }
+
   createProvider(form: NgForm) {
-    if (form.valid) {
-      this.providerService.createProvider(this.provider).subscribe(() => {
-        console.log('Provider en el CREATE', this.provider);
-        console.log('Iva condition desde create Provider' + this.provider.ivaCondition);
-        console.log('Industria desde create Provider' + this.provider.industry);
-      });
+  if (form.valid) {
+    this.providerService.createProvider(this.provider).subscribe(
+      () => {
+        // La creación del proveedor fue exitosa
+        const modalRef = this.modalService.open(ConfirmationModalComponent);
+        modalRef.componentInstance.message = 'Proveedor agregado correctamente';
 
-      // Primero abro el modal
-      const modalRef = this.modalService.open(ConfirmationModalComponent);
-      modalRef.componentInstance.message = 'Proveedor agregado correctamente';
+        setTimeout(() => {
+          modalRef.close('timeout');
+          this.router.navigate(['/proveedores/listado']);
+        }, 2000);
 
-      // Uso setTimeout para cerrar el modal después de 3 segundos y navegar a otra página
-      setTimeout(() => {
-        modalRef.close('timeout');
-        this.router.navigate(['/proveedores/listado']);
-      }, 2000);
-
-      // Manejo el resultado de la promesa
-      modalRef.result.then(
-        (result) => {
-          console.log('Modal cerrado', result);
-        },
-        (reason) => {
-          console.log('Modal descartado', reason);
+        modalRef.result.then(
+          (result) => {
+            console.log('Modal cerrado', result);
+          },
+          (reason) => {
+            console.log('Modal descartado', reason);
+          }
+        );
+      },
+      (error) => { 
+        console.error('Error en la respuesta del servidor:', error);
+        if (error.status !== 201) {
+          this.errorMessage = error.error;
+          this.showErrorMessage = true;
         }
-      );
-    }
+      }
+    );
+    this.showErrorMessage = false;   
   }
+}
+
 
   onSubmit(form: NgForm) {
     if (this.id) {

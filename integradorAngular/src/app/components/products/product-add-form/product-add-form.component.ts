@@ -129,7 +129,6 @@ export class ProductAddFormComponent implements OnInit {
   //METODOS NUEVOS
   saveProduct(form: NgForm) {
     if (form.valid) {
-      console.log(this.product);
       this.productService.createProduct(this.product).subscribe(
         (result) => {
           console.log('Respuesta exitosa del servidor:', result); 

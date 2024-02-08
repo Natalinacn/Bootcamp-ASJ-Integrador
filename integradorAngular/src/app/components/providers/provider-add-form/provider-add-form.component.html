@@ -573,7 +573,9 @@
         >
       </div>
 
-
+      <div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
 
       <div class="col-12 mt-2">
         <button

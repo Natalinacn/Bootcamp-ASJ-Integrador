@@ -21,4 +21,12 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
 	
 	@Query("SELECT COUNT(pr) FROM Provider pr WHERE pr.deletedAt IS NULL")
 	Integer getTotalProviderCount();
+	
+    Boolean existsByProviderCode(String providerCode);
+    
+    Boolean existsByCuit(String cuit);
+
+//	Boolean existsByProviderCuit(String cuit);
+    
+    
 }

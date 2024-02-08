@@ -25,10 +25,19 @@ export class ProvidersService {
     return this.clienteHttp.get<ProvidersModel[]>(url);
   }
 
-  createProvider(provider: ProvidersModel): Observable<ProvidersModel> {
-    console.log(provider);
+  // createProvider(provider: ProvidersModel): Observable<ProvidersModel> {
+  //   console.log(provider);
+  //   const url = this.baseUrl + '/formulario';
+  //   return this.clienteHttp.post<ProvidersModel>(url, provider);
+  // }
+
+  createProvider(provider: ProvidersModel): Observable<string> {
     const url = this.baseUrl + '/formulario';
-    return this.clienteHttp.post<ProvidersModel>(url, provider);
+    return this.clienteHttp.post<string>(url, provider).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 
   deleteProvider(idProvider: number): Observable<Provider> {

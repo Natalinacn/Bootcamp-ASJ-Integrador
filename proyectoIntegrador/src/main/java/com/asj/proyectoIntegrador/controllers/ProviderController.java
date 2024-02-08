@@ -32,15 +32,14 @@ public class ProviderController {
 	}
 
 	@PostMapping("/formulario")
-	public ResponseEntity<Provider> createProvider(@Valid @RequestBody Provider provider) {
+	public ResponseEntity<String> createProvider(@Valid @RequestBody Provider provider) {
 
 		try {
 			iProviderService.saveProvider(provider);
-			System.out.println("Condicion de iva en el controller" + provider.getIvaCondition());
-			return new ResponseEntity<>(provider, HttpStatus.CREATED);
+			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 

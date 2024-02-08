@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.asj.proyectoIntegrador.entities.Address;
-import com.asj.proyectoIntegrador.entities.Product;
 import com.asj.proyectoIntegrador.entities.Provider;
 import com.asj.proyectoIntegrador.exception.ResourceNotFoundException;
 import com.asj.proyectoIntegrador.repositories.AddressRepository;
@@ -26,11 +25,31 @@ public class ProviderServiceIMPL implements IProviderService {
 		this.addressRepository = addressRepository;
 	}
 
+//	@Override
+//	@Transactional
+//	public Provider saveProvider(Provider provider) throws Exception {
+//		if (provider.getBusinessName() != null) {
+//			provider.setCreatedAt(LocalDate.now());
+//			Address address = addressRepository.save(provider.getAddress());
+//			provider.setAddress(address);
+//			providerRepository.save(provider);
+//			return provider;
+//		} else {
+//			throw new Exception("El proveedor no se pudo guardar correctamente");
+//		}
+//	}
+	
 	@Override
 	@Transactional
 	public Provider saveProvider(Provider provider) throws Exception {
+
+	    if (providerRepository.existsByProviderCode(provider.getProviderCode())) {
+	        throw new Exception("El código del proveedor ya existe");
+	    }
+	    if (providerRepository.existsByCuit(provider.getCuit())) {
+	        throw new Exception("El cuit del proveedor ya existe");
+	    }
 		if (provider.getBusinessName() != null) {
-			System.out.println("Condicion de iva al guardar proveedor" + provider.getIvaCondition());
 			provider.setCreatedAt(LocalDate.now());
 			Address address = addressRepository.save(provider.getAddress());
 			provider.setAddress(address);
@@ -40,6 +59,8 @@ public class ProviderServiceIMPL implements IProviderService {
 			throw new Exception("El proveedor no se pudo guardar correctamente");
 		}
 	}
+	
+	
 
 	@Override
 	public List<Provider> listAllProviders() {

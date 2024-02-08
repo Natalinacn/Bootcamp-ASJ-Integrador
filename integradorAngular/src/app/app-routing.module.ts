@@ -16,6 +16,7 @@ import { ProviderDetailComponent } from './components/providers/provider-detail/
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 
 const routes: Routes = [
+  { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' } },
   {
     path: 'proveedores',
     data: { breadcrumb: 'Proveedores', url: '#'  },
@@ -105,7 +106,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'home', component: HomeComponent, data: { breadcrumb: 'Home' } },
+
   { path: 'login', component: LoginComponent, data: { breadcrumb: 'Login' } },
   {
     path: 'registro',
@@ -114,7 +115,7 @@ const routes: Routes = [
   },
   //{ path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirecciona a /login por defecto
-  { path: '**', redirectTo: '/login' }, // Redirige a /login si no encuentra la ruta
+  { path: '**', redirectTo: '/home' }, // Redirige a /login si no encuentra la ruta
 ];
 
 @NgModule({

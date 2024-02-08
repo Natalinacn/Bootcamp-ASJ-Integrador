@@ -11,4 +11,7 @@ import com.asj.proyectoIntegrador.entities.Province;
 public interface ProvinceRepository extends JpaRepository<Province, Integer> {
 
 	List<Province> findAllByOrderByProvinceAsc();
+	
+	List<Province> findByCountryIdCountry(Integer idCountry);
+
 }

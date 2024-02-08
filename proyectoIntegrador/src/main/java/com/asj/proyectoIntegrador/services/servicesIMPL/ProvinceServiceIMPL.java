@@ -21,11 +21,18 @@ public class ProvinceServiceIMPL implements IProvinceService {
 	public List<Province> listAllProvinces() throws Exception {
 
 		List<Province> provinceList = provinceRepository.findAllByOrderByProvinceAsc();
-		if(provinceList != null) {
+		if (provinceList != null) {
 			return provinceList;
 		} else {
 			throw new Exception("La lista de provincias está vacía");
 		}
 	}
 
+	@Override
+	public List<Province> findProvinceByCountry(Integer idCountry) {
+
+		List<Province> provinceList = provinceRepository.findByCountryIdCountry(idCountry);
+
+		return provinceList;
+	}
 }

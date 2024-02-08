@@ -179,6 +179,7 @@
           class="form-control"
           name="pais"
           [(ngModel)]="provider.address.city.province.country.idCountry"
+          (change)="getProvincesByCountry(provider.address.city.province.country.idCountry)"
           required
         >
           <option value="0" disabled selected>Elige el país...</option>

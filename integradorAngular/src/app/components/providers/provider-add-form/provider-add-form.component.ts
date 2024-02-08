@@ -192,6 +192,12 @@ export class ProviderAddFormComponent implements OnInit {
     });
   }
 
-
+  getProvincesByCountry(idCountry: number) {
+    console.log(idCountry);
+    this.providerService.getProvincesByCountry(idCountry).subscribe((data) => {
+      console.log(data);
+      this.provinceData = data;
+    });
+  }
 
 }

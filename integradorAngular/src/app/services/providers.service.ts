@@ -97,5 +97,10 @@ export class ProvidersService {
     const url = this.baseUrl + '/listadoEliminados';
     return this.clienteHttp.get<ProvidersModel[]>(url);
   }
-
+  
+  getProvincesByCountry(idCountry: number): Observable<Province[]>{
+    const url = `http://localhost:8080/provincias/paises/${idCountry}`;
+    return this.clienteHttp.get<Province[]>(url);
+  }
+  
 }

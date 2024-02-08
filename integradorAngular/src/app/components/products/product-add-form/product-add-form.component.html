@@ -221,7 +221,7 @@
     
 
     <div class="col-12">
-      <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid">Guardar</button>
+      <button class="btn btn-primary" type="submit" [disabled]="productForm.invalid || product.category.categoryId === 0 || product.provider.idProvider === 0">Guardar</button>
       <button
         routerLink="/productos/listado"
         class="btn btn-danger m-lg-1"

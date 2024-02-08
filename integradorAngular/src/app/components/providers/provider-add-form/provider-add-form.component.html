@@ -75,7 +75,7 @@
           [(ngModel)]="provider.industry.idIndustry"
           required
         >
-          <option value="0" selected>Elige el rubro...</option>
+          <option value="0" disabled selected>Elige el rubro...</option>
           <option *ngFor="let industry of industriesData" value="{{industry.idIndustry}}">{{industry.industry}}</option>
         </select>
         <div
@@ -398,7 +398,7 @@
         [(ngModel)]="provider.ivaCondition.idIvaCondition"
         required
       >
-        <option value="0" selected>Elige la condición...</option>
+        <option value="0" disabled selected>Elige la condición...</option>
         <option *ngFor="let ivaCondition of ivaConditionsData" value="{{ivaCondition.idIvaCondition}}">{{ivaCondition.ivaCondition}}</option>
       </select>
       <div
@@ -579,7 +579,7 @@
         <button
           class="btn btn-primary"
           type="submit"
-          [disabled]="providerForm.invalid"
+          [disabled]="providerForm.invalid || provider.industry.idIndustry === 0 || provider.address.city.province.country.idCountry === 0 || provider.address.city.province.idProvince === 0 || provider.ivaCondition.idIvaCondition === 0"
         >
           Guardar
         </button>

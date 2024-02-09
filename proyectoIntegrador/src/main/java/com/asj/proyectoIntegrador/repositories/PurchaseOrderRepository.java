@@ -22,5 +22,7 @@ public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, In
 	
 	@Query("SELECT COUNT(or) FROM PurchaseOrder or WHERE or.deletedAt IS NULL")
 	Integer getTotalOrderCount();
+	
+	Boolean existsByOrderNumber(String orderNumber);
 
 }

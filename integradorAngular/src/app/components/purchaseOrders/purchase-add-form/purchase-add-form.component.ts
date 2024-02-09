@@ -23,6 +23,9 @@ export class PurchaseAddFormComponent implements OnInit {
   providers: ProvidersModel[] = [];
   products1: ProductsModel[] = [];
   addedProducts: OrderDetailModel[] = [];
+  //ERRORES
+  errorMessage: string | null = null;
+  showErrorMessage: boolean = false;
 
   constructor(
     private purchaseOrdersService: PurchaseOrdersService,
@@ -172,40 +175,97 @@ export class PurchaseAddFormComponent implements OnInit {
   };
 
   
+  // createPurchase(form: NgForm) {
+  //   if (form.valid) {
+  //     console.log(this.purchaseOrder);
+  //     this.purchaseOrdersService
+  //       .createPurchaseOrder(this.purchaseOrder)
+  //       .subscribe(
+  //         (data) => {
+  //           for (const detail of this.addedProducts) {
+  //             detail.purchaseOrder = data;
+  //             console.log(detail);
+  //             this.purchaseOrdersService
+  //               .createOrderDetail(detail)
+  //               .subscribe((data) => {
+  //                 console.log(data);
+  //               });
+  //           }
+  //           // Primero abro el modal
+  //           const modalRef = this.modalService.open(ConfirmationModalComponent);
+  //           modalRef.componentInstance.message =
+  //             'Órden de compra agregado correctamente';
+  
+  //           // Uso setTimeout para cerrar el modal después de 2 segundos y navegar a otra página
+  //           setTimeout(() => {
+  //             modalRef.close('timeout');
+  //             this.router.navigate(['/ordenes/listado']);
+  //           }, 2000);
+  
+  //           // Manejo el resultado de la promesa
+  //           modalRef.result.then(
+  //             (result) => {},
+  //             (reason) => {}
+  //           );
+  //         },
+  //         (error) => { 
+  //           console.error('Error en la respuesta del servidor:', error);
+  //           if (error.status !== 201) {
+  //             this.errorMessage = error.error;
+  //             this.showErrorMessage = true;
+  //           }
+  //         }
+  //       );
+  //   }
+  // }
+
   createPurchase(form: NgForm) {
     if (form.valid) {
       console.log(this.purchaseOrder);
       this.purchaseOrdersService
         .createPurchaseOrder(this.purchaseOrder)
-        .subscribe((data) => {
-          for (const detail of this.addedProducts) {
-            detail.purchaseOrder = data;
-            console.log(detail);
-            this.purchaseOrdersService
-              .createOrderDetail(detail)
-              .subscribe((data) => {
-                console.log(data);
-              });
+        .subscribe(
+          (data: string) => {
+            const purchaseOrder: PurchaseOrdersModel = JSON.parse(data);
+            for (const detail of this.addedProducts) {
+              detail.purchaseOrder = purchaseOrder;
+              console.log(detail);
+              this.purchaseOrdersService
+                .createOrderDetail(detail)
+                .subscribe((data) => {
+                  console.log(data);
+                });
+            }
+            const modalRef = this.modalService.open(ConfirmationModalComponent);
+            modalRef.componentInstance.message =
+              'Órden de compra agregado correctamente';
+  
+            // Uso setTimeout para cerrar el modal después de 2 segundos y navegar a otra página
+            setTimeout(() => {
+              modalRef.close('timeout');
+              this.router.navigate(['/ordenes/listado']);
+            }, 2000);
+  
+            // Manejo el resultado de la promesa
+            modalRef.result.then(
+              (result) => {},
+              (reason) => {}
+            );
+          },
+          (error) => { 
+            console.error('Error en la respuesta del servidor:', error);
+            if (error.status !== 201) {
+              this.errorMessage = error.error;
+              this.showErrorMessage = true;
+            }
           }
-        });
-      // Primero abro el modal
-      const modalRef = this.modalService.open(ConfirmationModalComponent);
-      modalRef.componentInstance.message =
-        'Órden de compra agregado correctamente';
-
-      // Uso setTimeout para cerrar el modal después de 2 segundos y navegar a otra página
-      setTimeout(() => {
-        modalRef.close('timeout');
-        this.router.navigate(['/ordenes/listado']);
-      }, 2000);
-
-      // Manejo el resultado de la promesa
-      modalRef.result.then(
-        (result) => {},
-        (reason) => {}
-      );
+          
+        );
+        this.showErrorMessage = false;
     }
   }
+  
+  
 
   cargarProductoaDetail(productName: string) {
     this.productOrder.product = this.products1.find(

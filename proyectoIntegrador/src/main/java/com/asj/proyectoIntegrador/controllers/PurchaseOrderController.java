@@ -90,12 +90,12 @@ public class PurchaseOrderController {
 	}
 	
 	@PostMapping("/formulario")
-	public ResponseEntity<PurchaseOrder> createPurchaseOrder(@Valid @RequestBody PurchaseOrder purchaseOrder) {
+	public ResponseEntity<String> createPurchaseOrder(@Valid @RequestBody PurchaseOrder purchaseOrder) {
 		try {
 			PurchaseOrder newPurchaseOrder = purchaseOrderService.savePurchaseOrder(purchaseOrder);
-			return new ResponseEntity<PurchaseOrder>(newPurchaseOrder, HttpStatus.OK);
+			return new ResponseEntity<String>(HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<PurchaseOrder>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 	}
 

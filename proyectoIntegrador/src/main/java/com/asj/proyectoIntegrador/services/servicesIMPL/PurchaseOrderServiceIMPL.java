@@ -23,13 +23,18 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 	@Transactional
 	@Override
 	public PurchaseOrder savePurchaseOrder(PurchaseOrder purchaseOrder) throws Exception {
-		if (purchaseOrder != null) {
+	    if (purchaseOrder == null) {
+	        throw new Exception("La orden de compra es nula");
+	    }
+	    
+	    if (purchaseOrderRepository.existsByOrderNumber(purchaseOrder.getOrderNumber())) {
+	        throw new Exception("El número de orden ya existe");
+	    }
+
 			purchaseOrder.setIssueDate(LocalDate.now());
 			purchaseOrder.setCreatedAt(LocalDate.now());
 			return purchaseOrderRepository.save(purchaseOrder);
-		} else {
-			throw new Exception("Error al guardar la órden de compra" + purchaseOrder.getOrderNumber());
-		}
+
 	}
 
 	// Lista todas las órdenes

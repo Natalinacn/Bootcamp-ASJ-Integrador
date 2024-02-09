@@ -200,7 +200,7 @@
         class="btn btn-success"
         type="button"
         (click)="agregarProducto()"
-        [disabled]="purchaseForm.invalid"
+        [disabled]="purchaseForm.invalid || purchaseOrder.provider.idProvider === 0 || productOrder.product?.idProduct === 0"
       >
         Agregar producto
       </button>
@@ -220,12 +220,15 @@
       <div><strong>Total:</strong> {{ calcularTotal() | currency }}</div>
     </div>
 
+    <div *ngIf="showErrorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
     
     <div class="col-12">
       <button
         class="btn btn-primary"
         type="submit"
-        [disabled]="purchaseForm.invalid"
+        [disabled]="purchaseForm.invalid || purchaseOrder.provider.idProvider === 0"
       >
         Guardar
       </button>

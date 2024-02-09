@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProductOrderModel, PurchaseOrdersModel } from '../model/purchaseOrderModel';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { OrderDetailModel } from '../model/orderDetail';
 
 @Injectable({
@@ -39,9 +39,13 @@ export class PurchaseOrdersService {
 
   createPurchaseOrder(
     purchaseOrder: PurchaseOrdersModel,
-  ): Observable<PurchaseOrdersModel> {
+  ): Observable<string> {
     const url = this.baseUrl + '/formulario';
-    return this.clienteHttp.post<PurchaseOrdersModel>(url, purchaseOrder);
+    return this.clienteHttp.post<string>(url, purchaseOrder).pipe(
+      catchError((error) => {
+        return throwError(error); // Propaga el error recibido del servidor
+      })
+    );
   }
 
   createOrderDetail(productsDetails: OrderDetailModel): Observable<OrderDetailModel>{

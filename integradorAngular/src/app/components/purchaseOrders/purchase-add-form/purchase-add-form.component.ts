@@ -256,7 +256,7 @@ export class PurchaseAddFormComponent implements OnInit {
           (error) => { 
             console.error('Error en la respuesta del servidor:', error);
             if (error.status !== 201) {
-              this.errorMessage = error.error;
+              this.errorMessage = "El código de la órden de compra ya existe";
               this.showErrorMessage = true;
             }
           }

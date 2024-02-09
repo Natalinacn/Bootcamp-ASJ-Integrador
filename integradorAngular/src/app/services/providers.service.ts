@@ -77,7 +77,7 @@ export class ProvidersService {
   }
 
   getIndustries(): Observable<Industry[]> {
-    const url = 'http://localhost:8080/industrias/listado';
+    const url = 'http://localhost:8080/industrias/listadoActivas';
     return this.clienteHttp.get<Industry[]>(url);
   }
 

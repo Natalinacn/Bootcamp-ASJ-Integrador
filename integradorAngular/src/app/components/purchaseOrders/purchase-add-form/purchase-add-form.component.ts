@@ -225,10 +225,11 @@ export class PurchaseAddFormComponent implements OnInit {
       this.purchaseOrdersService
         .createPurchaseOrder(this.purchaseOrder)
         .subscribe(
-          (data: string) => {
-            const purchaseOrder: PurchaseOrdersModel = JSON.parse(data);
+          (data) => {
+            const purchaseOrder: PurchaseOrdersModel = data;
             for (const detail of this.addedProducts) {
               detail.purchaseOrder = purchaseOrder;
+              console.log("PURCHASE ORDER" + purchaseOrder)
               console.log(detail);
               this.purchaseOrdersService
                 .createOrderDetail(detail)

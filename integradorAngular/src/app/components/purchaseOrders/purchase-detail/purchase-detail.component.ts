@@ -114,9 +114,11 @@ export class PurchaseDetailComponent implements OnInit{
 
 
   getPurchaseOrderById(idPurchaseOrder: number){
+    console.log(idPurchaseOrder);
     this.purchaseOrdersService.getPurchaseOrderById(idPurchaseOrder).subscribe((data)=>{
       this.purchase = data;
       this.purchaseOrdersService.getOrderDetails().subscribe((data)=>{
+        
         this.addedProducts = data.filter(detalle => detalle.purchaseOrder.idPurchaseOrder == this.purchase?.idPurchaseOrder)
       });
     });

@@ -45,15 +45,16 @@ export class PurchaseOrdersService {
   getPurchaseOrderById(
     idPurchaseOrder: number
   ): Observable<PurchaseOrdersModel> {
+    console.log(idPurchaseOrder)
     const url = `${this.baseUrl}/${idPurchaseOrder}`;
     return this.clienteHttp.get<PurchaseOrdersModel>(url);
   }
 
   createPurchaseOrder(
     purchaseOrder: PurchaseOrdersModel,
-  ): Observable<string> {
+  ): Observable<PurchaseOrdersModel> {
     const url = this.baseUrl + '/formulario';
-    return this.clienteHttp.post<string>(url, purchaseOrder).pipe(
+    return this.clienteHttp.post<PurchaseOrdersModel>(url, purchaseOrder).pipe(
       catchError((error) => {
         return throwError(error); // Propaga el error recibido del servidor
       })

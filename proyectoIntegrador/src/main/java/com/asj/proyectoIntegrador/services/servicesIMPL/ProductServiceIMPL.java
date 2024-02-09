@@ -31,8 +31,8 @@ public class ProductServiceIMPL implements IProductService {
 	public List<Product> listProductsNotDeleted() {
 		return productRepository.findAllProductByDeletedAtIsNullOrderByProductName();
 	}
-	
-	//Lista los eliminados
+
+	// Lista los eliminados
 	@Override
 	@Transactional(readOnly = true)
 	public List<Product> listProductsDeleted() {
@@ -53,13 +53,13 @@ public class ProductServiceIMPL implements IProductService {
 	@Override
 	@Transactional
 	public void saveProduct(Product product) throws Exception {
-		
-	    if (productRepository.existsByCode(product.getCode())) {
-	        throw new Exception("El código del producto ya existe");
-	    }else {	    
-		product.setCreatedAt(LocalDate.now());
-		productRepository.save(product);
-	    }
+
+		if (productRepository.existsByCode(product.getCode())) {
+			throw new Exception("El código del producto ya existe");
+		} else {
+			product.setCreatedAt(LocalDate.now());
+			productRepository.save(product);
+		}
 	}
 
 	@Override
@@ -113,14 +113,12 @@ public class ProductServiceIMPL implements IProductService {
 			throw new Exception("No hay productos cargados");
 		}
 	}
-	
+
 	@Override
-	public List<Product> findProductByProvider(Integer idProvider){
-		
+	public List<Product> findProductByProvider(Integer idProvider) {
+
 		List<Product> productList = productRepository.findByProviderIdProvider(idProvider);
-		
 		return productList;
-		
 	}
 
 }

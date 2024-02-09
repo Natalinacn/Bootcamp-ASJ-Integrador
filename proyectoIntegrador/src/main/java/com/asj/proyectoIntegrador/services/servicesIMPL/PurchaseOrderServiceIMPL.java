@@ -23,29 +23,22 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 	@Transactional
 	@Override
 	public PurchaseOrder savePurchaseOrder(PurchaseOrder purchaseOrder) throws Exception {
-	    if (purchaseOrder == null) {
-	        throw new Exception("La orden de compra es nula");
-	    }
-	    
-	    if (purchaseOrderRepository.existsByOrderNumber(purchaseOrder.getOrderNumber())) {
-	        throw new Exception("El número de orden ya existe");
-	    }
+		if (purchaseOrder == null) {
+			throw new Exception("La orden de compra es nula");
+		}
 
-			purchaseOrder.setIssueDate(LocalDate.now());
-			purchaseOrder.setCreatedAt(LocalDate.now());
-			return purchaseOrderRepository.save(purchaseOrder);
-
+		if (purchaseOrderRepository.existsByOrderNumber(purchaseOrder.getOrderNumber())) {
+			throw new Exception("El número de orden ya existe");
+		}
+		purchaseOrder.setIssueDate(LocalDate.now());
+		purchaseOrder.setCreatedAt(LocalDate.now());
+		return purchaseOrderRepository.save(purchaseOrder);
 	}
 
-	// Lista todas las órdenes
 	@Override
-	public List<PurchaseOrder> listAllPurchaseOrders() throws Exception {
+	public List<PurchaseOrder> listAllPurchaseOrders() {
 		List<PurchaseOrder> purchaseOrderList = purchaseOrderRepository.findAll();
-		if (purchaseOrderList.isEmpty()) {
-			throw new Exception("La lista de órdenes de compra está vacía");
-		} else {
-			return purchaseOrderList;
-		}
+		return purchaseOrderList;
 	}
 
 	// Busca órdenes por id
@@ -58,31 +51,20 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 		} else {
 			throw new Exception("La órden número " + purchaseOrder.getOrderNumber() + "no fue encontrada");
 		}
-
 	}
 
-	// Lista órdenes con fecha de eliminación(canceladas)
 	@Override
 	public List<PurchaseOrder> listCanceledPurchaseOrders() throws Exception {
 		List<PurchaseOrder> purchaseOrderList = purchaseOrderRepository
 				.findAllPurchaseOrderByDeletedAtIsNotNullOrderByOrderNumber();
-		if (purchaseOrderList.isEmpty()) {
-			throw new Exception("La lista de órdenes está vacía");
-		} else {
-			return purchaseOrderList;
-		}
+		return purchaseOrderList;
 	}
 
-	// Lista órdenes sin fecha de eliminación (activas)
 	@Override
 	public List<PurchaseOrder> listActivePurchaseOrders() throws Exception {
 		List<PurchaseOrder> purchaseOrderList = purchaseOrderRepository
 				.findAllPurchaseOrderByDeletedAtIsNullOrderByOrderNumber();
-		if (purchaseOrderList.isEmpty()) {
-			throw new Exception("La lista de órdenes está vacía");
-		} else {
-			return purchaseOrderList;
-		}
+		return purchaseOrderList;
 	}
 
 	@Override
@@ -116,7 +98,7 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 			throw new Exception("Error al actualizar la órden de compra" + purchaseOrder.getOrderNumber());
 		}
 	}
-	
+
 	@Override
 	public Integer getTotalPurchaseCount() throws Exception {
 		Integer purchaseQuantity = purchaseOrderRepository.getTotalOrderCount();
@@ -125,6 +107,5 @@ public class PurchaseOrderServiceIMPL implements IPurchaseOrderService {
 		} else {
 			throw new Exception("No hay órdenes de compra cargados");
 		}
-	}	
-
+	}
 }

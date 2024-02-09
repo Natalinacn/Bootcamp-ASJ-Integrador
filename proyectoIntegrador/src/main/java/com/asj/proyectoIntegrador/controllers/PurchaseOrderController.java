@@ -40,20 +40,19 @@ public class PurchaseOrderController {
 			return new ResponseEntity<List<PurchaseOrder>>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@GetMapping("/listadoEliminados")
 	public ResponseEntity<List<PurchaseOrder>> getDeletedPurchases() {
 		List<PurchaseOrder> purchases;
 		try {
 			purchases = this.purchaseOrderService.listCanceledPurchaseOrders();
-			return new ResponseEntity<>(purchases , HttpStatus.OK);
+			return new ResponseEntity<>(purchases, HttpStatus.OK);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return new ResponseEntity<List<PurchaseOrder>>(HttpStatus.NOT_FOUND);
 		}
-		
+
 	}
-	
+
 	@GetMapping("/listadoActivos")
 	public ResponseEntity<List<PurchaseOrder>> getActivedPurchases() {
 		List<PurchaseOrder> purchases;
@@ -64,20 +63,20 @@ public class PurchaseOrderController {
 			e.printStackTrace();
 			return new ResponseEntity<List<PurchaseOrder>>(HttpStatus.NOT_FOUND);
 		}
-		
+
 	}
-	
+
 	@GetMapping("/{idPurchaseOrder}")
-	public ResponseEntity<PurchaseOrder> getPurchaseOrderById(@PathVariable Integer idPurchaseOrder){
+	public ResponseEntity<PurchaseOrder> getPurchaseOrderById(@PathVariable Integer idPurchaseOrder) {
 		try {
 			PurchaseOrder purchaseOrder = purchaseOrderService.findPurchaseOrderById(idPurchaseOrder);
 			return new ResponseEntity<PurchaseOrder>(purchaseOrder, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<PurchaseOrder>(HttpStatus.NOT_FOUND);
-		}		
+		}
 	}
-	
+
 	@GetMapping("/cantidad")
 	public ResponseEntity<Integer> getTotalPurchaseCount() {
 		try {
@@ -88,7 +87,7 @@ public class PurchaseOrderController {
 			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
 	@PostMapping("/formulario")
 	public ResponseEntity<String> createPurchaseOrder(@Valid @RequestBody PurchaseOrder purchaseOrder) {
 		try {
@@ -108,16 +107,18 @@ public class PurchaseOrderController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@PutMapping("/actualizar/{idPurchaseOrder}")
-	public ResponseEntity<PurchaseOrder> updatePurchaseOrder(@PathVariable Integer idPurchaseOrder, @Valid @RequestBody PurchaseOrder purchaseOrder) {
+	public ResponseEntity<PurchaseOrder> updatePurchaseOrder(@PathVariable Integer idPurchaseOrder,
+			@Valid @RequestBody PurchaseOrder purchaseOrder) {
 		try {
-			PurchaseOrder updatedPurchaseOrder  = purchaseOrderService.updatePurchaseOrder(idPurchaseOrder, purchaseOrder);
+			PurchaseOrder updatedPurchaseOrder = purchaseOrderService.updatePurchaseOrder(idPurchaseOrder,
+					purchaseOrder);
 			return new ResponseEntity<PurchaseOrder>(updatedPurchaseOrder, HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<PurchaseOrder>(HttpStatus.NOT_FOUND);
-		}		
+		}
 	}
-	
+
 }

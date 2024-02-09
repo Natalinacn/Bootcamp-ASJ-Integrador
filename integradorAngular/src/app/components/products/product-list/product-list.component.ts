@@ -14,7 +14,7 @@ export class ProductListComponent implements OnInit {
   productsData: any[] = [];
   criteria: string = '';
   productActivate!: ProductsModel;
-
+  optionSelected: boolean = false;
 
 
   constructor(
@@ -31,18 +31,21 @@ export class ProductListComponent implements OnInit {
   listActivatedProducts() {
     this.productService.getActivatedProducts().subscribe((data) => {
       this.productsData = data;
+      this.optionSelected = false;
     });
   }
 
   listDeletedProducts() {
     this.productService.getDeletedProducts().subscribe((data) => {
       this.productsData = data;
+      this.optionSelected = true;
     });
   }
 
   listAllProducts(){
     this.productService.getAllProducts().subscribe((data)=>{
       this.productsData = data;
+      this.optionSelected = false;
     });
   }
 

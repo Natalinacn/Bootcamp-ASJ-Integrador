@@ -42,7 +42,7 @@
       (click)="listDeletedPurchases()">Inactivos</label>
     </div>
     <div class="contenedor-tabla text-center">
-      <!-- <ng-container *ngIf="purchaseData.length > 0; else noPurchase"> -->
+      <ng-container *ngIf="purchaseData.length > 0; else noPurchase">
     <table class="table table-dark table-striped mt-2 ">
       <thead>
         <tr>
@@ -74,16 +74,16 @@
         </tr>
       </tbody>
     </table>
-  <!-- </ng-container> -->
+  </ng-container>
 
 
 
   </div>
 
-  <!-- <ng-template #noPurchase>
-    <div class="container-fluid text-bg-secondary   text-center mt-5 p-3 ">
-      <h2>No hay órdenes de compra cargadas. ¿Desea agregar una?</h2>
+  <ng-template #noPurchase>
+    <div class="container-fluid text-bg-secondary text-center mt-5 p-3 ">
+      <h2>{{ optionSelected ? 'No existen órdenes canceladas' : 'No hay órdenes de compra cargadas. ¿Desea agregar una?' }}</h2>
     </div>
-  </ng-template> -->
+  </ng-template>
 
   </main>

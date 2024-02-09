@@ -161,7 +161,7 @@
 
   <ng-template #noProviders>
     <div class="container-fluid text-bg-secondary text-center mt-5 p-3">
-      <h2>No hay proveedores cargados. ¿Desea agregar uno?</h2>
+      <h2>{{ optionSelected ? 'No existen proveedores eliminados' : 'No existen proveedores cargados. ¿Desea agregar uno?' }}</h2>
     </div>
   </ng-template>
 </main>

@@ -12,6 +12,7 @@ import { PurchaseOrdersService } from 'src/app/services/purchase-orders.service'
 export class PurchaseListComponent implements OnInit {
   purchaseData: any[] = [];
   criteria: string = '';
+  optionSelected: boolean = false;
 
   constructor(
     private purchaseService: PurchaseOrdersService,
@@ -26,18 +27,21 @@ export class PurchaseListComponent implements OnInit {
   listPurchaseOrders() {
     this.purchaseService.getPurchases().subscribe((data) => {
       this.purchaseData = data;
+      this.optionSelected = false;
     });
   }
 
   listDeletedPurchases() {
     this.purchaseService.getDeletedPurchases().subscribe((data) => {
       this.purchaseData = data;
+      this.optionSelected = true;
     });
   }
 
   listActivatedPurchases() {
     this.purchaseService.getActivatedPurchases().subscribe((data) => {
       this.purchaseData = data;
+      this.optionSelected = false;
     });
   }
 

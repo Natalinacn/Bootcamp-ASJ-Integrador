@@ -13,6 +13,7 @@ import { ProvidersService } from 'src/app/services/providers.service';
 export class ProviderListComponent implements OnInit {
   providersData: ProvidersModel[] = [];
   criteria: string = '';
+  optionSelected: boolean = false;
 
   constructor(
     private providersService: ProvidersService,
@@ -28,6 +29,7 @@ export class ProviderListComponent implements OnInit {
     console.log('Criteria:', this.criteria);
     //COnsumir los datos del observable (suscribirnos)
     this.providersService.getActivatedProviders().subscribe((data) => {
+      this.optionSelected = false;
       this.providersData = data;
     });
   }
@@ -60,12 +62,14 @@ export class ProviderListComponent implements OnInit {
 
   listDeletedProviders() {
     this.providersService.getDeletedProviders().subscribe((data) => {
+      this.optionSelected = true;
       this.providersData = data;
     });
   }
 
   listAllProviders() {
     this.providersService.getAllProviders().subscribe((data) => {
+      this.optionSelected = false;
       this.providersData = data;
     });
   }

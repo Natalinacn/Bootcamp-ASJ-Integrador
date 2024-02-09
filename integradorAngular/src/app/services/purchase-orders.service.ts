@@ -16,18 +16,30 @@ export class PurchaseOrdersService {
 
   getPurchases(): Observable<PurchaseOrdersModel[]> {
     const url = `${this.baseUrl}/listado`;
-    return this.clienteHttp.get<PurchaseOrdersModel[]>(url);
+    return this.clienteHttp.get<PurchaseOrdersModel[]>(url).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 
   getActivatedPurchases(): Observable<PurchaseOrdersModel[]>{
     const url = `${this.baseUrl}/listadoActivos`;
-    return this.clienteHttp.get<PurchaseOrdersModel[]>(url);
+    return this.clienteHttp.get<PurchaseOrdersModel[]>(url).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 
 
   getDeletedPurchases(): Observable<PurchaseOrdersModel[]>{
     const url = `${this.baseUrl}/listadoEliminados`;
-    return this.clienteHttp.get<PurchaseOrdersModel[]>(url);
+    return this.clienteHttp.get<PurchaseOrdersModel[]>(url).pipe(
+      catchError((error) => {
+        return throwError(error);
+      })
+    );
   }
 
   getPurchaseOrderById(

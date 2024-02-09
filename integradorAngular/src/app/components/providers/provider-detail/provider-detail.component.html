@@ -1,6 +1,12 @@
 <div class="d-flex align-items-center justify-content-center" style="height: 60vh; margin-top: 20vh;">
     <div class="card text-bg-dark" style="max-width: 40rem; min-width: 20rem;">
-        <img src="{{ provider.img }}" class="card-img-top" alt="logo" style="max-height: 15rem;">
+        <img *ngIf="provider.img; else defaultImage"
+        src="{{ provider.img }}" class="card-img-top" alt="logo" style="max-height: 15rem;">
+        <ng-template #defaultImage>
+          <img src="assets/defaultImage.JPG" 
+          alt="Imagen predeterminada"
+          style="max-height: 15rem"/>                
+        </ng-template>
     <div class="card-body">
       <h5 class="card-title text-uppercase">{{ provider.businessName }}</h5>
       <p class="reduce-interlineado">Código: {{ provider.providerCode }}</p>
